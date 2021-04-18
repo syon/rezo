@@ -3,30 +3,20 @@
     <div>
       <Logo />
       <h1 class="title">rezo</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+
+      <box></box>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import Box from '@/components/Box'
+
+export default {
+  components: {
+    Box,
+  },
+}
 </script>
 
 <style>
