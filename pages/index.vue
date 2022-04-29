@@ -1,5 +1,9 @@
 <template>
-  <Tutorial />
+  <div>
+    <a href="https://github.com/syon/svg-study" class="text-blue-500">
+      https://github.com/syon/svg-study
+    </a>
+  </div>
 </template>
 
 <script>

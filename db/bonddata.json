@@ -1,0 +1,12 @@
+[
+  { "src": "a00", "dst": "aaa", "dstidx": 3 },
+  { "src": "a00", "dst": "ddd", "dstidx": 0 },
+  { "src": "aaa", "dst": "bbb", "dstidx": 1 },
+  { "src": "bbb", "dst": "ccc", "dstidx": 2 },
+  { "src": "ddd", "dst": "eee", "dstidx": 3 },
+  { "src": "eee", "dst": "fff", "dstidx": 0 },
+  { "src": "bbb", "dst": "fff", "dstidx": 1 },
+  { "src": "ddd", "dst": "ccc", "dstidx": 1 },
+  { "src": "ccc", "dst": "ggg", "dstidx": 0 },
+  { "src": "fff", "dst": "ggg", "dstidx": 1 }
+]
