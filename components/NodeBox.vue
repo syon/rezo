@@ -7,15 +7,18 @@
       </div>
     </div>
     <div class="body px-2 py-2">
-      <ul class="list-inside list-disc pl-2 text-sm">
-        <li>aaaaaa</li>
-        <li>bbbbbbbbbbbb</li>
-        <li>cccccccc</li>
-        <li>dddd</li>
+      <ul class="list-inside pl-2 text-sm">
+        <li v-for="(req, idx) of obj.reqs" :key="idx">{{ req }}</li>
       </ul>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: { obj: { type: Object, required: true } },
+}
+</script>
 
 <style scoped>
 .cc-QuestBox {
