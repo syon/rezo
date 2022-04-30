@@ -36,9 +36,9 @@ function refreshQuest() {
 
   let isRemainAlias = true
   while (isRemainAlias) {
-    console.log('<WHILE>', aliasInfo)
     // 貯め込んだすべてのエイリアスを対象に巡回
     for (const [aliasId, aRef] of Object.entries(aliasInfo)) {
+      console.log('<WHILE>', aliasId)
       const obj = questSet[aliasId]
       // 進捗率計算済みの場合はその状況を反映
       if (obj.rateResolved) {

@@ -26,8 +26,9 @@
               height="160"
               :x="b.x"
               :y="b.y"
+              style="border: 1px solid pink"
               @pointerdown="dragBoxStart($event, key)"
-              @pointerenter="enterBox($event, key)"
+              @mousemove="enterBox($event, key)"
             >
               <node-box :obj="b" />
             </foreignObject>
@@ -71,11 +72,12 @@
             </g>
           </template>
 
-          <auto-bezier
-            v-if="isPlusDragging"
-            :sp="previewLineSrc"
-            :ep="previewLineDst"
-          />
+          <template v-if="isPlusDragging">
+            <auto-bezier :sp="previewLineSrc" :ep="previewLineDst" />
+            <text :x="scaledMouseX" :y="scaledMouseY" font-size="14" fill="red">
+              {{ lastEnterBoxId }}
+            </text>
+          </template>
         </g>
       </svg>
 
@@ -91,6 +93,12 @@
       <div id="toolbar">
         <button class="border px-2" @click="newQuestBox">new</button>
         <fact-list />
+        <div class="p-2">
+          <div>isBoxDragging: {{ isBoxDragging }}</div>
+          <div>dragBoxId: {{ dragBoxId }}</div>
+          <div>isPlusDragging: {{ isPlusDragging }}</div>
+          <div>lastEnterBoxId: {{ lastEnterBoxId }}</div>
+        </div>
       </div>
     </div>
   </main>
@@ -207,14 +215,15 @@ export default {
       this.dragOffset = { x: offsetX, y: offsetY }
     },
     enterBox(event, key) {
-      this.lastEnterBoxId = key
+      if (this.isPlusDragging) {
+        event.stopPropagation()
+        this.lastEnterBoxId = key
+      }
     },
     dragPlusStart(event, boxId) {
       event.stopPropagation()
       this.disableSpzPan()
-      this.isBoxDragging = false
       this.isPlusDragging = true
-      this.dragBoxId = boxId
       const { offsetX, offsetY } = event
       this.dragOffset = { x: offsetX, y: offsetY }
       this.previewLineDst = {
@@ -223,19 +232,22 @@ export default {
       }
     },
     dragStop() {
-      this.isBoxDragging = false
+      if (this.isBoxDragging) {
+        this.isBoxDragging = false
+        this.dragBoxId = null
+      }
       if (this.isPlusDragging) {
         this.newSocket()
         this.isPlusDragging = false
+        this.lastEnterBoxId = null
       }
-      this.dragBoxId = null
     },
     onMousemove(event) {
       this.refreshMousePos(event)
-      if (!this.dragBoxId) return
+
       if (this.spz.isPanEnabled()) return
 
-      if (this.isBoxDragging) {
+      if (this.isBoxDragging && this.dragBoxId) {
         const payload = {
           id: this.dragBoxId,
           x: this.scaledMouseX - this.dragOffset.x,
@@ -246,6 +258,9 @@ export default {
         this.previewLineSrc = {
           x: this.scaledMouseX,
           y: this.scaledMouseY,
+        }
+        if (this.lastEnterBoxId) {
+          this.lastEnterBoxId = null
         }
       }
     },
@@ -264,6 +279,7 @@ export default {
       return { scaleX: vpmx.a, scaleY: vpmx.d, transX: vpmx.e, transY: vpmx.f }
     },
     newSocket() {
+      if (!this.dragBoxId || !this.lastEnterBoxId) return
       const payload = {
         questId: this.dragBoxId,
         socketId: this.lastEnterBoxId,

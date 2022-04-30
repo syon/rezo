@@ -28,9 +28,7 @@ app.post('/quests/:id/sockets', (req, res) => {
   target.sockets.push({ id, type })
   const outJson = JSON.stringify(def, null, 2)
   fs.writeFileSync('./db/QuestDef.json', outJson)
-  console.log('////////////// CalcQuest bef')
   CalcQuest()
-  console.log('////////////// CalcQuest after')
   res.status(200).send('OK')
 })
 
