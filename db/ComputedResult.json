@@ -51,7 +51,7 @@
       ]
     },
     "aaa": {
-      "title": "aaaタイトル",
+      "title": "aaaタイトル★",
       "x": 240,
       "y": 30,
       "sockets": [
@@ -149,7 +149,7 @@
         },
         {
           "id": "aaa",
-          "title": "aaaタイトル",
+          "title": "aaaタイトル★",
           "done": false,
           "type": "alias"
         },

@@ -128,10 +128,12 @@ function writeJson() {
 }
 
 function run() {
+  console.log('CalcQuest start')
   refreshQuest()
   refreshBonds()
   refreshFacts()
   writeJson()
+  console.log('CalcQuest end')
 }
 
-run()
+module.exports = run
