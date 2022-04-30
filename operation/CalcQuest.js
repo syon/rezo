@@ -1,42 +1,54 @@
 const fs = require('fs')
 const questSet = require('../db/questdata.json')
 
+const computedResult = { questSet: null, bonds: [] }
+
 function refreshQuest() {
   for (const [rootId, quest] of Object.entries(questSet)) {
     const drawSockets = []
-    for (const [socketId, info] of Object.entries(quest.sockets)) {
-      let socketObj = info
-      if (info.type === 'alias') {
-        socketObj = questSet[socketId]
-        if (!socketObj) {
-          console.warn('Missing socket ref, ID', socketId)
+    for (const soc of quest.sockets) {
+      if (soc.type === 'alias') {
+        const obj = questSet[soc.id]
+        if (!obj) {
+          console.warn('Missing socket ref, ID', soc.id)
           continue
         }
+        const done = true
+        drawSockets.push({ ...obj, type: soc.type, done })
+      } else {
+        const { id, type, title } = soc
+        const done = true
+        drawSockets.push({ id, type, title, done })
       }
-      const { title, type } = socketObj
-      const done = true
-      drawSockets.push({ id: socketId, type, title, done })
     }
     questSet[rootId].drawSockets = drawSockets
   }
 
-  const jsonStr = JSON.stringify(questSet, null, 2)
-  fs.writeFileSync('./db/ComputedQuestSet.json', jsonStr)
+  computedResult.questSet = questSet
 }
 
 function refreshBonds() {
+  const bonds = []
   for (const [rootId, quest] of Object.entries(questSet)) {
-    for (const [socketId, info] of Object.entries(quest.sockets)) {
-      if (info.type === 'alias') {
-        console.log('src', socketId, 'dst', rootId)
+    quest.sockets.forEach((soc, idx) => {
+      if (soc.type === 'alias') {
+        bonds.push({ src: soc.id, dst: rootId, dstidx: idx })
       }
-    }
+    })
   }
+
+  computedResult.bonds = bonds
+}
+
+function writeJson() {
+  const jsonStr = JSON.stringify(computedResult, null, 2)
+  fs.writeFileSync('./db/ComputedResult.json', jsonStr)
 }
 
 function run() {
   refreshQuest()
   refreshBonds()
+  writeJson()
 }
 
 run()

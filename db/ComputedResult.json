@@ -1,0 +1,1478 @@
+{
+  "questSet": {
+    "a00": {
+      "title": "a00タイトル",
+      "x": 30,
+      "y": 170,
+      "sockets": [
+        {
+          "id": "A0abc",
+          "type": "socket",
+          "title": "A0abcタスク"
+        },
+        {
+          "id": "A0def",
+          "type": "socket",
+          "title": "A0defタスク"
+        },
+        {
+          "id": "A0ghi",
+          "type": "socket",
+          "title": "A0ghiタスク"
+        }
+      ],
+      "drawSockets": [
+        {
+          "id": "A0abc",
+          "type": "socket",
+          "title": "A0abcタスク",
+          "done": true
+        },
+        {
+          "id": "A0def",
+          "type": "socket",
+          "title": "A0defタスク",
+          "done": true
+        },
+        {
+          "id": "A0ghi",
+          "type": "socket",
+          "title": "A0ghiタスク",
+          "done": true
+        }
+      ]
+    },
+    "aaa": {
+      "title": "aaaタイトル",
+      "x": 240,
+      "y": 30,
+      "sockets": [
+        {
+          "id": "zzz000",
+          "type": "socket",
+          "title": "zzz000タスク"
+        },
+        {
+          "id": "zzz001",
+          "type": "socket",
+          "title": "zzz001タスク"
+        },
+        {
+          "id": "zzz002",
+          "type": "socket",
+          "title": "zzz002タスク"
+        },
+        {
+          "id": "a00",
+          "type": "alias"
+        }
+      ],
+      "drawSockets": [
+        {
+          "id": "zzz000",
+          "type": "socket",
+          "title": "zzz000タスク",
+          "done": true
+        },
+        {
+          "id": "zzz001",
+          "type": "socket",
+          "title": "zzz001タスク",
+          "done": true
+        },
+        {
+          "id": "zzz002",
+          "type": "socket",
+          "title": "zzz002タスク",
+          "done": true
+        },
+        {
+          "title": "a00タイトル",
+          "x": 30,
+          "y": 170,
+          "sockets": [
+            {
+              "id": "A0abc",
+              "type": "socket",
+              "title": "A0abcタスク"
+            },
+            {
+              "id": "A0def",
+              "type": "socket",
+              "title": "A0defタスク"
+            },
+            {
+              "id": "A0ghi",
+              "type": "socket",
+              "title": "A0ghiタスク"
+            }
+          ],
+          "drawSockets": [
+            {
+              "id": "A0abc",
+              "type": "socket",
+              "title": "A0abcタスク",
+              "done": true
+            },
+            {
+              "id": "A0def",
+              "type": "socket",
+              "title": "A0defタスク",
+              "done": true
+            },
+            {
+              "id": "A0ghi",
+              "type": "socket",
+              "title": "A0ghiタスク",
+              "done": true
+            }
+          ],
+          "type": "alias",
+          "done": true
+        }
+      ]
+    },
+    "bbb": {
+      "title": "bbbタイトル",
+      "x": 480,
+      "y": 50,
+      "sockets": [
+        {
+          "id": "Babc",
+          "type": "socket",
+          "title": "Babcタスク"
+        },
+        {
+          "id": "aaa",
+          "type": "alias"
+        },
+        {
+          "id": "Bghi",
+          "type": "socket",
+          "title": "Bghiタスク"
+        }
+      ],
+      "drawSockets": [
+        {
+          "id": "Babc",
+          "type": "socket",
+          "title": "Babcタスク",
+          "done": true
+        },
+        {
+          "title": "aaaタイトル",
+          "x": 240,
+          "y": 30,
+          "sockets": [
+            {
+              "id": "zzz000",
+              "type": "socket",
+              "title": "zzz000タスク"
+            },
+            {
+              "id": "zzz001",
+              "type": "socket",
+              "title": "zzz001タスク"
+            },
+            {
+              "id": "zzz002",
+              "type": "socket",
+              "title": "zzz002タスク"
+            },
+            {
+              "id": "a00",
+              "type": "alias"
+            }
+          ],
+          "drawSockets": [
+            {
+              "id": "zzz000",
+              "type": "socket",
+              "title": "zzz000タスク",
+              "done": true
+            },
+            {
+              "id": "zzz001",
+              "type": "socket",
+              "title": "zzz001タスク",
+              "done": true
+            },
+            {
+              "id": "zzz002",
+              "type": "socket",
+              "title": "zzz002タスク",
+              "done": true
+            },
+            {
+              "title": "a00タイトル",
+              "x": 30,
+              "y": 170,
+              "sockets": [
+                {
+                  "id": "A0abc",
+                  "type": "socket",
+                  "title": "A0abcタスク"
+                },
+                {
+                  "id": "A0def",
+                  "type": "socket",
+                  "title": "A0defタスク"
+                },
+                {
+                  "id": "A0ghi",
+                  "type": "socket",
+                  "title": "A0ghiタスク"
+                }
+              ],
+              "drawSockets": [
+                {
+                  "id": "A0abc",
+                  "type": "socket",
+                  "title": "A0abcタスク",
+                  "done": true
+                },
+                {
+                  "id": "A0def",
+                  "type": "socket",
+                  "title": "A0defタスク",
+                  "done": true
+                },
+                {
+                  "id": "A0ghi",
+                  "type": "socket",
+                  "title": "A0ghiタスク",
+                  "done": true
+                }
+              ],
+              "type": "alias",
+              "done": true
+            }
+          ],
+          "type": "alias",
+          "done": true
+        },
+        {
+          "id": "Bghi",
+          "type": "socket",
+          "title": "Bghiタスク",
+          "done": true
+        }
+      ]
+    },
+    "ccc": {
+      "title": "cccタイトル",
+      "x": 740,
+      "y": 80,
+      "sockets": [
+        {
+          "id": "Cabc",
+          "type": "socket",
+          "title": "Cabcタスク"
+        },
+        {
+          "id": "ddd",
+          "type": "alias"
+        },
+        {
+          "id": "bbb",
+          "type": "alias"
+        }
+      ],
+      "drawSockets": [
+        {
+          "id": "Cabc",
+          "type": "socket",
+          "title": "Cabcタスク",
+          "done": true
+        },
+        {
+          "title": "dddタイトル",
+          "x": 260,
+          "y": 280,
+          "sockets": [
+            {
+              "id": "a00",
+              "type": "alias"
+            }
+          ],
+          "type": "alias",
+          "done": true
+        },
+        {
+          "title": "bbbタイトル",
+          "x": 480,
+          "y": 50,
+          "sockets": [
+            {
+              "id": "Babc",
+              "type": "socket",
+              "title": "Babcタスク"
+            },
+            {
+              "id": "aaa",
+              "type": "alias"
+            },
+            {
+              "id": "Bghi",
+              "type": "socket",
+              "title": "Bghiタスク"
+            }
+          ],
+          "drawSockets": [
+            {
+              "id": "Babc",
+              "type": "socket",
+              "title": "Babcタスク",
+              "done": true
+            },
+            {
+              "title": "aaaタイトル",
+              "x": 240,
+              "y": 30,
+              "sockets": [
+                {
+                  "id": "zzz000",
+                  "type": "socket",
+                  "title": "zzz000タスク"
+                },
+                {
+                  "id": "zzz001",
+                  "type": "socket",
+                  "title": "zzz001タスク"
+                },
+                {
+                  "id": "zzz002",
+                  "type": "socket",
+                  "title": "zzz002タスク"
+                },
+                {
+                  "id": "a00",
+                  "type": "alias"
+                }
+              ],
+              "drawSockets": [
+                {
+                  "id": "zzz000",
+                  "type": "socket",
+                  "title": "zzz000タスク",
+                  "done": true
+                },
+                {
+                  "id": "zzz001",
+                  "type": "socket",
+                  "title": "zzz001タスク",
+                  "done": true
+                },
+                {
+                  "id": "zzz002",
+                  "type": "socket",
+                  "title": "zzz002タスク",
+                  "done": true
+                },
+                {
+                  "title": "a00タイトル",
+                  "x": 30,
+                  "y": 170,
+                  "sockets": [
+                    {
+                      "id": "A0abc",
+                      "type": "socket",
+                      "title": "A0abcタスク"
+                    },
+                    {
+                      "id": "A0def",
+                      "type": "socket",
+                      "title": "A0defタスク"
+                    },
+                    {
+                      "id": "A0ghi",
+                      "type": "socket",
+                      "title": "A0ghiタスク"
+                    }
+                  ],
+                  "drawSockets": [
+                    {
+                      "id": "A0abc",
+                      "type": "socket",
+                      "title": "A0abcタスク",
+                      "done": true
+                    },
+                    {
+                      "id": "A0def",
+                      "type": "socket",
+                      "title": "A0defタスク",
+                      "done": true
+                    },
+                    {
+                      "id": "A0ghi",
+                      "type": "socket",
+                      "title": "A0ghiタスク",
+                      "done": true
+                    }
+                  ],
+                  "type": "alias",
+                  "done": true
+                }
+              ],
+              "type": "alias",
+              "done": true
+            },
+            {
+              "id": "Bghi",
+              "type": "socket",
+              "title": "Bghiタスク",
+              "done": true
+            }
+          ],
+          "type": "alias",
+          "done": true
+        }
+      ]
+    },
+    "ddd": {
+      "title": "dddタイトル",
+      "x": 260,
+      "y": 280,
+      "sockets": [
+        {
+          "id": "a00",
+          "type": "alias"
+        }
+      ],
+      "drawSockets": [
+        {
+          "title": "a00タイトル",
+          "x": 30,
+          "y": 170,
+          "sockets": [
+            {
+              "id": "A0abc",
+              "type": "socket",
+              "title": "A0abcタスク"
+            },
+            {
+              "id": "A0def",
+              "type": "socket",
+              "title": "A0defタスク"
+            },
+            {
+              "id": "A0ghi",
+              "type": "socket",
+              "title": "A0ghiタスク"
+            }
+          ],
+          "drawSockets": [
+            {
+              "id": "A0abc",
+              "type": "socket",
+              "title": "A0abcタスク",
+              "done": true
+            },
+            {
+              "id": "A0def",
+              "type": "socket",
+              "title": "A0defタスク",
+              "done": true
+            },
+            {
+              "id": "A0ghi",
+              "type": "socket",
+              "title": "A0ghiタスク",
+              "done": true
+            }
+          ],
+          "type": "alias",
+          "done": true
+        }
+      ]
+    },
+    "eee": {
+      "title": "eeeタイトル",
+      "x": 520,
+      "y": 360,
+      "sockets": [
+        {
+          "id": "Eabc",
+          "type": "socket",
+          "title": "Eabcタスク"
+        },
+        {
+          "id": "Edef",
+          "type": "socket",
+          "title": "Edefタスク"
+        },
+        {
+          "id": "Eghi",
+          "type": "socket",
+          "title": "Eghiタスク"
+        },
+        {
+          "id": "ddd",
+          "type": "alias"
+        },
+        {
+          "id": "Emno",
+          "type": "socket",
+          "title": "Emnoタスク"
+        }
+      ],
+      "drawSockets": [
+        {
+          "id": "Eabc",
+          "type": "socket",
+          "title": "Eabcタスク",
+          "done": true
+        },
+        {
+          "id": "Edef",
+          "type": "socket",
+          "title": "Edefタスク",
+          "done": true
+        },
+        {
+          "id": "Eghi",
+          "type": "socket",
+          "title": "Eghiタスク",
+          "done": true
+        },
+        {
+          "title": "dddタイトル",
+          "x": 260,
+          "y": 280,
+          "sockets": [
+            {
+              "id": "a00",
+              "type": "alias"
+            }
+          ],
+          "drawSockets": [
+            {
+              "title": "a00タイトル",
+              "x": 30,
+              "y": 170,
+              "sockets": [
+                {
+                  "id": "A0abc",
+                  "type": "socket",
+                  "title": "A0abcタスク"
+                },
+                {
+                  "id": "A0def",
+                  "type": "socket",
+                  "title": "A0defタスク"
+                },
+                {
+                  "id": "A0ghi",
+                  "type": "socket",
+                  "title": "A0ghiタスク"
+                }
+              ],
+              "drawSockets": [
+                {
+                  "id": "A0abc",
+                  "type": "socket",
+                  "title": "A0abcタスク",
+                  "done": true
+                },
+                {
+                  "id": "A0def",
+                  "type": "socket",
+                  "title": "A0defタスク",
+                  "done": true
+                },
+                {
+                  "id": "A0ghi",
+                  "type": "socket",
+                  "title": "A0ghiタスク",
+                  "done": true
+                }
+              ],
+              "type": "alias",
+              "done": true
+            }
+          ],
+          "type": "alias",
+          "done": true
+        },
+        {
+          "id": "Emno",
+          "type": "socket",
+          "title": "Emnoタスク",
+          "done": true
+        }
+      ]
+    },
+    "fff": {
+      "title": "fffタイトル",
+      "x": 760,
+      "y": 300,
+      "sockets": [
+        {
+          "id": "eee",
+          "type": "alias"
+        },
+        {
+          "id": "bbb",
+          "type": "alias"
+        },
+        {
+          "id": "a00",
+          "type": "alias"
+        }
+      ],
+      "drawSockets": [
+        {
+          "title": "eeeタイトル",
+          "x": 520,
+          "y": 360,
+          "sockets": [
+            {
+              "id": "Eabc",
+              "type": "socket",
+              "title": "Eabcタスク"
+            },
+            {
+              "id": "Edef",
+              "type": "socket",
+              "title": "Edefタスク"
+            },
+            {
+              "id": "Eghi",
+              "type": "socket",
+              "title": "Eghiタスク"
+            },
+            {
+              "id": "ddd",
+              "type": "alias"
+            },
+            {
+              "id": "Emno",
+              "type": "socket",
+              "title": "Emnoタスク"
+            }
+          ],
+          "drawSockets": [
+            {
+              "id": "Eabc",
+              "type": "socket",
+              "title": "Eabcタスク",
+              "done": true
+            },
+            {
+              "id": "Edef",
+              "type": "socket",
+              "title": "Edefタスク",
+              "done": true
+            },
+            {
+              "id": "Eghi",
+              "type": "socket",
+              "title": "Eghiタスク",
+              "done": true
+            },
+            {
+              "title": "dddタイトル",
+              "x": 260,
+              "y": 280,
+              "sockets": [
+                {
+                  "id": "a00",
+                  "type": "alias"
+                }
+              ],
+              "drawSockets": [
+                {
+                  "title": "a00タイトル",
+                  "x": 30,
+                  "y": 170,
+                  "sockets": [
+                    {
+                      "id": "A0abc",
+                      "type": "socket",
+                      "title": "A0abcタスク"
+                    },
+                    {
+                      "id": "A0def",
+                      "type": "socket",
+                      "title": "A0defタスク"
+                    },
+                    {
+                      "id": "A0ghi",
+                      "type": "socket",
+                      "title": "A0ghiタスク"
+                    }
+                  ],
+                  "drawSockets": [
+                    {
+                      "id": "A0abc",
+                      "type": "socket",
+                      "title": "A0abcタスク",
+                      "done": true
+                    },
+                    {
+                      "id": "A0def",
+                      "type": "socket",
+                      "title": "A0defタスク",
+                      "done": true
+                    },
+                    {
+                      "id": "A0ghi",
+                      "type": "socket",
+                      "title": "A0ghiタスク",
+                      "done": true
+                    }
+                  ],
+                  "type": "alias",
+                  "done": true
+                }
+              ],
+              "type": "alias",
+              "done": true
+            },
+            {
+              "id": "Emno",
+              "type": "socket",
+              "title": "Emnoタスク",
+              "done": true
+            }
+          ],
+          "type": "alias",
+          "done": true
+        },
+        {
+          "title": "bbbタイトル",
+          "x": 480,
+          "y": 50,
+          "sockets": [
+            {
+              "id": "Babc",
+              "type": "socket",
+              "title": "Babcタスク"
+            },
+            {
+              "id": "aaa",
+              "type": "alias"
+            },
+            {
+              "id": "Bghi",
+              "type": "socket",
+              "title": "Bghiタスク"
+            }
+          ],
+          "drawSockets": [
+            {
+              "id": "Babc",
+              "type": "socket",
+              "title": "Babcタスク",
+              "done": true
+            },
+            {
+              "title": "aaaタイトル",
+              "x": 240,
+              "y": 30,
+              "sockets": [
+                {
+                  "id": "zzz000",
+                  "type": "socket",
+                  "title": "zzz000タスク"
+                },
+                {
+                  "id": "zzz001",
+                  "type": "socket",
+                  "title": "zzz001タスク"
+                },
+                {
+                  "id": "zzz002",
+                  "type": "socket",
+                  "title": "zzz002タスク"
+                },
+                {
+                  "id": "a00",
+                  "type": "alias"
+                }
+              ],
+              "drawSockets": [
+                {
+                  "id": "zzz000",
+                  "type": "socket",
+                  "title": "zzz000タスク",
+                  "done": true
+                },
+                {
+                  "id": "zzz001",
+                  "type": "socket",
+                  "title": "zzz001タスク",
+                  "done": true
+                },
+                {
+                  "id": "zzz002",
+                  "type": "socket",
+                  "title": "zzz002タスク",
+                  "done": true
+                },
+                {
+                  "title": "a00タイトル",
+                  "x": 30,
+                  "y": 170,
+                  "sockets": [
+                    {
+                      "id": "A0abc",
+                      "type": "socket",
+                      "title": "A0abcタスク"
+                    },
+                    {
+                      "id": "A0def",
+                      "type": "socket",
+                      "title": "A0defタスク"
+                    },
+                    {
+                      "id": "A0ghi",
+                      "type": "socket",
+                      "title": "A0ghiタスク"
+                    }
+                  ],
+                  "drawSockets": [
+                    {
+                      "id": "A0abc",
+                      "type": "socket",
+                      "title": "A0abcタスク",
+                      "done": true
+                    },
+                    {
+                      "id": "A0def",
+                      "type": "socket",
+                      "title": "A0defタスク",
+                      "done": true
+                    },
+                    {
+                      "id": "A0ghi",
+                      "type": "socket",
+                      "title": "A0ghiタスク",
+                      "done": true
+                    }
+                  ],
+                  "type": "alias",
+                  "done": true
+                }
+              ],
+              "type": "alias",
+              "done": true
+            },
+            {
+              "id": "Bghi",
+              "type": "socket",
+              "title": "Bghiタスク",
+              "done": true
+            }
+          ],
+          "type": "alias",
+          "done": true
+        },
+        {
+          "title": "a00タイトル",
+          "x": 30,
+          "y": 170,
+          "sockets": [
+            {
+              "id": "A0abc",
+              "type": "socket",
+              "title": "A0abcタスク"
+            },
+            {
+              "id": "A0def",
+              "type": "socket",
+              "title": "A0defタスク"
+            },
+            {
+              "id": "A0ghi",
+              "type": "socket",
+              "title": "A0ghiタスク"
+            }
+          ],
+          "drawSockets": [
+            {
+              "id": "A0abc",
+              "type": "socket",
+              "title": "A0abcタスク",
+              "done": true
+            },
+            {
+              "id": "A0def",
+              "type": "socket",
+              "title": "A0defタスク",
+              "done": true
+            },
+            {
+              "id": "A0ghi",
+              "type": "socket",
+              "title": "A0ghiタスク",
+              "done": true
+            }
+          ],
+          "type": "alias",
+          "done": true
+        }
+      ]
+    },
+    "ggg": {
+      "title": "gggタイトル",
+      "x": 980,
+      "y": 170,
+      "sockets": [
+        {
+          "id": "ccc",
+          "type": "alias"
+        },
+        {
+          "id": "fff",
+          "type": "alias"
+        }
+      ],
+      "drawSockets": [
+        {
+          "title": "cccタイトル",
+          "x": 740,
+          "y": 80,
+          "sockets": [
+            {
+              "id": "Cabc",
+              "type": "socket",
+              "title": "Cabcタスク"
+            },
+            {
+              "id": "ddd",
+              "type": "alias"
+            },
+            {
+              "id": "bbb",
+              "type": "alias"
+            }
+          ],
+          "drawSockets": [
+            {
+              "id": "Cabc",
+              "type": "socket",
+              "title": "Cabcタスク",
+              "done": true
+            },
+            {
+              "title": "dddタイトル",
+              "x": 260,
+              "y": 280,
+              "sockets": [
+                {
+                  "id": "a00",
+                  "type": "alias"
+                }
+              ],
+              "type": "alias",
+              "done": true
+            },
+            {
+              "title": "bbbタイトル",
+              "x": 480,
+              "y": 50,
+              "sockets": [
+                {
+                  "id": "Babc",
+                  "type": "socket",
+                  "title": "Babcタスク"
+                },
+                {
+                  "id": "aaa",
+                  "type": "alias"
+                },
+                {
+                  "id": "Bghi",
+                  "type": "socket",
+                  "title": "Bghiタスク"
+                }
+              ],
+              "drawSockets": [
+                {
+                  "id": "Babc",
+                  "type": "socket",
+                  "title": "Babcタスク",
+                  "done": true
+                },
+                {
+                  "title": "aaaタイトル",
+                  "x": 240,
+                  "y": 30,
+                  "sockets": [
+                    {
+                      "id": "zzz000",
+                      "type": "socket",
+                      "title": "zzz000タスク"
+                    },
+                    {
+                      "id": "zzz001",
+                      "type": "socket",
+                      "title": "zzz001タスク"
+                    },
+                    {
+                      "id": "zzz002",
+                      "type": "socket",
+                      "title": "zzz002タスク"
+                    },
+                    {
+                      "id": "a00",
+                      "type": "alias"
+                    }
+                  ],
+                  "drawSockets": [
+                    {
+                      "id": "zzz000",
+                      "type": "socket",
+                      "title": "zzz000タスク",
+                      "done": true
+                    },
+                    {
+                      "id": "zzz001",
+                      "type": "socket",
+                      "title": "zzz001タスク",
+                      "done": true
+                    },
+                    {
+                      "id": "zzz002",
+                      "type": "socket",
+                      "title": "zzz002タスク",
+                      "done": true
+                    },
+                    {
+                      "title": "a00タイトル",
+                      "x": 30,
+                      "y": 170,
+                      "sockets": [
+                        {
+                          "id": "A0abc",
+                          "type": "socket",
+                          "title": "A0abcタスク"
+                        },
+                        {
+                          "id": "A0def",
+                          "type": "socket",
+                          "title": "A0defタスク"
+                        },
+                        {
+                          "id": "A0ghi",
+                          "type": "socket",
+                          "title": "A0ghiタスク"
+                        }
+                      ],
+                      "drawSockets": [
+                        {
+                          "id": "A0abc",
+                          "type": "socket",
+                          "title": "A0abcタスク",
+                          "done": true
+                        },
+                        {
+                          "id": "A0def",
+                          "type": "socket",
+                          "title": "A0defタスク",
+                          "done": true
+                        },
+                        {
+                          "id": "A0ghi",
+                          "type": "socket",
+                          "title": "A0ghiタスク",
+                          "done": true
+                        }
+                      ],
+                      "type": "alias",
+                      "done": true
+                    }
+                  ],
+                  "type": "alias",
+                  "done": true
+                },
+                {
+                  "id": "Bghi",
+                  "type": "socket",
+                  "title": "Bghiタスク",
+                  "done": true
+                }
+              ],
+              "type": "alias",
+              "done": true
+            }
+          ],
+          "type": "alias",
+          "done": true
+        },
+        {
+          "title": "fffタイトル",
+          "x": 760,
+          "y": 300,
+          "sockets": [
+            {
+              "id": "eee",
+              "type": "alias"
+            },
+            {
+              "id": "bbb",
+              "type": "alias"
+            },
+            {
+              "id": "a00",
+              "type": "alias"
+            }
+          ],
+          "drawSockets": [
+            {
+              "title": "eeeタイトル",
+              "x": 520,
+              "y": 360,
+              "sockets": [
+                {
+                  "id": "Eabc",
+                  "type": "socket",
+                  "title": "Eabcタスク"
+                },
+                {
+                  "id": "Edef",
+                  "type": "socket",
+                  "title": "Edefタスク"
+                },
+                {
+                  "id": "Eghi",
+                  "type": "socket",
+                  "title": "Eghiタスク"
+                },
+                {
+                  "id": "ddd",
+                  "type": "alias"
+                },
+                {
+                  "id": "Emno",
+                  "type": "socket",
+                  "title": "Emnoタスク"
+                }
+              ],
+              "drawSockets": [
+                {
+                  "id": "Eabc",
+                  "type": "socket",
+                  "title": "Eabcタスク",
+                  "done": true
+                },
+                {
+                  "id": "Edef",
+                  "type": "socket",
+                  "title": "Edefタスク",
+                  "done": true
+                },
+                {
+                  "id": "Eghi",
+                  "type": "socket",
+                  "title": "Eghiタスク",
+                  "done": true
+                },
+                {
+                  "title": "dddタイトル",
+                  "x": 260,
+                  "y": 280,
+                  "sockets": [
+                    {
+                      "id": "a00",
+                      "type": "alias"
+                    }
+                  ],
+                  "drawSockets": [
+                    {
+                      "title": "a00タイトル",
+                      "x": 30,
+                      "y": 170,
+                      "sockets": [
+                        {
+                          "id": "A0abc",
+                          "type": "socket",
+                          "title": "A0abcタスク"
+                        },
+                        {
+                          "id": "A0def",
+                          "type": "socket",
+                          "title": "A0defタスク"
+                        },
+                        {
+                          "id": "A0ghi",
+                          "type": "socket",
+                          "title": "A0ghiタスク"
+                        }
+                      ],
+                      "drawSockets": [
+                        {
+                          "id": "A0abc",
+                          "type": "socket",
+                          "title": "A0abcタスク",
+                          "done": true
+                        },
+                        {
+                          "id": "A0def",
+                          "type": "socket",
+                          "title": "A0defタスク",
+                          "done": true
+                        },
+                        {
+                          "id": "A0ghi",
+                          "type": "socket",
+                          "title": "A0ghiタスク",
+                          "done": true
+                        }
+                      ],
+                      "type": "alias",
+                      "done": true
+                    }
+                  ],
+                  "type": "alias",
+                  "done": true
+                },
+                {
+                  "id": "Emno",
+                  "type": "socket",
+                  "title": "Emnoタスク",
+                  "done": true
+                }
+              ],
+              "type": "alias",
+              "done": true
+            },
+            {
+              "title": "bbbタイトル",
+              "x": 480,
+              "y": 50,
+              "sockets": [
+                {
+                  "id": "Babc",
+                  "type": "socket",
+                  "title": "Babcタスク"
+                },
+                {
+                  "id": "aaa",
+                  "type": "alias"
+                },
+                {
+                  "id": "Bghi",
+                  "type": "socket",
+                  "title": "Bghiタスク"
+                }
+              ],
+              "drawSockets": [
+                {
+                  "id": "Babc",
+                  "type": "socket",
+                  "title": "Babcタスク",
+                  "done": true
+                },
+                {
+                  "title": "aaaタイトル",
+                  "x": 240,
+                  "y": 30,
+                  "sockets": [
+                    {
+                      "id": "zzz000",
+                      "type": "socket",
+                      "title": "zzz000タスク"
+                    },
+                    {
+                      "id": "zzz001",
+                      "type": "socket",
+                      "title": "zzz001タスク"
+                    },
+                    {
+                      "id": "zzz002",
+                      "type": "socket",
+                      "title": "zzz002タスク"
+                    },
+                    {
+                      "id": "a00",
+                      "type": "alias"
+                    }
+                  ],
+                  "drawSockets": [
+                    {
+                      "id": "zzz000",
+                      "type": "socket",
+                      "title": "zzz000タスク",
+                      "done": true
+                    },
+                    {
+                      "id": "zzz001",
+                      "type": "socket",
+                      "title": "zzz001タスク",
+                      "done": true
+                    },
+                    {
+                      "id": "zzz002",
+                      "type": "socket",
+                      "title": "zzz002タスク",
+                      "done": true
+                    },
+                    {
+                      "title": "a00タイトル",
+                      "x": 30,
+                      "y": 170,
+                      "sockets": [
+                        {
+                          "id": "A0abc",
+                          "type": "socket",
+                          "title": "A0abcタスク"
+                        },
+                        {
+                          "id": "A0def",
+                          "type": "socket",
+                          "title": "A0defタスク"
+                        },
+                        {
+                          "id": "A0ghi",
+                          "type": "socket",
+                          "title": "A0ghiタスク"
+                        }
+                      ],
+                      "drawSockets": [
+                        {
+                          "id": "A0abc",
+                          "type": "socket",
+                          "title": "A0abcタスク",
+                          "done": true
+                        },
+                        {
+                          "id": "A0def",
+                          "type": "socket",
+                          "title": "A0defタスク",
+                          "done": true
+                        },
+                        {
+                          "id": "A0ghi",
+                          "type": "socket",
+                          "title": "A0ghiタスク",
+                          "done": true
+                        }
+                      ],
+                      "type": "alias",
+                      "done": true
+                    }
+                  ],
+                  "type": "alias",
+                  "done": true
+                },
+                {
+                  "id": "Bghi",
+                  "type": "socket",
+                  "title": "Bghiタスク",
+                  "done": true
+                }
+              ],
+              "type": "alias",
+              "done": true
+            },
+            {
+              "title": "a00タイトル",
+              "x": 30,
+              "y": 170,
+              "sockets": [
+                {
+                  "id": "A0abc",
+                  "type": "socket",
+                  "title": "A0abcタスク"
+                },
+                {
+                  "id": "A0def",
+                  "type": "socket",
+                  "title": "A0defタスク"
+                },
+                {
+                  "id": "A0ghi",
+                  "type": "socket",
+                  "title": "A0ghiタスク"
+                }
+              ],
+              "drawSockets": [
+                {
+                  "id": "A0abc",
+                  "type": "socket",
+                  "title": "A0abcタスク",
+                  "done": true
+                },
+                {
+                  "id": "A0def",
+                  "type": "socket",
+                  "title": "A0defタスク",
+                  "done": true
+                },
+                {
+                  "id": "A0ghi",
+                  "type": "socket",
+                  "title": "A0ghiタスク",
+                  "done": true
+                }
+              ],
+              "type": "alias",
+              "done": true
+            }
+          ],
+          "type": "alias",
+          "done": true
+        }
+      ]
+    }
+  },
+  "bonds": [
+    {
+      "src": "a00",
+      "dst": "aaa",
+      "dstidx": 3
+    },
+    {
+      "src": "aaa",
+      "dst": "bbb",
+      "dstidx": 1
+    },
+    {
+      "src": "ddd",
+      "dst": "ccc",
+      "dstidx": 1
+    },
+    {
+      "src": "bbb",
+      "dst": "ccc",
+      "dstidx": 2
+    },
+    {
+      "src": "a00",
+      "dst": "ddd",
+      "dstidx": 0
+    },
+    {
+      "src": "ddd",
+      "dst": "eee",
+      "dstidx": 3
+    },
+    {
+      "src": "eee",
+      "dst": "fff",
+      "dstidx": 0
+    },
+    {
+      "src": "bbb",
+      "dst": "fff",
+      "dstidx": 1
+    },
+    {
+      "src": "a00",
+      "dst": "fff",
+      "dstidx": 2
+    },
+    {
+      "src": "ccc",
+      "dst": "ggg",
+      "dstidx": 0
+    },
+    {
+      "src": "fff",
+      "dst": "ggg",
+      "dstidx": 1
+    }
+  ]
+}

@@ -98,7 +98,7 @@ export default {
           const { x, y, drawSockets } = box
           const inPoints = []
           let h = 60
-          for (let i = 0; i < drawSockets.length; i++) {
+          for (let i = 0; i < (drawSockets || []).length; i++) {
             inPoints.push({ x, y: y + 20 * i + 53 })
             h += 18
           }

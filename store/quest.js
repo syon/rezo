@@ -1,10 +1,9 @@
 import { v4 as uuid } from 'uuid'
-import questdataJson from '@/db/ComputedQuestSet.json'
-import bonddataJson from '@/db/bonddata.json'
+import ComputedResultJson from '@/db/ComputedResult.json'
 
 export const state = () => ({
-  questdata: questdataJson,
-  bonddata: bonddataJson,
+  questdata: ComputedResultJson.questSet,
+  bonddata: ComputedResultJson.bonds,
 })
 
 export const getters = {
@@ -31,16 +30,16 @@ export const mutations = {
 }
 
 export const actions = {
-  addQuestItem({ commit, dispatch }) {
+  addQuestItem({ commit }) {
     const id = uuid().slice(0, 8)
     const item = {
       id,
+      title: "新しいタイトル",
       x: 500,
       y: 200,
-      reqs: ['Habc', 'Hdef'],
+      sockets: [],
     }
     commit('addQuest', item)
-    dispatch('calcQuest')
   },
   changeQuestItem({ commit }, payload) {
     const { id, x: rawX, y: rawY } = payload
