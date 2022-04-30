@@ -107,6 +107,7 @@
         {
           "id": "a00",
           "title": "a00タイトル",
+          "done": true,
           "type": "alias"
         }
       ]
@@ -149,6 +150,7 @@
         {
           "id": "aaa",
           "title": "aaaタイトル",
+          "done": false,
           "type": "alias"
         },
         {
@@ -196,11 +198,13 @@
         {
           "id": "ddd",
           "title": "dddタイトル",
+          "done": true,
           "type": "alias"
         },
         {
           "id": "bbb",
           "title": "bbbタイトル",
+          "done": false,
           "type": "alias"
         }
       ]
@@ -223,6 +227,7 @@
         {
           "id": "a00",
           "title": "a00タイトル",
+          "done": true,
           "type": "alias"
         }
       ]
@@ -291,6 +296,7 @@
         {
           "id": "ddd",
           "title": "dddタイトル",
+          "done": true,
           "type": "alias"
         },
         {
@@ -331,16 +337,19 @@
         {
           "id": "eee",
           "title": "eeeタイトル",
+          "done": false,
           "type": "alias"
         },
         {
           "id": "bbb",
           "title": "bbbタイトル",
+          "done": false,
           "type": "alias"
         },
         {
           "id": "a00",
           "title": "a00タイトル",
+          "done": true,
           "type": "alias"
         }
       ]
@@ -369,11 +378,13 @@
         {
           "id": "ccc",
           "title": "cccタイトル",
+          "done": false,
           "type": "alias"
         },
         {
           "id": "fff",
           "title": "fffタイトル",
+          "done": false,
           "type": "alias"
         }
       ]

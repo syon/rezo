@@ -81,8 +81,9 @@ function refreshQuest() {
           console.warn('Missing socket ref, ID', soc.id)
           continue
         }
-        const { title, done } = obj
-        drawSockets.push({ id: soc.id, title, done, type: soc.type })
+        const { id, type, done } = soc
+        const { title } = obj
+        drawSockets.push({ id, title, done, type })
       } else {
         const { id, type, title, done } = soc
         drawSockets.push({ id, type, title, done })
