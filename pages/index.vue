@@ -95,10 +95,10 @@ export default {
       const boxSet = this.questBoxSet
       return Object.fromEntries(
         Object.entries(boxSet).map(([key, box]) => {
-          const { x, y, reqs } = box
+          const { x, y, drawSockets } = box
           const inPoints = []
           let h = 60
-          for (let i = 0; i < reqs.length; i++) {
+          for (let i = 0; i < drawSockets.length; i++) {
             inPoints.push({ x, y: y + 20 * i + 53 })
             h += 18
           }

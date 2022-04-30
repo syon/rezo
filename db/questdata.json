@@ -1,10 +1,82 @@
 {
-  "a00": { "x": 30, "y": 170, "reqs": ["A0abc", "A0def", "A0ghi", "A0jkl"] },
-  "aaa": { "x": 240, "y": 30, "reqs": ["Aabc", "Adef", "Aghi", "Ajkl"] },
-  "bbb": { "x": 480, "y": 50, "reqs": ["Babc", "Bdef", "Bghi"] },
-  "ccc": { "x": 740, "y": 80, "reqs": ["Cabc", "Cdef", "Cghi"] },
-  "ddd": { "x": 260, "y": 280, "reqs": ["Dabc"] },
-  "eee": { "x": 520, "y": 360, "reqs": ["Eabc", "Edef", "Eghi", "Ejkl", "Emno"] },
-  "fff": { "x": 760, "y": 300, "reqs": ["Fabc", "Fdef"] },
-  "ggg": { "x": 980, "y": 170, "reqs": ["Gabc", "Gdef"] }
+  "a00": {
+    "title": "a00タイトル",
+    "x": 30,
+    "y": 170,
+    "sockets": {
+      "A0abc": { "type": "socket", "title": "A0abcタスク" },
+      "A0def": { "type": "socket", "title": "A0defタスク" },
+      "A0ghi": { "type": "socket", "title": "A0ghiタスク" },
+      "A0jkl": { "type": "alias" }
+    }
+  },
+  "A0jkl": {
+    "title": "A0jklタイトル",
+    "x": -50,
+    "y": 40,
+    "sockets": {}
+  },
+  "aaa": {
+    "title": "aaaタイトル",
+    "x": 240,
+    "y": 30,
+    "sockets": {
+      "zzz000": { "type": "socket", "title": "zzz000タスク" },
+      "zzz001": { "type": "socket", "title": "zzz001タスク" },
+      "zzz002": { "type": "socket", "title": "zzz002タスク" },
+      "a00": { "type": "alias" }
+    }
+  },
+  "bbb": {
+    "title": "bbbタイトル",
+    "x": 480,
+    "y": 50,
+    "sockets": {
+      "Babc": { "type": "socket", "title": "Babcタスク" },
+      "Bdef": { "type": "socket", "title": "Bdefタスク" },
+      "Bghi": { "type": "socket", "title": "Bghiタスク" }
+    }
+  },
+  "ccc": {
+    "title": "cccタイトル",
+    "x": 740,
+    "y": 80,
+    "sockets": {
+      "Cabc": { "type": "socket", "title": "Cabcタスク" },
+      "Cdef": { "type": "socket", "title": "Cdefタスク" },
+      "Cghi": { "type": "socket", "title": "Cghiタスク" }
+    }
+  },
+  "ddd": {
+    "title": "dddタイトル",
+    "x": 260,
+    "y": 280,
+    "sockets": {
+      "Dabc": { "type": "socket", "title": "Dabcタスク" }
+    }
+  },
+  "eee": {
+    "title": "eeeタイトル",
+    "x": 520,
+    "y": 360,
+    "sockets": {
+      "Eabc": { "type": "socket", "title": "Eabcタスク" },
+      "Edef": { "type": "socket", "title": "Edefタスク" },
+      "Eghi": { "type": "socket", "title": "Eghiタスク" },
+      "Ejkl": { "type": "socket", "title": "Ejklタスク" },
+      "Emno": { "type": "socket", "title": "Emnoタスク" }
+    }
+  },
+  "fff": {
+    "title": "fffタイトル",
+    "x": 760,
+    "y": 300,
+    "sockets": ["Fabc", "Fdef"]
+  },
+  "ggg": {
+    "title": "gggタイトル",
+    "x": 980,
+    "y": 170,
+    "sockets": ["Gabc", "Gdef"]
+  }
 }
