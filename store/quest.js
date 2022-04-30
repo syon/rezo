@@ -1,3 +1,4 @@
+import { v4 as uuid } from 'uuid';
 import questdataJson from '@/db/questdata.json'
 import bonddataJson from '@/db/bonddata.json'
 
@@ -17,22 +18,23 @@ export const getters = {
 
 export const mutations = {
   addQuest(state, item) {
-    const { name, x, y, reqs } = item
+    const { id, x, y, reqs } = item
     const obj = { x, y, reqs }
-    state.questdata = { ...state.questdata, [name]: obj }
+    state.questdata = { ...state.questdata, [id]: obj }
   },
   changeQuest(state, item) {
-    const { name, x, y } = item
-    const obj = state.questdata[name] || {}
+    const { id, x, y } = item
+    const obj = state.questdata[id] || {}
     const after = { ...obj, x, y }
-    state.questdata = { ...state.questdata, [name]: after }
+    state.questdata = { ...state.questdata, [id]: after }
   },
 }
 
 export const actions = {
   addQuestItem({ commit }) {
+    const id = uuid().slice(0,8)
     const item = {
-      name: 'hhh',
+      id,
       x: 500,
       y: 200,
       reqs: ['Habc', 'Hdef'],
@@ -40,10 +42,10 @@ export const actions = {
     commit('addQuest', item)
   },
   changeQuestItem({ commit }, payload) {
-    const { name, x: rawX, y: rawY } = payload
+    const { id, x: rawX, y: rawY } = payload
     const x = Math.floor(rawX)
     const y = Math.floor(rawY)
-    const item = { name, x, y }
+    const item = { id, x, y }
     commit('changeQuest', item)
   },
 }

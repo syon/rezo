@@ -182,7 +182,7 @@ export default {
 
       if (this.isDragging && this.dragProp && !this.spz.isPanEnabled()) {
         const payload = {
-          name: this.dragProp,
+          id: this.dragProp,
           x: this.scaledMouseX - this.dragOffset.x,
           y: this.scaledMouseY - this.dragOffset.y,
         }
