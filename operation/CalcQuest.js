@@ -1,8 +1,7 @@
 const fs = require('fs')
 const questSet = require('../db/questdata.json')
 
-function run() {
-  console.log('[#run]')
+function refreshQuest() {
   for (const [rootId, quest] of Object.entries(questSet)) {
     const drawSockets = []
     for (const [socketId, info] of Object.entries(quest.sockets)) {
@@ -23,6 +22,21 @@ function run() {
 
   const jsonStr = JSON.stringify(questSet, null, 2)
   fs.writeFileSync('./db/ComputedQuestSet.json', jsonStr)
+}
+
+function refreshBonds() {
+  for (const [rootId, quest] of Object.entries(questSet)) {
+    for (const [socketId, info] of Object.entries(quest.sockets)) {
+      if (info.type === 'alias') {
+        console.log('src', socketId, 'dst', rootId)
+      }
+    }
+  }
+}
+
+function run() {
+  refreshQuest()
+  refreshBonds()
 }
 
 run()

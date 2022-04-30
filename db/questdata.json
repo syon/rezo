@@ -6,15 +6,8 @@
     "sockets": {
       "A0abc": { "type": "socket", "title": "A0abcタスク" },
       "A0def": { "type": "socket", "title": "A0defタスク" },
-      "A0ghi": { "type": "socket", "title": "A0ghiタスク" },
-      "A0jkl": { "type": "alias" }
+      "A0ghi": { "type": "socket", "title": "A0ghiタスク" }
     }
-  },
-  "A0jkl": {
-    "title": "A0jklタイトル",
-    "x": -50,
-    "y": 40,
-    "sockets": {}
   },
   "aaa": {
     "title": "aaaタイトル",
@@ -33,7 +26,7 @@
     "y": 50,
     "sockets": {
       "Babc": { "type": "socket", "title": "Babcタスク" },
-      "Bdef": { "type": "socket", "title": "Bdefタスク" },
+      "aaa": { "type": "alias" },
       "Bghi": { "type": "socket", "title": "Bghiタスク" }
     }
   },
@@ -43,8 +36,8 @@
     "y": 80,
     "sockets": {
       "Cabc": { "type": "socket", "title": "Cabcタスク" },
-      "Cdef": { "type": "socket", "title": "Cdefタスク" },
-      "Cghi": { "type": "socket", "title": "Cghiタスク" }
+      "ddd": { "type": "alias" },
+      "bbb": { "type": "alias" }
     }
   },
   "ddd": {
@@ -52,7 +45,7 @@
     "x": 260,
     "y": 280,
     "sockets": {
-      "Dabc": { "type": "socket", "title": "Dabcタスク" }
+      "a00": { "type": "alias" }
     }
   },
   "eee": {
@@ -63,7 +56,7 @@
       "Eabc": { "type": "socket", "title": "Eabcタスク" },
       "Edef": { "type": "socket", "title": "Edefタスク" },
       "Eghi": { "type": "socket", "title": "Eghiタスク" },
-      "Ejkl": { "type": "socket", "title": "Ejklタスク" },
+      "ddd": { "type": "alias" },
       "Emno": { "type": "socket", "title": "Emnoタスク" }
     }
   },
@@ -71,12 +64,18 @@
     "title": "fffタイトル",
     "x": 760,
     "y": 300,
-    "sockets": ["Fabc", "Fdef"]
+    "sockets": {
+      "eee": { "type": "alias" },
+      "bbb": { "type": "alias" }
+    }
   },
   "ggg": {
     "title": "gggタイトル",
     "x": 980,
     "y": 170,
-    "sockets": ["Gabc", "Gdef"]
+    "sockets": {
+      "Gabc": { "type": "socket", "title": "Eabcタスク" },
+      "Gdef": { "type": "socket", "title": "Edefタスク" }
+    }
   }
 }
