@@ -65,6 +65,7 @@
       </div>
       <div id="toolbar">
         <button class="border px-2" @click="newItem">new</button>
+        <fact-list />
       </div>
     </div>
   </main>
@@ -235,7 +236,7 @@ svg {
 
 #toolbar {
   position: absolute;
-  bottom: 50px;
+  top: 10px;
   left: 10px;
 }
 </style>

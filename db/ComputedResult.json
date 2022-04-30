@@ -7,21 +7,21 @@
       "sockets": [
         {
           "id": "A0abc",
-          "type": "socket",
+          "type": "fact",
           "title": "A0abcタスク",
           "done": true,
           "resolved": true
         },
         {
           "id": "A0def",
-          "type": "socket",
+          "type": "fact",
           "title": "A0defタスク",
           "done": true,
           "resolved": true
         },
         {
           "id": "A0ghi",
-          "type": "socket",
+          "type": "fact",
           "title": "A0ghiタスク",
           "done": true,
           "resolved": true
@@ -32,19 +32,19 @@
       "drawSockets": [
         {
           "id": "A0abc",
-          "type": "socket",
+          "type": "fact",
           "title": "A0abcタスク",
           "done": true
         },
         {
           "id": "A0def",
-          "type": "socket",
+          "type": "fact",
           "title": "A0defタスク",
           "done": true
         },
         {
           "id": "A0ghi",
-          "type": "socket",
+          "type": "fact",
           "title": "A0ghiタスク",
           "done": true
         }
@@ -57,21 +57,21 @@
       "sockets": [
         {
           "id": "zzz000",
-          "type": "socket",
+          "type": "fact",
           "title": "zzz000タスク",
           "done": true,
           "resolved": true
         },
         {
           "id": "zzz001",
-          "type": "socket",
+          "type": "fact",
           "title": "zzz001タスク",
           "done": false,
           "resolved": true
         },
         {
           "id": "zzz002",
-          "type": "socket",
+          "type": "fact",
           "title": "zzz002タスク",
           "done": false,
           "resolved": true
@@ -88,19 +88,19 @@
       "drawSockets": [
         {
           "id": "zzz000",
-          "type": "socket",
+          "type": "fact",
           "title": "zzz000タスク",
           "done": true
         },
         {
           "id": "zzz001",
-          "type": "socket",
+          "type": "fact",
           "title": "zzz001タスク",
           "done": false
         },
         {
           "id": "zzz002",
-          "type": "socket",
+          "type": "fact",
           "title": "zzz002タスク",
           "done": false
         },
@@ -119,7 +119,7 @@
       "sockets": [
         {
           "id": "Babc",
-          "type": "socket",
+          "type": "fact",
           "title": "Babcタスク",
           "done": false,
           "resolved": true
@@ -132,7 +132,7 @@
         },
         {
           "id": "Bghi",
-          "type": "socket",
+          "type": "fact",
           "title": "Bghiタスク",
           "done": false,
           "resolved": true
@@ -143,7 +143,7 @@
       "drawSockets": [
         {
           "id": "Babc",
-          "type": "socket",
+          "type": "fact",
           "title": "Babcタスク",
           "done": false
         },
@@ -155,7 +155,7 @@
         },
         {
           "id": "Bghi",
-          "type": "socket",
+          "type": "fact",
           "title": "Bghiタスク",
           "done": false
         }
@@ -168,7 +168,7 @@
       "sockets": [
         {
           "id": "Cabc",
-          "type": "socket",
+          "type": "fact",
           "title": "Cabcタスク",
           "done": false,
           "resolved": true
@@ -191,7 +191,7 @@
       "drawSockets": [
         {
           "id": "Cabc",
-          "type": "socket",
+          "type": "fact",
           "title": "Cabcタスク",
           "done": false
         },
@@ -239,21 +239,21 @@
       "sockets": [
         {
           "id": "Eabc",
-          "type": "socket",
+          "type": "fact",
           "title": "Eabcタスク",
           "done": false,
           "resolved": true
         },
         {
           "id": "Edef",
-          "type": "socket",
+          "type": "fact",
           "title": "Edefタスク",
           "done": false,
           "resolved": true
         },
         {
           "id": "Eghi",
-          "type": "socket",
+          "type": "fact",
           "title": "Eghiタスク",
           "done": false,
           "resolved": true
@@ -266,7 +266,7 @@
         },
         {
           "id": "Emno",
-          "type": "socket",
+          "type": "fact",
           "title": "Emnoタスク",
           "done": false,
           "resolved": true
@@ -277,19 +277,19 @@
       "drawSockets": [
         {
           "id": "Eabc",
-          "type": "socket",
+          "type": "fact",
           "title": "Eabcタスク",
           "done": false
         },
         {
           "id": "Edef",
-          "type": "socket",
+          "type": "fact",
           "title": "Edefタスク",
           "done": false
         },
         {
           "id": "Eghi",
-          "type": "socket",
+          "type": "fact",
           "title": "Eghiタスク",
           "done": false
         },
@@ -301,7 +301,7 @@
         },
         {
           "id": "Emno",
-          "type": "socket",
+          "type": "fact",
           "title": "Emnoタスク",
           "done": false
         }
@@ -445,6 +445,112 @@
       "src": "fff",
       "dst": "ggg",
       "dstidx": 1
+    }
+  ],
+  "facts": [
+    {
+      "parentId": "a00",
+      "id": "A0abc",
+      "type": "fact",
+      "title": "A0abcタスク",
+      "done": true,
+      "resolved": true
+    },
+    {
+      "parentId": "a00",
+      "id": "A0def",
+      "type": "fact",
+      "title": "A0defタスク",
+      "done": true,
+      "resolved": true
+    },
+    {
+      "parentId": "a00",
+      "id": "A0ghi",
+      "type": "fact",
+      "title": "A0ghiタスク",
+      "done": true,
+      "resolved": true
+    },
+    {
+      "parentId": "aaa",
+      "id": "zzz000",
+      "type": "fact",
+      "title": "zzz000タスク",
+      "done": true,
+      "resolved": true
+    },
+    {
+      "parentId": "aaa",
+      "id": "zzz001",
+      "type": "fact",
+      "title": "zzz001タスク",
+      "done": false,
+      "resolved": true
+    },
+    {
+      "parentId": "aaa",
+      "id": "zzz002",
+      "type": "fact",
+      "title": "zzz002タスク",
+      "done": false,
+      "resolved": true
+    },
+    {
+      "parentId": "bbb",
+      "id": "Babc",
+      "type": "fact",
+      "title": "Babcタスク",
+      "done": false,
+      "resolved": true
+    },
+    {
+      "parentId": "bbb",
+      "id": "Bghi",
+      "type": "fact",
+      "title": "Bghiタスク",
+      "done": false,
+      "resolved": true
+    },
+    {
+      "parentId": "ccc",
+      "id": "Cabc",
+      "type": "fact",
+      "title": "Cabcタスク",
+      "done": false,
+      "resolved": true
+    },
+    {
+      "parentId": "eee",
+      "id": "Eabc",
+      "type": "fact",
+      "title": "Eabcタスク",
+      "done": false,
+      "resolved": true
+    },
+    {
+      "parentId": "eee",
+      "id": "Edef",
+      "type": "fact",
+      "title": "Edefタスク",
+      "done": false,
+      "resolved": true
+    },
+    {
+      "parentId": "eee",
+      "id": "Eghi",
+      "type": "fact",
+      "title": "Eghiタスク",
+      "done": false,
+      "resolved": true
+    },
+    {
+      "parentId": "eee",
+      "id": "Emno",
+      "type": "fact",
+      "title": "Emnoタスク",
+      "done": false,
+      "resolved": true
     }
   ]
 }

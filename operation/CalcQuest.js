@@ -8,7 +8,7 @@ function refreshQuest() {
   // 第一層：ファクト観察ソケットの進捗確認
   for (const quest of Object.values(questSet)) {
     for (const soc of quest.sockets) {
-      if (soc.type === 'socket') {
+      if (soc.type === 'fact') {
         soc.done = questFacts.includes(soc.id)
         soc.resolved = true
       }
@@ -19,7 +19,7 @@ function refreshQuest() {
   let aliasInfo = {}
   for (const quest of Object.values(questSet)) {
     const sockets = quest.sockets
-    const ready = sockets.every((soc) => soc.type === 'socket')
+    const ready = sockets.every((soc) => soc.type === 'fact')
     if (ready) {
       // すべてがソケットの場合は進捗率が計算可能なため実行
       quest.rate = sockets.filter((x) => x.done).length / sockets.length
@@ -110,6 +110,18 @@ function refreshBonds() {
   computedResult.bonds = bonds
 }
 
+function refreshFacts() {
+  let facts = []
+  for (const [parentId, quest] of Object.entries(computedResult.questSet)) {
+    const list = quest.sockets
+      .filter((x) => x.type === 'fact')
+      .map((x) => ({ parentId, ...x }))
+    facts = facts.concat(list)
+  }
+
+  computedResult.facts = facts
+}
+
 function writeJson() {
   const jsonStr = JSON.stringify(computedResult, null, 2)
   fs.writeFileSync('./db/ComputedResult.json', jsonStr)
@@ -118,6 +130,7 @@ function writeJson() {
 function run() {
   refreshQuest()
   refreshBonds()
+  refreshFacts()
   writeJson()
 }
 

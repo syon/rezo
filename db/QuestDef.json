@@ -4,9 +4,9 @@
     "x": 30,
     "y": 170,
     "sockets": [
-      { "id": "A0abc", "type": "socket", "title": "A0abcタスク" },
-      { "id": "A0def", "type": "socket", "title": "A0defタスク" },
-      { "id": "A0ghi", "type": "socket", "title": "A0ghiタスク" }
+      { "id": "A0abc", "type": "fact", "title": "A0abcタスク" },
+      { "id": "A0def", "type": "fact", "title": "A0defタスク" },
+      { "id": "A0ghi", "type": "fact", "title": "A0ghiタスク" }
     ]
   },
   "aaa": {
@@ -14,9 +14,9 @@
     "x": 240,
     "y": 30,
     "sockets": [
-      { "id": "zzz000", "type": "socket", "title": "zzz000タスク" },
-      { "id": "zzz001", "type": "socket", "title": "zzz001タスク" },
-      { "id": "zzz002", "type": "socket", "title": "zzz002タスク" },
+      { "id": "zzz000", "type": "fact", "title": "zzz000タスク" },
+      { "id": "zzz001", "type": "fact", "title": "zzz001タスク" },
+      { "id": "zzz002", "type": "fact", "title": "zzz002タスク" },
       { "id": "a00", "type": "alias" }
     ]
   },
@@ -25,9 +25,9 @@
     "x": 480,
     "y": 50,
     "sockets": [
-      { "id": "Babc", "type": "socket", "title": "Babcタスク" },
+      { "id": "Babc", "type": "fact", "title": "Babcタスク" },
       { "id": "aaa", "type": "alias" },
-      { "id": "Bghi", "type": "socket", "title": "Bghiタスク" }
+      { "id": "Bghi", "type": "fact", "title": "Bghiタスク" }
     ]
   },
   "ccc": {
@@ -35,7 +35,7 @@
     "x": 740,
     "y": 80,
     "sockets": [
-      { "id": "Cabc", "type": "socket", "title": "Cabcタスク" },
+      { "id": "Cabc", "type": "fact", "title": "Cabcタスク" },
       { "id": "ddd", "type": "alias" },
       { "id": "bbb", "type": "alias" }
     ]
@@ -51,11 +51,11 @@
     "x": 520,
     "y": 360,
     "sockets": [
-      { "id": "Eabc", "type": "socket", "title": "Eabcタスク" },
-      { "id": "Edef", "type": "socket", "title": "Edefタスク" },
-      { "id": "Eghi", "type": "socket", "title": "Eghiタスク" },
+      { "id": "Eabc", "type": "fact", "title": "Eabcタスク" },
+      { "id": "Edef", "type": "fact", "title": "Edefタスク" },
+      { "id": "Eghi", "type": "fact", "title": "Eghiタスク" },
       { "id": "ddd", "type": "alias" },
-      { "id": "Emno", "type": "socket", "title": "Emnoタスク" }
+      { "id": "Emno", "type": "fact", "title": "Emnoタスク" }
     ]
   },
   "fff": {

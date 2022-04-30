@@ -11,7 +11,7 @@
         <li v-for="(soc, idx) of sockets" :key="idx">
           <div class="flex justify-between">
             <div class="label">{{ soc.title }}</div>
-            <div class="done">{{ soc.done ? '✅' : '〰' }}</div>
+            <div class="done">{{ soc.done ? '✅' : '⬜' }}</div>
           </div>
         </li>
       </ul>
@@ -31,7 +31,7 @@ export default {
     },
     rate() {
       return `${this.obj.rate * 100} %`
-    }
+    },
   },
 }
 </script>

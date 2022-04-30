@@ -4,6 +4,7 @@ import ComputedResultJson from '@/db/ComputedResult.json'
 export const state = () => ({
   questdata: ComputedResultJson.questSet,
   bonddata: ComputedResultJson.bonds,
+  factdata: ComputedResultJson.facts,
 })
 
 export const getters = {
@@ -12,6 +13,9 @@ export const getters = {
   },
   questBonds(state) {
     return state.bonddata
+  },
+  questFacts(state) {
+    return state.factdata
   },
 }
 
@@ -34,7 +38,7 @@ export const actions = {
     const id = uuid().slice(0, 8)
     const item = {
       id,
-      title: "新しいタイトル",
+      title: '新しいタイトル',
       x: 500,
       y: 200,
       sockets: [],
