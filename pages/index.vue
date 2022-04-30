@@ -46,7 +46,18 @@
                 stroke="red"
               />
               <g v-for="(inp, idx) of obj.in" :key="`inp-${idx}`">
-                <circle :cx="inp.x" :cy="inp.y" r="5" fill="red" />
+                <template v-if="inp.type === 'fact'">
+                  <rect
+                    :x="inp.x - 5"
+                    :y="inp.y - 5"
+                    width="10"
+                    height="10"
+                    fill="silver"
+                  />
+                </template>
+                <template v-else>
+                  <circle :cx="inp.x" :cy="inp.y" r="5" fill="gray" />
+                </template>
               </g>
               <circle :cx="obj.out.x" :cy="obj.out.y" r="5" fill="orange" />
             </g>
@@ -99,8 +110,9 @@ export default {
           const { x, y, drawSockets } = box
           const inPoints = []
           let h = 60
-          for (let i = 0; i < (drawSockets || []).length; i++) {
-            inPoints.push({ x, y: y + 20 * i + 53 })
+          for (let i = 0; i < drawSockets.length; i++) {
+            const { type } = drawSockets[i]
+            inPoints.push({ x, y: y + 20 * i + 53, type })
             h += 18
           }
           const val = {
