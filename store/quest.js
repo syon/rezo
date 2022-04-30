@@ -52,4 +52,10 @@ export const actions = {
     const item = { id, x, y }
     commit('changeQuest', item)
   },
+  addSocket({ commit }, payload) {
+    console.log('[#addSocket]', payload)
+    const { questId, socketId, type } = payload
+    const data = { id: socketId, type }
+    this.$axios.$post(`/api/quests/${questId}/sockets`, data)
+  },
 }

@@ -4,9 +4,21 @@
     "x": 30,
     "y": 170,
     "sockets": [
-      { "id": "A0abc", "type": "fact", "title": "A0abcタスク" },
-      { "id": "A0def", "type": "fact", "title": "A0defタスク" },
-      { "id": "A0ghi", "type": "fact", "title": "A0ghiタスク" }
+      {
+        "id": "A0abc",
+        "type": "fact",
+        "title": "A0abcタスク"
+      },
+      {
+        "id": "A0def",
+        "type": "fact",
+        "title": "A0defタスク"
+      },
+      {
+        "id": "A0ghi",
+        "type": "fact",
+        "title": "A0ghiタスク"
+      }
     ]
   },
   "aaa": {
@@ -14,10 +26,25 @@
     "x": 240,
     "y": 30,
     "sockets": [
-      { "id": "zzz000", "type": "fact", "title": "zzz000タスク" },
-      { "id": "zzz001", "type": "fact", "title": "zzz001タスク" },
-      { "id": "zzz002", "type": "fact", "title": "zzz002タスク" },
-      { "id": "a00", "type": "alias" }
+      {
+        "id": "zzz000",
+        "type": "fact",
+        "title": "zzz000タスク"
+      },
+      {
+        "id": "zzz001",
+        "type": "fact",
+        "title": "zzz001タスク"
+      },
+      {
+        "id": "zzz002",
+        "type": "fact",
+        "title": "zzz002タスク"
+      },
+      {
+        "id": "a00",
+        "type": "alias"
+      }
     ]
   },
   "bbb": {
@@ -25,9 +52,20 @@
     "x": 480,
     "y": 50,
     "sockets": [
-      { "id": "Babc", "type": "fact", "title": "Babcタスク" },
-      { "id": "aaa", "type": "alias" },
-      { "id": "Bghi", "type": "fact", "title": "Bghiタスク" }
+      {
+        "id": "Babc",
+        "type": "fact",
+        "title": "Babcタスク"
+      },
+      {
+        "id": "aaa",
+        "type": "alias"
+      },
+      {
+        "id": "Bghi",
+        "type": "fact",
+        "title": "Bghiタスク"
+      }
     ]
   },
   "ccc": {
@@ -35,27 +73,61 @@
     "x": 740,
     "y": 80,
     "sockets": [
-      { "id": "Cabc", "type": "fact", "title": "Cabcタスク" },
-      { "id": "ddd", "type": "alias" },
-      { "id": "bbb", "type": "alias" }
+      {
+        "id": "Cabc",
+        "type": "fact",
+        "title": "Cabcタスク"
+      },
+      {
+        "id": "ddd",
+        "type": "alias"
+      },
+      {
+        "id": "bbb",
+        "type": "alias"
+      }
     ]
   },
   "ddd": {
     "title": "dddタイトル",
     "x": 260,
     "y": 280,
-    "sockets": [{ "id": "a00", "type": "alias" }]
+    "sockets": [
+      {
+        "id": "a00",
+        "type": "alias"
+      }
+    ]
   },
   "eee": {
     "title": "eeeタイトル",
     "x": 520,
     "y": 360,
     "sockets": [
-      { "id": "Eabc", "type": "fact", "title": "Eabcタスク" },
-      { "id": "Edef", "type": "fact", "title": "Edefタスク" },
-      { "id": "Eghi", "type": "fact", "title": "Eghiタスク" },
-      { "id": "ddd", "type": "alias" },
-      { "id": "Emno", "type": "fact", "title": "Emnoタスク" }
+      {
+        "id": "Eabc",
+        "type": "fact",
+        "title": "Eabcタスク"
+      },
+      {
+        "id": "Edef",
+        "type": "fact",
+        "title": "Edefタスク"
+      },
+      {
+        "id": "Eghi",
+        "type": "fact",
+        "title": "Eghiタスク"
+      },
+      {
+        "id": "ddd",
+        "type": "alias"
+      },
+      {
+        "id": "Emno",
+        "type": "fact",
+        "title": "Emnoタスク"
+      }
     ]
   },
   "fff": {
@@ -63,9 +135,18 @@
     "x": 760,
     "y": 300,
     "sockets": [
-      { "id": "eee", "type": "alias" },
-      { "id": "bbb", "type": "alias" },
-      { "id": "a00", "type": "alias" }
+      {
+        "id": "eee",
+        "type": "alias"
+      },
+      {
+        "id": "bbb",
+        "type": "alias"
+      },
+      {
+        "id": "a00",
+        "type": "alias"
+      }
     ]
   },
   "ggg": {
@@ -73,8 +154,14 @@
     "x": 980,
     "y": 170,
     "sockets": [
-      { "id": "ccc", "type": "alias" },
-      { "id": "fff", "type": "alias" }
+      {
+        "id": "ccc",
+        "type": "alias"
+      },
+      {
+        "id": "fff",
+        "type": "alias"
+      }
     ]
   }
 }

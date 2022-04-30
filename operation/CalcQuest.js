@@ -36,6 +36,7 @@ function refreshQuest() {
 
   let isRemainAlias = true
   while (isRemainAlias) {
+    console.log('<WHILE>', aliasInfo)
     // 貯め込んだすべてのエイリアスを対象に巡回
     for (const [aliasId, aRef] of Object.entries(aliasInfo)) {
       const obj = questSet[aliasId]

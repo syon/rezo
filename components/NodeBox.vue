@@ -33,6 +33,11 @@ export default {
       return `${this.obj.rate * 100} %`
     },
   },
+  methods: {
+    handleNew() {
+      console.log('a')
+    },
+  },
 }
 </script>
 

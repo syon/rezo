@@ -26,7 +26,8 @@
               height="160"
               :x="b.x"
               :y="b.y"
-              @pointerdown="dragStart($event, key)"
+              @pointerdown="dragBoxStart($event, key)"
+              @pointerenter="enterBox($event, key)"
             >
               <node-box :obj="b" />
             </foreignObject>
@@ -60,8 +61,21 @@
                 </template>
               </g>
               <circle :cx="obj.out.x" :cy="obj.out.y" r="5" fill="orange" />
+              <circle
+                :cx="obj.plus.x"
+                :cy="obj.plus.y"
+                r="7"
+                fill="red"
+                @pointerdown="dragPlusStart($event, key)"
+              />
             </g>
           </template>
+
+          <auto-bezier
+            v-if="isPlusDragging"
+            :sp="previewLineSrc"
+            :ep="previewLineDst"
+          />
         </g>
       </svg>
 
@@ -75,7 +89,7 @@
         </button>
       </div>
       <div id="toolbar">
-        <button class="border px-2" @click="newItem">new</button>
+        <button class="border px-2" @click="newQuestBox">new</button>
         <fact-list />
       </div>
     </div>
@@ -94,9 +108,13 @@ export default {
     spzState: 'enabled',
     scaledMouseX: 0,
     scaledMouseY: 0,
-    isDragging: false,
-    dragProp: '',
+    isBoxDragging: false,
+    isPlusDragging: false,
+    lastEnterBoxId: null,
+    dragBoxId: null,
     dragOffset: { x: 0, y: 0 },
+    previewLineSrc: { x: 0, y: 0 },
+    previewLineDst: { x: 0, y: 0 },
   }),
   computed: {
     ...mapGetters({
@@ -121,6 +139,7 @@ export default {
             in: inPoints,
             out: { x: x + 160, y: y + 18 },
             h,
+            plus: { x: x + 160 / 2, y: y + h },
           }
           return [key, val]
         })
@@ -179,27 +198,55 @@ export default {
       this.spz.disableDblClickZoom()
       this.spzState = 'disabled'
     },
-    dragStart(event, prop) {
+    dragBoxStart(event, boxId) {
       event.stopPropagation()
       this.disableSpzPan()
-      this.isDragging = true
-      this.dragProp = prop
+      this.isBoxDragging = true
+      this.dragBoxId = boxId
       const { offsetX, offsetY } = event
       this.dragOffset = { x: offsetX, y: offsetY }
     },
+    enterBox(event, key) {
+      this.lastEnterBoxId = key
+    },
+    dragPlusStart(event, boxId) {
+      event.stopPropagation()
+      this.disableSpzPan()
+      this.isBoxDragging = false
+      this.isPlusDragging = true
+      this.dragBoxId = boxId
+      const { offsetX, offsetY } = event
+      this.dragOffset = { x: offsetX, y: offsetY }
+      this.previewLineDst = {
+        x: this.scaledMouseX,
+        y: this.scaledMouseY,
+      }
+    },
     dragStop() {
-      this.isDragging = false
+      this.isBoxDragging = false
+      if (this.isPlusDragging) {
+        this.newSocket()
+        this.isPlusDragging = false
+      }
+      this.dragBoxId = null
     },
     onMousemove(event) {
       this.refreshMousePos(event)
+      if (!this.dragBoxId) return
+      if (this.spz.isPanEnabled()) return
 
-      if (this.isDragging && this.dragProp && !this.spz.isPanEnabled()) {
+      if (this.isBoxDragging) {
         const payload = {
-          id: this.dragProp,
+          id: this.dragBoxId,
           x: this.scaledMouseX - this.dragOffset.x,
           y: this.scaledMouseY - this.dragOffset.y,
         }
         this.$store.dispatch('quest/changeQuestItem', payload)
+      } else if (this.isPlusDragging) {
+        this.previewLineSrc = {
+          x: this.scaledMouseX,
+          y: this.scaledMouseY,
+        }
       }
     },
     refreshMousePos(event) {
@@ -216,7 +263,15 @@ export default {
       // https://ginpen.com/2018/11/13/understanding-transform-matrix/
       return { scaleX: vpmx.a, scaleY: vpmx.d, transX: vpmx.e, transY: vpmx.f }
     },
-    newItem() {
+    newSocket() {
+      const payload = {
+        questId: this.dragBoxId,
+        socketId: this.lastEnterBoxId,
+        type: 'alias',
+      }
+      this.$store.dispatch('quest/addSocket', payload)
+    },
+    newQuestBox() {
       this.$store.dispatch('quest/addQuestItem')
     },
   },
