@@ -1,9 +1,77 @@
 const fs = require('fs')
-const questSet = require('../db/questdata.json')
+const questSet = require('../db/QuestDef.json')
+const questFacts = require('../db/QuestFacts.json')
 
 const computedResult = { questSet: null, bonds: [] }
 
 function refreshQuest() {
+  // 第一層：ファクト観察ソケットの進捗確認
+  for (const quest of Object.values(questSet)) {
+    for (const soc of quest.sockets) {
+      if (soc.type === 'socket') {
+        soc.done = questFacts.includes(soc.id)
+        soc.resolved = true
+      }
+    }
+  }
+
+  // 第二層：ルートクエストの進捗確認
+  let aliasInfo = {}
+  for (const quest of Object.values(questSet)) {
+    const sockets = quest.sockets
+    const ready = sockets.every((soc) => soc.type === 'socket')
+    if (ready) {
+      // すべてがソケットの場合は進捗率が計算可能なため実行
+      quest.rate = sockets.filter((x) => x.done).length / sockets.length
+      quest.rateResolved = true
+    } else {
+      // エイリアスを含む場合はエイリアスIDをプール
+      const aliasList = sockets.filter((soc) => soc.type === 'alias')
+      const aliasIdSet = Object.fromEntries(
+        aliasList.map((a) => [a.id, { resolved: false }])
+      )
+      aliasInfo = { ...aliasInfo, ...aliasIdSet }
+    }
+  }
+
+  let isRemainAlias = true
+  while (isRemainAlias) {
+    // 貯め込んだすべてのエイリアスを対象に巡回
+    for (const [aliasId, aRef] of Object.entries(aliasInfo)) {
+      const obj = questSet[aliasId]
+      // 進捗率計算済みの場合はその状況を反映
+      if (obj.rateResolved) {
+        aRef.done = obj.rate === 1
+        aRef.resolved = true
+      }
+    }
+
+    // 状況がわかったエイリアスを使って再度エイリアスソケットの進捗確認
+    for (const quest of Object.values(questSet)) {
+      if (quest.rateResolved) {
+        continue
+      }
+      const sockets = quest.sockets
+      const aliasList = sockets.filter((soc) => soc.type === 'alias')
+      for (const a of aliasList) {
+        const info = aliasInfo[a.id]
+        if (info.resolved) {
+          a.done = info.done
+          a.resolved = true
+        }
+      }
+      const ready = sockets.every((x) => x.resolved)
+      if (ready) {
+        const rate = sockets.filter((x) => x.done).length / sockets.length
+        quest.rate = Math.round(rate * 100) / 100
+        quest.rateResolved = true
+      }
+    }
+
+    isRemainAlias = Object.entries(aliasInfo).some(([k, v]) => !v.resolved)
+  }
+
+  // Make drawSockets
   for (const [rootId, quest] of Object.entries(questSet)) {
     const drawSockets = []
     for (const soc of quest.sockets) {
@@ -13,14 +81,15 @@ function refreshQuest() {
           console.warn('Missing socket ref, ID', soc.id)
           continue
         }
-        const done = true
-        drawSockets.push({ ...obj, type: soc.type, done })
+        const { title, done } = obj
+        drawSockets.push({ id: soc.id, title, done, type: soc.type })
       } else {
-        const { id, type, title } = soc
-        const done = true
+        const { id, type, title, done } = soc
         drawSockets.push({ id, type, title, done })
       }
     }
+
+    // Calc progress rate
     questSet[rootId].drawSockets = drawSockets
   }
 

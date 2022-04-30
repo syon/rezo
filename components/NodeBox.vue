@@ -9,7 +9,10 @@
     <div class="body px-2 py-2">
       <ul class="list-inside pl-2 text-sm">
         <li v-for="(soc, idx) of sockets" :key="idx">
-          {{ soc.title }}
+          <div class="flex justify-between">
+            <div class="label">{{ soc.title }}</div>
+            <div class="done">{{ soc.done ? '✅' : '〰' }}</div>
+          </div>
         </li>
       </ul>
     </div>
