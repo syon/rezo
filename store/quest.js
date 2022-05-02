@@ -1,5 +1,3 @@
-import { v4 as uuid } from 'uuid'
-
 export const state = () => ({
   questdata: null,
   bonddata: null,
@@ -42,16 +40,14 @@ export const actions = {
     const computedResult = await this.$axios.$get(`/api/quests`)
     commit('SET_Data', computedResult)
   },
-  addQuestItem({ commit }) {
-    const id = uuid().slice(0, 8)
-    const item = {
-      id,
+  async addQuestItem({ dispatch }) {
+    const data = {
       title: '新しいタイトル',
       x: 500,
       y: 200,
-      sockets: [],
     }
-    commit('addQuest', item)
+    await this.$axios.$post(`/api/quests`, data)
+    await dispatch('init')
   },
   changeQuestItem({ commit }, payload) {
     const { id, x: rawX, y: rawY } = payload

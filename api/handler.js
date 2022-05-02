@@ -16,6 +16,14 @@ app.get('/refresh', (req, res) => {
   res.json({ data: 'data' })
 })
 
+app.post('/quests', (req, res) => {
+  console.log('POST add start')
+  const addedItem = Quest.add(req.body)
+  CalcQuest()
+  res.json(addedItem)
+  console.log('POST add end')
+})
+
 app.post('/quests/:id/sockets', (req, res) => {
   console.log('POST start')
   const questId = req.params.id
