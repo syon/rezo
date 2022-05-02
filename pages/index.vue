@@ -110,10 +110,12 @@
           Controll: {{ spzState }}
         </button>
       </div>
+
+      <fact-list />
+
       <div id="toolbar">
         <button class="border px-2" @click="newQuestBox">new</button>
-        <fact-list />
-        <div class="p-2">
+        <div class="p-2 text-xs">
           <div>isBoxDragging: {{ isBoxDragging }}</div>
           <div>dragBoxId: {{ dragBoxId }}</div>
           <div>isPlusDragging: {{ isPlusDragging }}</div>
@@ -352,7 +354,7 @@ svg {
 #toolbar {
   position: absolute;
   top: 10px;
-  left: 10px;
+  left: 220px;
 }
 
 .EditBtn {
