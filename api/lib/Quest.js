@@ -22,4 +22,20 @@ module.exports = class Quest {
     fs.writeFileSync('./db/QuestDef.json', outJson)
     return item
   }
+
+  static addSocket({ questId, socketId, type }) {
+    const defJson = fs.readFileSync('./db/QuestDef.json', 'utf-8')
+    const def = JSON.parse(defJson)
+    const target = def[questId]
+    if (questId === socketId) {
+      throw new Error(`Socket ID: [${socketId}] itself.`)
+    }
+    const exists = target.sockets.some((x) => x.id === socketId)
+    if (exists) {
+      throw new Error(`Socket ID: [${socketId}] Already exists.`)
+    }
+    target.sockets.push({ id: socketId, type })
+    const outJson = JSON.stringify(def, null, 2)
+    fs.writeFileSync('./db/QuestDef.json', outJson)
+  }
 }
