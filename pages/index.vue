@@ -39,6 +39,7 @@
               <text :x="obj.mx" :y="obj.my - 5" font-size="10" fill="red">
                 {{ key }} / x:{{ obj.mx }} y:{{ obj.my }}
               </text>
+
               <rect
                 width="160"
                 :height="obj.h"
@@ -62,12 +63,29 @@
                 </template>
               </g>
               <circle :cx="obj.out.x" :cy="obj.out.y" r="5" fill="orange" />
-              <circle
-                :cx="obj.plus.x"
-                :cy="obj.plus.y"
-                r="7"
-                fill="red"
-                @pointerdown="dragPlusStart($event, key)"
+              <g>
+                <rect
+                  :x="obj.plus.x - 14"
+                  :y="obj.plus.y - 2"
+                  width="10"
+                  height="4"
+                  fill="red"
+                />
+                <circle
+                  :cx="obj.plus.x"
+                  :cy="obj.plus.y"
+                  r="6"
+                  fill="red"
+                  @pointerdown="dragPlusStart($event, key)"
+                />
+              </g>
+              <rect
+                :x="obj.mx + 18"
+                :y="obj.plus.y - 4"
+                width="50"
+                height="8"
+                class="EditBtn"
+                @click="handleAddFactSocket(key)"
               />
             </g>
           </template>
@@ -109,7 +127,7 @@ import { mapGetters } from 'vuex'
 import svgPanZoom from 'svg-pan-zoom'
 
 export default {
-  name: 'Step9Page',
+  name: 'IndexPage',
   data: () => ({
     ready: false,
     spz: null,
@@ -147,7 +165,7 @@ export default {
             in: inPoints,
             out: { x: x + 160, y: y + 18 },
             h,
-            plus: { x: x + 160 / 2, y: y + h },
+            plus: { x, y: y + h },
           }
           return [key, val]
         })
@@ -239,7 +257,7 @@ export default {
         this.dragBoxId = null
       }
       if (this.isPlusDragging) {
-        this.newSocket()
+        this.newAliasSocket()
         this.isPlusDragging = false
         this.lastEnterBoxId = null
       }
@@ -282,7 +300,7 @@ export default {
       // https://ginpen.com/2018/11/13/understanding-transform-matrix/
       return { scaleX: vpmx.a, scaleY: vpmx.d, transX: vpmx.e, transY: vpmx.f }
     },
-    newSocket() {
+    newAliasSocket() {
       if (!this.dragBoxId || !this.lastEnterBoxId) return
       const payload = {
         questId: this.dragBoxId,
@@ -293,6 +311,14 @@ export default {
     },
     newQuestBox() {
       this.$store.dispatch('quest/addQuestItem')
+    },
+    handleAddFactSocket(key) {
+      const payload = {
+        questId: key,
+        socketId: null,
+        type: 'fact',
+      }
+      this.$store.dispatch('quest/addSocket', payload)
     },
   },
 }
@@ -325,5 +351,11 @@ svg {
   position: absolute;
   top: 10px;
   left: 10px;
+}
+
+.EditBtn {
+  fill: red;
+  font-size: 10px;
+  cursor: pointer;
 }
 </style>

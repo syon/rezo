@@ -2,8 +2,11 @@
   <div class="cc-QuestBox border">
     <div class="title border-b">
       <div class="flex items-center justify-between">
-        <div class="px-2 py-1 font-bold">{{ title }}</div>
-        <div class="px-2">{{ rate }}</div>
+        <div class="px-2 py-1 font-bold whitespace-nowrap">{{ title }}</div>
+        <div class="px-2 text-sm whitespace-nowrap">
+          <span>{{ rate }}</span
+          ><span class="text-xs">%</span>
+        </div>
       </div>
     </div>
     <div class="body px-2 py-2">
@@ -30,7 +33,7 @@ export default {
       return this.obj.drawSockets
     },
     rate() {
-      return `${this.obj.rate * 100} %`
+      return Math.floor(`${this.obj.rate * 100}`)
     },
   },
   methods: {

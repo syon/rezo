@@ -23,10 +23,11 @@ module.exports = class Quest {
     return item
   }
 
-  static addSocket({ questId, socketId, type }) {
+  static addSocket({ questId, socketId: rawSocketId, type }) {
     const defJson = fs.readFileSync('./db/QuestDef.json', 'utf-8')
     const def = JSON.parse(defJson)
     const target = def[questId]
+    const socketId = rawSocketId || uuid().slice(0, 8)
     if (questId === socketId) {
       throw new Error(`Socket ID: [${socketId}] itself.`)
     }
@@ -34,7 +35,8 @@ module.exports = class Quest {
     if (exists) {
       throw new Error(`Socket ID: [${socketId}] Already exists.`)
     }
-    target.sockets.push({ id: socketId, type })
+    const title = '新しいアイテム'
+    target.sockets.push({ id: socketId, type, title })
     const outJson = JSON.stringify(def, null, 2)
     fs.writeFileSync('./db/QuestDef.json', outJson)
   }
