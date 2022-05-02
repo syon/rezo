@@ -2,8 +2,14 @@ const fs = require('fs')
 const bodyParser = require('body-parser')
 const app = require('express')()
 const CalcQuest = require('../operation/CalcQuest')
+const Quest = require('./lib/Quest')
 
 app.use(bodyParser.json())
+
+app.get('/quests', (req, res) => {
+  const data = Quest.loadComputed()
+  res.json(data)
+})
 
 app.get('/refresh', (req, res) => {
   CalcQuest()

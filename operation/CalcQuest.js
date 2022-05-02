@@ -1,8 +1,15 @@
 const fs = require('fs')
-const questSet = require('../db/QuestDef.json')
-const questFacts = require('../db/QuestFacts.json')
+let questSet = {}
+let questFacts = []
 
 const computedResult = { questSet: null, bonds: [] }
+
+function readDataFiles() {
+  const rawQuestSet = fs.readFileSync('./db/QuestDef.json', 'utf-8')
+  questSet = JSON.parse(rawQuestSet)
+  const rawQuestFacts = fs.readFileSync('./db/QuestFacts.json', 'utf-8')
+  questFacts = JSON.parse(rawQuestFacts)
+}
 
 function refreshQuest() {
   // 第一層：ファクト観察ソケットの進捗確認
@@ -130,6 +137,7 @@ function writeJson() {
 
 function run() {
   console.log('CalcQuest start')
+  readDataFiles()
   refreshQuest()
   refreshBonds()
   refreshFacts()

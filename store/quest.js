@@ -1,25 +1,29 @@
 import { v4 as uuid } from 'uuid'
-import ComputedResultJson from '@/db/ComputedResult.json'
 
 export const state = () => ({
-  questdata: ComputedResultJson.questSet,
-  bonddata: ComputedResultJson.bonds,
-  factdata: ComputedResultJson.facts,
+  questdata: null,
+  bonddata: null,
+  factdata: null,
 })
 
 export const getters = {
   questBoxSet(state) {
-    return state.questdata
+    return state.questdata || {}
   },
   questBonds(state) {
-    return state.bonddata
+    return state.bonddata || []
   },
   questFacts(state) {
-    return state.factdata
+    return state.factdata || {}
   },
 }
 
 export const mutations = {
+  SET_Data(state, computedResult) {
+    state.questdata = computedResult.questSet
+    state.bonddata = computedResult.bonds
+    state.factdata = computedResult.facts
+  },
   addQuest(state, item) {
     const { id, x, y, reqs } = item
     const obj = { x, y, reqs }
@@ -34,6 +38,10 @@ export const mutations = {
 }
 
 export const actions = {
+  async init({ commit }) {
+    const computedResult = await this.$axios.$get(`/api/quests`)
+    commit('SET_Data', computedResult)
+  },
   addQuestItem({ commit }) {
     const id = uuid().slice(0, 8)
     const item = {
@@ -52,10 +60,11 @@ export const actions = {
     const item = { id, x, y }
     commit('changeQuest', item)
   },
-  addSocket({ commit }, payload) {
+  async addSocket({ dispatch }, payload) {
     console.log('[#addSocket]', payload)
     const { questId, socketId, type } = payload
     const data = { id: socketId, type }
-    this.$axios.$post(`/api/quests/${questId}/sockets`, data)
+    await this.$axios.$post(`/api/quests/${questId}/sockets`, data)
+    await dispatch('init')
   },
 }

@@ -136,7 +136,7 @@ export default {
           const { x, y, drawSockets } = box
           const inPoints = []
           let h = 60
-          for (let i = 0; i < drawSockets.length; i++) {
+          for (let i = 0; i < (drawSockets || []).length; i++) {
             const { type } = drawSockets[i]
             inPoints.push({ x, y: y + 20 * i + 53, type })
             h += 18
@@ -175,11 +175,12 @@ export default {
       return `M${mx - 100},${my} L${mx + 100},${my}`
     },
   },
-  mounted() {
-    this.init()
+  async mounted() {
+    await this.init()
   },
   methods: {
-    init() {
+    async init() {
+      await this.$store.dispatch('quest/init')
       this.spz = svgPanZoom('#svg', {
         controlIconsEnabled: true,
         zoomScaleSensitivity: 0.3,
@@ -224,6 +225,7 @@ export default {
       event.stopPropagation()
       this.disableSpzPan()
       this.isPlusDragging = true
+      this.dragBoxId = boxId
       const { offsetX, offsetY } = event
       this.dragOffset = { x: offsetX, y: offsetY }
       this.previewLineDst = {
@@ -245,7 +247,7 @@ export default {
     onMousemove(event) {
       this.refreshMousePos(event)
 
-      if (this.spz.isPanEnabled()) return
+      if (this.spz && this.spz.isPanEnabled()) return
 
       if (this.isBoxDragging && this.dragBoxId) {
         const payload = {
@@ -265,12 +267,14 @@ export default {
       }
     },
     refreshMousePos(event) {
-      const { x, y } = event
-      const matrix = this.detectMatrix()
-      const calcX = (x - matrix.transX) / matrix.scaleX
-      const calcY = (y - matrix.transY) / matrix.scaleY
-      this.scaledMouseX = calcX
-      this.scaledMouseY = calcY
+      try {
+        const { x, y } = event
+        const matrix = this.detectMatrix()
+        const calcX = (x - matrix.transX) / matrix.scaleX
+        const calcY = (y - matrix.transY) / matrix.scaleY
+        this.scaledMouseX = calcX
+        this.scaledMouseY = calcY
+      } catch (e) {}
     },
     detectMatrix() {
       const vp = this.$el.querySelector('.svg-pan-zoom_viewport')
