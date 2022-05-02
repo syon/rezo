@@ -257,6 +257,8 @@ export default {
     },
     dragStop() {
       if (this.isBoxDragging) {
+        const b = this.questBoxSet[this.dragBoxId]
+        this.updateBoxPos({ boxId: this.dragBoxId, x: b.x, y: b.y })
         this.isBoxDragging = false
         this.dragBoxId = null
       }
@@ -303,6 +305,10 @@ export default {
       const vpmx = vp.transform.baseVal.consolidate().matrix
       // https://ginpen.com/2018/11/13/understanding-transform-matrix/
       return { scaleX: vpmx.a, scaleY: vpmx.d, transX: vpmx.e, transY: vpmx.f }
+    },
+    updateBoxPos({ boxId, x, y }) {
+      const payload = { boxId, x, y }
+      this.$store.dispatch('quest/updatePosition', payload)
     },
     newAliasSocket() {
       if (!this.dragBoxId || !this.lastEnterBoxId) return

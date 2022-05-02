@@ -23,6 +23,15 @@ app.post('/quests', (req, res) => {
   console.log('POST add end')
 })
 
+app.post('/quests/:id/position', (req, res) => {
+  const questId = req.params.id
+  const { x, y } = req.body
+  const data = { x, y }
+  Quest.updatePosition(questId, data)
+  CalcQuest()
+  res.status(200).send('OK')
+})
+
 app.post('/quests/:id/sockets', (req, res) => {
   console.log('POST start')
   const questId = req.params.id

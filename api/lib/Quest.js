@@ -7,6 +7,17 @@ module.exports = class Quest {
     return JSON.parse(rawQuestSet)
   }
 
+  static updatePosition(questId, data) {
+    const { x, y } = data
+    const defJson = fs.readFileSync('./db/QuestDef.json', 'utf-8')
+    const def = JSON.parse(defJson)
+    const target = def[questId]
+    target.x = x
+    target.y = y
+    const outJson = JSON.stringify(def, null, 2)
+    fs.writeFileSync('./db/QuestDef.json', outJson)
+  }
+
   static add(obj) {
     const defJson = fs.readFileSync('./db/QuestDef.json', 'utf-8')
     const def = JSON.parse(defJson)

@@ -63,4 +63,9 @@ export const actions = {
     await this.$axios.$post(`/api/quests/${questId}/sockets`, data)
     await dispatch('init')
   },
+  async updatePosition({ dispatch }, payload) {
+    const { boxId, x, y } = payload
+    const data = { x, y }
+    await this.$axios.$post(`/api/quests/${boxId}/position`, data)
+  },
 }
