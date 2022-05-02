@@ -2,7 +2,7 @@
   <div id="factlist" class="bg-white w-48 text-sm shadow h-full">
     <div v-for="(fact, idx) of questFacts" :key="`${idx}-${fact.id}`">
       <hr v-if="idx > 0" />
-      <div class="flex justify-between px-4 py-2" @click="handleClick(fact.id)">
+      <div class="flex justify-between px-4 py-2 cursor-pointer" @click="handleClick(fact)">
         <div>{{ fact.title }}</div>
         <div>{{ fact.done ? '✅' : '⬜' }}</div>
       </div>
@@ -20,8 +20,8 @@ export default {
     }),
   },
   methods: {
-    async handleClick(boxId) {
-      const payload = { boxId }
+    async handleClick(obj) {
+      const payload = { boxId: obj.id, done: !obj.done }
       await this.$store.dispatch('quest/updateFactStatus', payload)
     },
   },

@@ -44,7 +44,8 @@ app.post('/quests/:id/sockets', (req, res) => {
 
 app.post('/facts/:id', (req, res) => {
   const questId = req.params.id
-  Quest.addFact(questId)
+  const { done } = req.body
+  Quest.addFact(questId, { done })
   CalcQuest()
   res.status(200).send('OK')
 })

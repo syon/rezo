@@ -134,11 +134,11 @@
           "id": "Bghi",
           "type": "fact",
           "title": "Bghiタスク",
-          "done": false,
+          "done": true,
           "resolved": true
         }
       ],
-      "rate": 0,
+      "rate": 0.33,
       "rateResolved": true,
       "drawSockets": [
         {
@@ -157,7 +157,7 @@
           "id": "Bghi",
           "type": "fact",
           "title": "Bghiタスク",
-          "done": false
+          "done": true
         }
       ]
     },
@@ -170,7 +170,7 @@
           "id": "Cabc",
           "type": "fact",
           "title": "Cabcタスク",
-          "done": false,
+          "done": true,
           "resolved": true
         },
         {
@@ -186,14 +186,14 @@
           "resolved": true
         }
       ],
-      "rate": 0.33,
+      "rate": 0.67,
       "rateResolved": true,
       "drawSockets": [
         {
           "id": "Cabc",
           "type": "fact",
           "title": "Cabcタスク",
-          "done": false
+          "done": true
         },
         {
           "id": "ddd",
@@ -248,7 +248,7 @@
           "id": "Edef",
           "type": "fact",
           "title": "Edefタスク",
-          "done": false,
+          "done": true,
           "resolved": true
         },
         {
@@ -272,7 +272,7 @@
           "resolved": true
         }
       ],
-      "rate": 0.2,
+      "rate": 0.4,
       "rateResolved": true,
       "drawSockets": [
         {
@@ -285,7 +285,7 @@
           "id": "Edef",
           "type": "fact",
           "title": "Edefタスク",
-          "done": false
+          "done": true
         },
         {
           "id": "Eghi",
@@ -492,7 +492,7 @@
       "id": "Bghi",
       "type": "fact",
       "title": "Bghiタスク",
-      "done": false,
+      "done": true,
       "resolved": true
     },
     {
@@ -500,7 +500,7 @@
       "id": "Cabc",
       "type": "fact",
       "title": "Cabcタスク",
-      "done": false,
+      "done": true,
       "resolved": true
     },
     {
@@ -516,7 +516,7 @@
       "id": "Edef",
       "type": "fact",
       "title": "Edefタスク",
-      "done": false,
+      "done": true,
       "resolved": true
     },
     {

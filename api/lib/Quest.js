@@ -66,11 +66,15 @@ module.exports = class Quest {
     }
   }
 
-  static addFact(questId) {
+  static addFact(questId, { done }) {
     const factsJson = fs.readFileSync('./db/QuestFacts.json', 'utf-8')
-    const facts = JSON.parse(factsJson)
-    if (facts.includes(questId)) return
-    facts.push(questId)
+    let facts = JSON.parse(factsJson)
+    if (done) {
+      if (facts.includes(questId)) return
+      facts.push(questId)
+    } else {
+      facts = facts.filter((id) => id !== questId)
+    }
     const outJson = JSON.stringify(facts, null, 2)
     fs.writeFileSync('./db/QuestFacts.json', outJson)
   }

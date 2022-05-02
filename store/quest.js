@@ -69,8 +69,9 @@ export const actions = {
     await this.$axios.$post(`/api/quests/${boxId}/position`, data)
   },
   async updateFactStatus({ dispatch }, payload) {
-    const { boxId } = payload
-    await this.$axios.$post(`/api/facts/${boxId}`)
+    const { boxId, done } = payload
+    const data = { done }
+    await this.$axios.$post(`/api/facts/${boxId}`, data)
     await dispatch('init')
   },
 }
