@@ -42,4 +42,11 @@ app.post('/quests/:id/sockets', (req, res) => {
   res.status(200).send('OK')
 })
 
+app.post('/facts/:id', (req, res) => {
+  const questId = req.params.id
+  Quest.addFact(questId)
+  CalcQuest()
+  res.status(200).send('OK')
+})
+
 module.exports = app

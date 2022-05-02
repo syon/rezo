@@ -2,7 +2,7 @@
   <div id="factlist" class="bg-white w-48 text-sm shadow h-full">
     <div v-for="(fact, idx) of questFacts" :key="`${idx}-${fact.id}`">
       <hr v-if="idx > 0" />
-      <div class="flex justify-between px-4 py-2">
+      <div class="flex justify-between px-4 py-2" @click="handleClick(fact.id)">
         <div>{{ fact.title }}</div>
         <div>{{ fact.done ? '✅' : '⬜' }}</div>
       </div>
@@ -18,6 +18,12 @@ export default {
     ...mapGetters({
       questFacts: 'quest/questFacts',
     }),
+  },
+  methods: {
+    async handleClick(boxId) {
+      const payload = { boxId }
+      await this.$store.dispatch('quest/updateFactStatus', payload)
+    },
   },
 }
 </script>

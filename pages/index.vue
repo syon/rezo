@@ -353,8 +353,8 @@ svg {
 
 #spz-pan {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  bottom: 15px;
+  left: 220px;
 }
 
 #toolbar {

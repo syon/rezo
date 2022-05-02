@@ -66,6 +66,15 @@ module.exports = class Quest {
     }
   }
 
+  static addFact(questId) {
+    const factsJson = fs.readFileSync('./db/QuestFacts.json', 'utf-8')
+    const facts = JSON.parse(factsJson)
+    if (facts.includes(questId)) return
+    facts.push(questId)
+    const outJson = JSON.stringify(facts, null, 2)
+    fs.writeFileSync('./db/QuestFacts.json', outJson)
+  }
+
   static checkCircular(def, targetId, originId) {
     console.log('★CHECK:', targetId)
     if (!def[targetId]) return
