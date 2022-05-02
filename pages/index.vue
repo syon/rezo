@@ -15,15 +15,17 @@
             <path :d="scaledMouseYLine" stroke="cyan" />
           </g>
 
-          <template v-for="(pSet, idx) of lines">
-            <auto-bezier :key="`bez-${idx}`" :sp="pSet.sp" :ep="pSet.ep" />
-          </template>
+          <g>
+            <template v-for="(pSet, idx) of lines">
+              <auto-bezier :key="`bez-${idx}`" :sp="pSet.sp" :ep="pSet.ep" />
+            </template>
+          </g>
 
           <template v-for="(b, key) of questBoxSet">
             <foreignObject
               :key="`fo-${key}`"
               width="160"
-              height="160"
+              :height="b.drawSockets.length * 20 + 50"
               :x="b.x"
               :y="b.y"
               style="border: 1px solid pink"
@@ -157,7 +159,7 @@ export default {
           for (let i = 0; i < (drawSockets || []).length; i++) {
             const { type } = drawSockets[i]
             inPoints.push({ x, y: y + 20 * i + 53, type })
-            h += 18
+            h += 19
           }
           const val = {
             mx: x,
