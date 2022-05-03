@@ -1,4 +1,5 @@
 const fs = require('fs')
+const Compute = require('./Compute')
 
 function readJson(path) {
   const jsonStr = fs.readFileSync(path, 'utf-8')
@@ -25,17 +26,26 @@ module.exports = class DB {
     const panelPath = `./db/panel/${panel}`
     const jsonStr = JSON.stringify(struct, null, 2)
     fs.writeFileSync(`${panelPath}/struct.json`, jsonStr)
+    DB.doCompute(panel)
   }
 
   static saveFact(panel, fact) {
     const panelPath = `./db/panel/${panel}`
     const jsonStr = JSON.stringify(fact, null, 2)
     fs.writeFileSync(`${panelPath}/fact.json`, jsonStr)
+    DB.doCompute(panel)
   }
 
   static saveComputed(panel, computed) {
     const panelPath = `./db/panel/${panel}`
     const jsonStr = JSON.stringify(computed, null, 2)
     fs.writeFileSync(`${panelPath}/ComputedResult.json`, jsonStr)
+  }
+
+  static doCompute(panel) {
+    const struct = DB.getStruct(panel)
+    const fact = DB.getFact(panel)
+    const computed = Compute(struct, fact)
+    DB.saveComputed(panel, computed)
   }
 }

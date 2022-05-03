@@ -1,17 +1,11 @@
-const DB = require('./DB')
-
 let questSet = {}
 let questFacts = []
 
 const computedResult = { questSet: null, bonds: [] }
 
-function readDataFiles(panel) {
-  questSet = DB.getStruct(panel)
-  questFacts = DB.getFact(panel)
-}
-
-function writeJson(panel) {
-  DB.saveComputed(panel, computedResult)
+function readDataFiles(struct, fact) {
+  questSet = struct
+  questFacts = fact
 }
 
 function refreshQuest() {
@@ -133,14 +127,14 @@ function refreshFacts() {
   computedResult.facts = facts
 }
 
-function run(panel) {
+function run(struct, fact) {
   console.log('CalcQuest start')
-  readDataFiles(panel)
+  readDataFiles(struct, fact)
   refreshQuest()
   refreshBonds()
   refreshFacts()
-  writeJson(panel)
   console.log('CalcQuest end')
+  return computedResult
 }
 
 module.exports = run
