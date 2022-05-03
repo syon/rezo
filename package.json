@@ -6,13 +6,20 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "db:migrate": "sequelize db:migrate",
+    "db:migrate:empty": "sequelize db:migrate:undo:all",
+    "db:seed": "sequelize db:seed:all",
+    "db:seed:empty": "sequelize db:seed:undo:all"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
     "core-js": "^3.19.3",
+    "csv": "^6.0.5",
     "express": "^4.18.1",
     "nuxt": "^2.15.8",
+    "sequelize": "^6.19.0",
+    "sqlite3": "^5.0.6",
     "svg-pan-zoom": "^3.6.1",
     "uuid": "^8.3.2",
     "vue": "^2.6.14",
@@ -30,6 +37,7 @@
     "eslint-plugin-nuxt": "^3.1.0",
     "eslint-plugin-vue": "^8.2.0",
     "postcss": "^8.4.4",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "sequelize-cli": "^6.4.1"
   }
 }
