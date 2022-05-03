@@ -50,18 +50,4 @@ app.post('/facts/:id', (req, res) => {
   res.status(200).send('OK')
 })
 
-function wrap(fn, req, res, next) {
-  const { params, body } = req
-  fn(req)
-    .then((result) => res.send(result))
-    .catch((e) => {
-      console.error(e.toString())
-      console.log({ params, body })
-      next(e)
-    })
-}
-
-const chestsCtrl = require('./controller/chests.controller')
-app.get('/chests', (rq, rs, nx) => wrap(chestsCtrl.findAll, rq, rs, nx))
-
 module.exports = app
