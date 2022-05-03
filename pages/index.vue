@@ -257,8 +257,7 @@ export default {
     },
     dragStop() {
       if (this.isBoxDragging) {
-        const b = this.questBoxSet[this.dragBoxId]
-        this.updateBoxPos({ boxId: this.dragBoxId, x: b.x, y: b.y })
+        this.updateBoxPos({ boxId: this.dragBoxId })
         this.isBoxDragging = false
         this.dragBoxId = null
       }
@@ -279,7 +278,7 @@ export default {
           x: this.scaledMouseX - this.dragOffset.x,
           y: this.scaledMouseY - this.dragOffset.y,
         }
-        this.$store.dispatch('quest/changeQuestItem', payload)
+        this.$store.dispatch('quest/updatePositionOnMemory', payload)
       } else if (this.isPlusDragging) {
         this.previewLineSrc = {
           x: this.scaledMouseX,
@@ -308,7 +307,7 @@ export default {
     },
     updateBoxPos({ boxId, x, y }) {
       const payload = { boxId, x, y }
-      this.$store.dispatch('quest/updatePosition', payload)
+      this.$store.dispatch('quest/savePosition', payload)
     },
     newAliasSocket() {
       if (!this.dragBoxId || !this.lastEnterBoxId) return
