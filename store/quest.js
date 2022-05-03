@@ -40,9 +40,13 @@ export const mutations = {
 }
 
 export const actions = {
-  async init({ commit }, panel) {
-    const url = `/api/panels/${panel}`
+  async init({ dispatch, commit }, panel) {
+    if (!panel) return
     commit('SET_Panel', panel)
+    await dispatch('load')
+  },
+  async load({ state, commit }) {
+    const url = `/api/panels/${state.panel}`
     const computedResult = await this.$axios.$get(url)
     commit('SET_Data', computedResult)
   },
@@ -56,22 +60,22 @@ export const actions = {
   async addQuestItem({ state, dispatch }) {
     const data = {
       title: '新しいタイトル',
-      x: 500,
-      y: 200,
+      x: 0,
+      y: 0,
     }
     const panel = state.panel
     const url = `/api/panels/${panel}/quests`
     await this.$axios.$post(url, data)
-    await dispatch('init')
+    await dispatch('load')
   },
-  async addSocket({ dispatch }, payload) {
+  async addSocket({ state, dispatch }, payload) {
     console.log('[#addSocket]', payload)
     const { questId, socketId, type } = payload
     const data = { id: socketId, type }
     const panel = state.panel
     const url = `/api/panels/${panel}/quests/${questId}/sockets`
     await this.$axios.$post(url, data)
-    await dispatch('init')
+    await dispatch('load')
   },
   async savePosition({ state }, payload) {
     const { boxId } = payload
@@ -81,12 +85,12 @@ export const actions = {
     const url = `/api/panels/${panel}/quests/${boxId}/position`
     await this.$axios.$post(url, data)
   },
-  async updateFactStatus({ dispatch }, payload) {
+  async updateFactStatus({ state, dispatch }, payload) {
     const { boxId, done } = payload
     const data = { done }
     const panel = state.panel
     const url = `/api/panels/${panel}/facts/${boxId}`
     await this.$axios.$post(url, data)
-    await dispatch('init')
+    await dispatch('load')
   },
 }

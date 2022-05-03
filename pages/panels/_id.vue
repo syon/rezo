@@ -131,7 +131,7 @@ import { mapGetters } from 'vuex'
 import svgPanZoom from 'svg-pan-zoom'
 
 export default {
-  name: 'IndexPage',
+  name: 'PanelPage',
   data: () => ({
     ready: false,
     spz: null,

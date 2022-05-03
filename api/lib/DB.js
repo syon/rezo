@@ -1,25 +1,37 @@
 const fs = require('fs')
+const pathLib = require('path')
 const Compute = require('./Compute')
 
 function readJson(path) {
-  const jsonStr = fs.readFileSync(path, 'utf-8')
-  return JSON.parse(jsonStr)
+  try {
+    const jsonStr = fs.readFileSync(path, 'utf-8')
+    return jsonStr ? JSON.parse(jsonStr) : null
+  } catch (e) {
+    if (e.code === 'ENOENT') {
+      const dir = pathLib.dirname(path)
+      fs.mkdirSync(dir, { recursive: true })
+      fs.writeFileSync(path, '')
+      return null
+    } else {
+      throw e
+    }
+  }
 }
 
 module.exports = class DB {
   static getStruct(panel) {
     const panelPath = `./db/panel/${panel}`
-    return readJson(`${panelPath}/struct.json`)
+    return readJson(`${panelPath}/struct.json`) || {}
   }
 
   static getFact(panel) {
     const panelPath = `./db/panel/${panel}`
-    return readJson(`${panelPath}/fact.json`)
+    return readJson(`${panelPath}/fact.json`) || []
   }
 
   static getComputed(panel) {
     const panelPath = `./db/panel/${panel}`
-    return readJson(`${panelPath}/ComputedResult.json`)
+    return readJson(`${panelPath}/ComputedResult.json`) || {}
   }
 
   static saveStruct(panel, struct) {

@@ -128,12 +128,12 @@ function refreshFacts() {
 }
 
 function run(struct, fact) {
-  console.log('CalcQuest start')
+  console.log('Compute start')
   readDataFiles(struct, fact)
   refreshQuest()
   refreshBonds()
   refreshFacts()
-  console.log('CalcQuest end')
+  console.log('Compute end')
   return computedResult
 }
 

@@ -31,6 +31,7 @@ module.exports = class Quest {
 
   static addSocket(panel, { questId, socketId: rawSocketId, type }) {
     const struct = DB.getStruct(panel)
+    console.log('[addSocket]', struct)
     const target = struct[questId]
     const socketId = rawSocketId || uuid().slice(0, 8)
     Quest.checkAddSocket(struct, questId, socketId, type)
@@ -39,8 +40,8 @@ module.exports = class Quest {
     DB.saveStruct(panel, struct)
   }
 
-  static checkAddSocket(def, questId, socketId, type) {
-    const target = def[questId]
+  static checkAddSocket(struct, questId, socketId, type) {
+    const target = struct[questId]
     // 自分自身を接続対象に指定はNG
     if (questId === socketId) {
       throw new Error(`Socket ID: [${socketId}] itself.`)
@@ -55,7 +56,7 @@ module.exports = class Quest {
     // 循環参照はNG
     if (type === 'alias') {
       const originId = questId
-      Quest.checkCircular(def, socketId, originId)
+      Quest.checkCircular(struct, socketId, originId)
     }
   }
 
