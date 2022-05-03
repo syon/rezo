@@ -1,4 +1,5 @@
 export const state = () => ({
+  panel: null,
   questdata: null,
   bonddata: null,
   factdata: null,
@@ -17,6 +18,9 @@ export const getters = {
 }
 
 export const mutations = {
+  SET_Panel(state, panel) {
+    state.panel = panel
+  },
   SET_Data(state, computedResult) {
     state.questdata = computedResult.questSet
     state.bonddata = computedResult.bonds
@@ -36,9 +40,9 @@ export const mutations = {
 }
 
 export const actions = {
-  async init({ commit }) {
-    const panel = 'hello'
+  async init({ commit }, panel) {
     const url = `/api/panels/${panel}`
+    commit('SET_Panel', panel)
     const computedResult = await this.$axios.$get(url)
     commit('SET_Data', computedResult)
   },
@@ -49,13 +53,13 @@ export const actions = {
     const item = { id, x, y }
     commit('changeQuest', item)
   },
-  async addQuestItem({ dispatch }) {
+  async addQuestItem({ state, dispatch }) {
     const data = {
       title: '新しいタイトル',
       x: 500,
       y: 200,
     }
-    const panel = 'hello'
+    const panel = state.panel
     const url = `/api/panels/${panel}/quests`
     await this.$axios.$post(url, data)
     await dispatch('init')
@@ -64,7 +68,7 @@ export const actions = {
     console.log('[#addSocket]', payload)
     const { questId, socketId, type } = payload
     const data = { id: socketId, type }
-    const panel = 'hello'
+    const panel = state.panel
     const url = `/api/panels/${panel}/quests/${questId}/sockets`
     await this.$axios.$post(url, data)
     await dispatch('init')
@@ -73,14 +77,14 @@ export const actions = {
     const { boxId } = payload
     const { x, y } = state.questdata[boxId]
     const data = { x, y }
-    const panel = 'hello'
+    const panel = state.panel
     const url = `/api/panels/${panel}/quests/${boxId}/position`
     await this.$axios.$post(url, data)
   },
   async updateFactStatus({ dispatch }, payload) {
     const { boxId, done } = payload
     const data = { done }
-    const panel = 'hello'
+    const panel = state.panel
     const url = `/api/panels/${panel}/facts/${boxId}`
     await this.$axios.$post(url, data)
     await dispatch('init')
