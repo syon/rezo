@@ -1,5 +1,5 @@
 const db = require('../../models/index.js')
-const { Chest } = db
+const { Chest, Socket } = db
 
 module.exports = {
   create(req) {
@@ -11,7 +11,9 @@ module.exports = {
     })
   },
   findAll(req, res, next) {
-    return Chest.findAll()
+    return Chest.findAll({
+      include: [{ model: Socket, required: true, as: 'sockets' }],
+    })
   },
   findOne(req) {
     return Chest.findOne({
