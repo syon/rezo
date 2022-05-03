@@ -137,9 +137,8 @@ function refreshFacts() {
   computedResult.facts = facts
 }
 
-function run() {
+function run(panel) {
   console.log('CalcQuest start')
-  const panel = 'hello'
   readDataFiles(panel)
   refreshQuest()
   refreshBonds()

@@ -11,9 +11,8 @@ module.exports = class Quest {
     return JSON.parse(rawQuestSet)
   }
 
-  static updatePosition(questId, data) {
+  static updatePosition(panel, questId, data) {
     const { x, y } = data
-    const panel = 'hello'
     const panelPath = `./db/panel/${panel}`
     const defJson = fs.readFileSync(`${panelPath}/struct.json`, 'utf-8')
     const def = JSON.parse(defJson)
@@ -24,8 +23,7 @@ module.exports = class Quest {
     fs.writeFileSync(`${panelPath}/struct.json`, outJson)
   }
 
-  static add(obj) {
-    const panel = 'hello'
+  static add(panel, obj) {
     const panelPath = `./db/panel/${panel}`
     const defJson = fs.readFileSync(`${panelPath}/struct.json`, 'utf-8')
     const def = JSON.parse(defJson)
@@ -42,8 +40,7 @@ module.exports = class Quest {
     return item
   }
 
-  static addSocket({ questId, socketId: rawSocketId, type }) {
-    const panel = 'hello'
+  static addSocket(panel, { questId, socketId: rawSocketId, type }) {
     const panelPath = `./db/panel/${panel}`
     const defJson = fs.readFileSync(`${panelPath}/struct.json`, 'utf-8')
     const def = JSON.parse(defJson)
@@ -76,8 +73,7 @@ module.exports = class Quest {
     }
   }
 
-  static addFact(questId, { done }) {
-    const panel = 'hello'
+  static addFact(panel, questId, { done }) {
     const panelPath = `./db/panel/${panel}`
     const factsJson = fs.readFileSync(`${panelPath}/fact.json`, 'utf-8')
     let facts = JSON.parse(factsJson)

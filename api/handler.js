@@ -12,14 +12,16 @@ app.get('/quests', (req, res) => {
 })
 
 app.get('/refresh', (req, res) => {
-  CalcQuest()
+  const panel = 'hello'
+  CalcQuest(panel)
   res.json({ data: 'data' })
 })
 
 app.post('/quests', (req, res) => {
   console.log('POST add start')
-  const addedItem = Quest.add(req.body)
-  CalcQuest()
+  const panel = 'hello'
+  const addedItem = Quest.add(panel, req.body)
+  CalcQuest(panel)
   res.json(addedItem)
   console.log('POST add end')
 })
@@ -28,8 +30,9 @@ app.post('/quests/:id/position', (req, res) => {
   const questId = req.params.id
   const { x, y } = req.body
   const data = { x, y }
-  Quest.updatePosition(questId, data)
-  CalcQuest()
+  const panel = 'hello'
+  Quest.updatePosition(panel, questId, data)
+  CalcQuest(panel)
   res.status(200).send('OK')
 })
 
@@ -38,16 +41,18 @@ app.post('/quests/:id/sockets', (req, res) => {
   const questId = req.params.id
   const { id: socketId, type } = req.body
   const data = { questId, socketId, type }
-  Quest.addSocket(data)
-  CalcQuest()
+  const panel = 'hello'
+  Quest.addSocket(panel, data)
+  CalcQuest(panel)
   res.status(200).send('OK')
 })
 
 app.post('/facts/:id', (req, res) => {
   const questId = req.params.id
   const { done } = req.body
-  Quest.addFact(questId, { done })
-  CalcQuest()
+  const panel = 'hello'
+  Quest.addFact(panel, questId, { done })
+  CalcQuest(panel)
   res.status(200).send('OK')
 })
 
