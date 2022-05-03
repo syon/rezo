@@ -4,11 +4,18 @@ let questFacts = []
 
 const computedResult = { questSet: null, bonds: [] }
 
-function readDataFiles() {
-  const rawQuestSet = fs.readFileSync('./db/QuestDef.json', 'utf-8')
+function readDataFiles(panel) {
+  const panelPath = `./db/panel/${panel}`
+  const rawQuestSet = fs.readFileSync(`${panelPath}/struct.json`, 'utf-8')
   questSet = JSON.parse(rawQuestSet)
-  const rawQuestFacts = fs.readFileSync('./db/QuestFacts.json', 'utf-8')
+  const rawQuestFacts = fs.readFileSync(`${panelPath}/fact.json`, 'utf-8')
   questFacts = JSON.parse(rawQuestFacts)
+}
+
+function writeJson(panel) {
+  const panelPath = `./db/panel/${panel}`
+  const jsonStr = JSON.stringify(computedResult, null, 2)
+  fs.writeFileSync(`${panelPath}/ComputedResult.json`, jsonStr)
 }
 
 function refreshQuest() {
@@ -130,18 +137,14 @@ function refreshFacts() {
   computedResult.facts = facts
 }
 
-function writeJson() {
-  const jsonStr = JSON.stringify(computedResult, null, 2)
-  fs.writeFileSync('./db/ComputedResult.json', jsonStr)
-}
-
 function run() {
   console.log('CalcQuest start')
-  readDataFiles()
+  const panel = 'hello'
+  readDataFiles(panel)
   refreshQuest()
   refreshBonds()
   refreshFacts()
-  writeJson()
+  writeJson(panel)
   console.log('CalcQuest end')
 }
 

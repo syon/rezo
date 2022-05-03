@@ -6,7 +6,8 @@ const app = express()
 app.use(express.json())
 
 app.get('/quests', (req, res) => {
-  const data = Quest.loadComputed()
+  const panel = 'hello'
+  const data = Quest.loadComputed(panel)
   res.json(data)
 })
 
