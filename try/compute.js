@@ -1,3 +1,3 @@
-const CalcQuest = require('../operation/CalcQuest')
+const Compute = require('../api/lib/Compute')
 
-CalcQuest()
+Compute('hello')

@@ -1,21 +1,17 @@
-const fs = require('fs')
+const DB = require('./DB')
+
 let questSet = {}
 let questFacts = []
 
 const computedResult = { questSet: null, bonds: [] }
 
 function readDataFiles(panel) {
-  const panelPath = `./db/panel/${panel}`
-  const rawQuestSet = fs.readFileSync(`${panelPath}/struct.json`, 'utf-8')
-  questSet = JSON.parse(rawQuestSet)
-  const rawQuestFacts = fs.readFileSync(`${panelPath}/fact.json`, 'utf-8')
-  questFacts = JSON.parse(rawQuestFacts)
+  questSet = DB.getStruct(panel)
+  questFacts = DB.getFact(panel)
 }
 
 function writeJson(panel) {
-  const panelPath = `./db/panel/${panel}`
-  const jsonStr = JSON.stringify(computedResult, null, 2)
-  fs.writeFileSync(`${panelPath}/ComputedResult.json`, jsonStr)
+  DB.saveComputed(panel, computedResult)
 }
 
 function refreshQuest() {

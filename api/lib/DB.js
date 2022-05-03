@@ -32,4 +32,10 @@ module.exports = class DB {
     const jsonStr = JSON.stringify(fact, null, 2)
     fs.writeFileSync(`${panelPath}/fact.json`, jsonStr)
   }
+
+  static saveComputed(panel, computed) {
+    const panelPath = `./db/panel/${panel}`
+    const jsonStr = JSON.stringify(computed, null, 2)
+    fs.writeFileSync(`${panelPath}/ComputedResult.json`, jsonStr)
+  }
 }
