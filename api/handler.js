@@ -11,12 +11,6 @@ app.get('/quests', (req, res) => {
   res.json(data)
 })
 
-app.get('/refresh', (req, res) => {
-  const panel = 'hello'
-  CalcQuest(panel)
-  res.json({ data: 'data' })
-})
-
 app.post('/quests', (req, res) => {
   console.log('POST add start')
   const panel = 'hello'

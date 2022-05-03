@@ -1,32 +1,22 @@
-const fs = require('fs')
 const { v4: uuid } = require('uuid')
+const DB = require('./DB')
 
 module.exports = class Quest {
   static loadComputed(panel) {
-    const panelPath = `./db/panel/${panel}`
-    const rawQuestSet = fs.readFileSync(
-      `${panelPath}/ComputedResult.json`,
-      'utf-8'
-    )
-    return JSON.parse(rawQuestSet)
+    return DB.getComputed(panel)
   }
 
   static updatePosition(panel, questId, data) {
     const { x, y } = data
-    const panelPath = `./db/panel/${panel}`
-    const defJson = fs.readFileSync(`${panelPath}/struct.json`, 'utf-8')
-    const def = JSON.parse(defJson)
-    const target = def[questId]
+    const struct = DB.getStruct(panel)
+    const target = struct[questId]
     target.x = x
     target.y = y
-    const outJson = JSON.stringify(def, null, 2)
-    fs.writeFileSync(`${panelPath}/struct.json`, outJson)
+    DB.saveStruct(panel, struct)
   }
 
   static add(panel, obj) {
-    const panelPath = `./db/panel/${panel}`
-    const defJson = fs.readFileSync(`${panelPath}/struct.json`, 'utf-8')
-    const def = JSON.parse(defJson)
+    const struct = DB.getStruct(panel)
     const id = uuid().slice(0, 8)
     const item = {
       title: obj.title || '新しいタイトル',
@@ -34,23 +24,19 @@ module.exports = class Quest {
       y: obj.y || 0,
       sockets: [],
     }
-    def[id] = item
-    const outJson = JSON.stringify(def, null, 2)
-    fs.writeFileSync(`${panelPath}/struct.json`, outJson)
+    struct[id] = item
+    DB.saveStruct(panel, struct)
     return item
   }
 
   static addSocket(panel, { questId, socketId: rawSocketId, type }) {
-    const panelPath = `./db/panel/${panel}`
-    const defJson = fs.readFileSync(`${panelPath}/struct.json`, 'utf-8')
-    const def = JSON.parse(defJson)
-    const target = def[questId]
+    const struct = DB.getStruct(panel)
+    const target = struct[questId]
     const socketId = rawSocketId || uuid().slice(0, 8)
-    Quest.checkAddSocket(def, questId, socketId, type)
+    Quest.checkAddSocket(struct, questId, socketId, type)
     const title = '新しいアイテム'
     target.sockets.push({ id: socketId, type, title })
-    const outJson = JSON.stringify(def, null, 2)
-    fs.writeFileSync(`${panelPath}/struct.json`, outJson)
+    DB.saveStruct(panel, struct)
   }
 
   static checkAddSocket(def, questId, socketId, type) {
@@ -74,17 +60,14 @@ module.exports = class Quest {
   }
 
   static addFact(panel, questId, { done }) {
-    const panelPath = `./db/panel/${panel}`
-    const factsJson = fs.readFileSync(`${panelPath}/fact.json`, 'utf-8')
-    let facts = JSON.parse(factsJson)
+    let facts = DB.getFact(panel)
     if (done) {
       if (facts.includes(questId)) return
       facts.push(questId)
     } else {
       facts = facts.filter((id) => id !== questId)
     }
-    const outJson = JSON.stringify(facts, null, 2)
-    fs.writeFileSync(`${panelPath}/fact.json`, outJson)
+    DB.saveFact(panel, facts)
   }
 
   static checkCircular(def, targetId, originId) {
