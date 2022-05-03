@@ -4,44 +4,38 @@ const Quest = require('./lib/Quest')
 const app = express()
 app.use(express.json())
 
-app.get('/quests', (req, res) => {
+app.get('/panels/:panelId', (req, res) => {
   const panel = 'hello'
   const data = Quest.loadComputed(panel)
   res.json(data)
 })
 
-app.post('/quests', (req, res) => {
-  console.log('POST add start')
-  const panel = 'hello'
-  const addedItem = Quest.add(panel, req.body)
+app.post('/panels/:panelId/quests', (req, res) => {
+  const { panelId } = req.params
+  const addedItem = Quest.add(panelId, req.body)
   res.json(addedItem)
-  console.log('POST add end')
 })
 
-app.post('/quests/:id/position', (req, res) => {
-  const questId = req.params.id
+app.post('/panels/:panelId/quests/:questId/position', (req, res) => {
+  const { panelId, questId } = req.params
   const { x, y } = req.body
   const data = { x, y }
-  const panel = 'hello'
-  Quest.updatePosition(panel, questId, data)
+  Quest.updatePosition(panelId, questId, data)
   res.status(200).send('OK')
 })
 
-app.post('/quests/:id/sockets', (req, res) => {
-  console.log('POST start')
-  const questId = req.params.id
+app.post('/panels/:panelId/quests/:questId/sockets', (req, res) => {
+  const { panelId, questId } = req.params
   const { id: socketId, type } = req.body
   const data = { questId, socketId, type }
-  const panel = 'hello'
-  Quest.addSocket(panel, data)
+  Quest.addSocket(panelId, data)
   res.status(200).send('OK')
 })
 
-app.post('/facts/:id', (req, res) => {
-  const questId = req.params.id
+app.post('/panels/:panelId/facts/:id', (req, res) => {
+  const { panelId, questId } = req.params
   const { done } = req.body
-  const panel = 'hello'
-  Quest.addFact(panel, questId, { done })
+  Quest.addFact(panelId, questId, { done })
   res.status(200).send('OK')
 })
 

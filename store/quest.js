@@ -37,7 +37,8 @@ export const mutations = {
 
 export const actions = {
   async init({ commit }) {
-    const computedResult = await this.$axios.$get(`/api/quests`)
+    const panel = 'hello'
+    const computedResult = await this.$axios.$get(`/api/panels/${panel}`)
     commit('SET_Data', computedResult)
   },
   async addQuestItem({ dispatch }) {
@@ -46,7 +47,8 @@ export const actions = {
       x: 500,
       y: 200,
     }
-    await this.$axios.$post(`/api/quests`, data)
+    const panel = 'hello'
+    await this.$axios.$post(`/api/panels/${panel}/quests`, data)
     await dispatch('init')
   },
   changeQuestItem({ commit }, payload) {
@@ -60,18 +62,21 @@ export const actions = {
     console.log('[#addSocket]', payload)
     const { questId, socketId, type } = payload
     const data = { id: socketId, type }
-    await this.$axios.$post(`/api/quests/${questId}/sockets`, data)
+    const panel = 'hello'
+    await this.$axios.$post(`/api/panels/${panel}/quests/${questId}/sockets`, data)
     await dispatch('init')
   },
   async updatePosition({ dispatch }, payload) {
     const { boxId, x, y } = payload
     const data = { x, y }
-    await this.$axios.$post(`/api/quests/${boxId}/position`, data)
+    const panel = 'hello'
+    await this.$axios.$post(`/api/panels/${panel}/quests/${boxId}/position`, data)
   },
   async updateFactStatus({ dispatch }, payload) {
     const { boxId, done } = payload
     const data = { done }
-    await this.$axios.$post(`/api/facts/${boxId}`, data)
+    const panel = 'hello'
+    await this.$axios.$post(`/api/panels/${panel}/facts/${boxId}`, data)
     await dispatch('init')
   },
 }
