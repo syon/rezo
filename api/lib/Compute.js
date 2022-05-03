@@ -1,7 +1,7 @@
 let questSet = {}
 let questFacts = []
 
-const computedResult = { questSet: null, bonds: [] }
+const computed = { questSet: null, bonds: [] }
 
 function readDataFiles(struct, fact) {
   questSet = struct
@@ -99,7 +99,7 @@ function refreshQuest() {
     questSet[rootId].drawSockets = drawSockets
   }
 
-  computedResult.questSet = questSet
+  computed.questSet = questSet
 }
 
 function refreshBonds() {
@@ -112,19 +112,19 @@ function refreshBonds() {
     })
   }
 
-  computedResult.bonds = bonds
+  computed.bonds = bonds
 }
 
 function refreshFacts() {
   let facts = []
-  for (const [parentId, quest] of Object.entries(computedResult.questSet)) {
+  for (const [parentId, quest] of Object.entries(computed.questSet)) {
     const list = quest.sockets
       .filter((x) => x.type === 'fact')
       .map((x) => ({ parentId, ...x }))
     facts = facts.concat(list)
   }
 
-  computedResult.facts = facts
+  computed.facts = facts
 }
 
 function run(struct, fact) {
@@ -134,7 +134,7 @@ function run(struct, fact) {
   refreshBonds()
   refreshFacts()
   console.log('Compute end')
-  return computedResult
+  return computed
 }
 
 module.exports = run

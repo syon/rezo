@@ -18,6 +18,11 @@ function readJson(path) {
   }
 }
 
+function writeJson(path, data) {
+  const jsonStr = JSON.stringify(data, null, 2)
+  fs.writeFileSync(path, jsonStr)
+}
+
 module.exports = class DB {
   static getStruct(panel) {
     const panelPath = `./db/panel/${panel}`
@@ -31,27 +36,24 @@ module.exports = class DB {
 
   static getComputed(panel) {
     const panelPath = `./db/panel/${panel}`
-    return readJson(`${panelPath}/ComputedResult.json`) || {}
+    return readJson(`${panelPath}/computed.json`) || {}
   }
 
   static saveStruct(panel, struct) {
     const panelPath = `./db/panel/${panel}`
-    const jsonStr = JSON.stringify(struct, null, 2)
-    fs.writeFileSync(`${panelPath}/struct.json`, jsonStr)
+    writeJson(`${panelPath}/struct.json`, struct)
     DB.doCompute(panel)
   }
 
   static saveFact(panel, fact) {
     const panelPath = `./db/panel/${panel}`
-    const jsonStr = JSON.stringify(fact, null, 2)
-    fs.writeFileSync(`${panelPath}/fact.json`, jsonStr)
+    writeJson(`${panelPath}/fact.json`, fact)
     DB.doCompute(panel)
   }
 
   static saveComputed(panel, computed) {
     const panelPath = `./db/panel/${panel}`
-    const jsonStr = JSON.stringify(computed, null, 2)
-    fs.writeFileSync(`${panelPath}/ComputedResult.json`, jsonStr)
+    writeJson(`${panelPath}/computed.json`, computed)
   }
 
   static doCompute(panel) {
