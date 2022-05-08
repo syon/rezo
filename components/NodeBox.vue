@@ -1,6 +1,6 @@
 <template>
-  <div class="cc-QuestBox border">
-    <div class="title border-b" @pointerdown="onClickTitle">
+  <div class="cc-NodeBox border">
+    <div class="title border-b cursor-all-scroll" @pointerdown="onClickTitle">
       <div class="flex items-center justify-between">
         <div class="px-2 py-1 font-bold whitespace-nowrap">{{ title }}</div>
         <div class="px-2 text-sm whitespace-nowrap">
@@ -28,6 +28,7 @@ export default {
     id: { type: String, required: true },
     obj: { type: Object, required: true },
   },
+
   computed: {
     title() {
       return this.obj.title
@@ -39,6 +40,7 @@ export default {
       return Math.floor(`${this.obj.rate * 100}`)
     },
   },
+
   methods: {
     onClickTitle(event) {
       event.stopPropagation()
@@ -51,7 +53,7 @@ export default {
 </script>
 
 <style scoped>
-.cc-QuestBox {
+.cc-NodeBox {
   background-color: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(2px);
 }
