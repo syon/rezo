@@ -10,94 +10,105 @@
         @pointerup="dragStop"
       >
         <g @pointerdown="enableSpzPan">
-          <g>
+          <g class="grp-mousecross">
             <path :d="scaledMouseXLine" stroke="cyan" />
             <path :d="scaledMouseYLine" stroke="cyan" />
           </g>
 
-          <g>
+          <g class="grp-autobezier">
             <template v-for="(pSet, idx) of lines">
               <auto-bezier :key="`bez-${idx}`" :sp="pSet.sp" :ep="pSet.ep" />
             </template>
           </g>
 
-          <template v-for="(b, key) of questBoxSet">
-            <foreignObject
-              :key="`fo-${key}`"
-              width="160"
-              :height="b.drawSockets.length * 20 + 50"
-              :x="b.x"
-              :y="b.y"
-              style="border: 1px solid pink"
-              @pointerdown="dragBoxStart($event, key)"
-              @mousemove="enterBox($event, key)"
-            >
-              <node-box :obj="b" />
-            </foreignObject>
-          </template>
-
-          <template v-for="(obj, key) of skeletonSet">
-            <g :key="`ske-${key}`">
-              <text :x="obj.mx" :y="obj.my - 5" font-size="10" fill="red">
-                {{ key }} / x:{{ obj.mx }} y:{{ obj.my }}
-              </text>
-
-              <rect
+          <g class="grp-foreignobject">
+            <template v-for="(b, key) of questBoxSet">
+              <foreignObject
+                :key="`fo-${key}`"
                 width="160"
-                :height="obj.h"
-                :x="obj.mx"
-                :y="obj.my"
-                fill="none"
-                stroke="red"
-              />
-              <g v-for="(inp, idx) of obj.in" :key="`inp-${idx}`">
-                <template v-if="inp.type === 'fact'">
-                  <rect
-                    :x="inp.x - 5"
-                    :y="inp.y - 5"
-                    width="10"
-                    height="10"
-                    fill="silver"
-                  />
-                </template>
-                <template v-else>
-                  <circle :cx="inp.x" :cy="inp.y" r="5" fill="gray" />
-                </template>
-              </g>
-              <circle :cx="obj.out.x" :cy="obj.out.y" r="5" fill="orange" />
-              <g>
-                <rect
-                  :x="obj.plus.x - 14"
-                  :y="obj.plus.y - 2"
-                  width="10"
-                  height="4"
-                  fill="red"
-                />
-                <circle
-                  :cx="obj.plus.x"
-                  :cy="obj.plus.y"
-                  r="6"
-                  fill="red"
-                  @pointerdown="dragPlusStart($event, key)"
-                />
-              </g>
-              <rect
-                :x="obj.mx + 18"
-                :y="obj.plus.y - 4"
-                width="50"
-                height="8"
-                class="EditBtn"
-                @click="handleAddFactSocket(key)"
-              />
-            </g>
-          </template>
+                :height="b.drawSockets.length * 20 + 50"
+                :x="b.x"
+                :y="b.y"
+                style="border: 1px solid pink"
+                @pointerdown="dragBoxStart($event, key)"
+                @mousemove="enterBox($event, key)"
+              >
+                <node-box :obj="b" />
+              </foreignObject>
+            </template>
+          </g>
 
-          <template v-if="isPlusDragging">
-            <auto-bezier :sp="previewLineSrc" :ep="previewLineDst" />
-            <text :x="scaledMouseX" :y="scaledMouseY" font-size="14" fill="red">
-              {{ lastEnterBoxId }}
-            </text>
-          </template>
+          <g class="grp-skeleton">
+            <template v-for="(obj, key) of skeletonSet">
+              <g :key="`ske-${key}`">
+                <text :x="obj.mx" :y="obj.my - 5" font-size="10" fill="red">
+                  {{ key }} / x:{{ obj.mx }} y:{{ obj.my }}
+                </text>
+
+                <rect
+                  width="160"
+                  :height="obj.h"
+                  :x="obj.mx"
+                  :y="obj.my"
+                  fill="none"
+                  stroke="red"
+                />
+                <g v-for="(inp, idx) of obj.in" :key="`inp-${idx}`">
+                  <template v-if="inp.type === 'fact'">
+                    <rect
+                      :x="inp.x - 5"
+                      :y="inp.y - 5"
+                      width="10"
+                      height="10"
+                      fill="silver"
+                    />
+                  </template>
+                  <template v-else>
+                    <circle :cx="inp.x" :cy="inp.y" r="5" fill="gray" />
+                  </template>
+                </g>
+                <circle :cx="obj.out.x" :cy="obj.out.y" r="5" fill="orange" />
+                <g>
+                  <rect
+                    :x="obj.plus.x - 14"
+                    :y="obj.plus.y - 2"
+                    width="10"
+                    height="4"
+                    fill="red"
+                  />
+                  <circle
+                    :cx="obj.plus.x"
+                    :cy="obj.plus.y"
+                    r="6"
+                    fill="red"
+                    @pointerdown="dragPlusStart($event, key)"
+                  />
+                </g>
+                <rect
+                  :x="obj.mx + 18"
+                  :y="obj.plus.y - 4"
+                  width="50"
+                  height="8"
+                  class="EditBtn"
+                  @click="handleAddFactSocket(key)"
+                />
+              </g>
+            </template>
+          </g>
+
+          <g class="grp-previewline">
+            <template v-if="isPlusDragging">
+              <auto-bezier :sp="previewLineSrc" :ep="previewLineDst" />
+              <text
+                :x="scaledMouseX"
+                :y="scaledMouseY"
+                font-size="14"
+                fill="red"
+              >
+                {{ lastEnterBoxId }}
+              </text>
+            </template>
+          </g>
         </g>
       </svg>
 
