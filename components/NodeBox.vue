@@ -13,7 +13,13 @@
       <ul class="list-inside pl-2 text-sm">
         <li v-for="(soc, idx) of sockets" :key="idx">
           <div class="flex justify-between">
-            <div class="label">{{ soc.title }}</div>
+            <div
+              class="label"
+              @pointerdown="onClickSocket"
+              @dblclick="onDblclick($event, soc)"
+            >
+              {{ soc.title }}
+            </div>
             <div class="done">{{ soc.done ? '✅' : '⬜' }}</div>
           </div>
         </li>
@@ -47,6 +53,14 @@ export default {
       const { offsetX, offsetY } = event
       const pt = { x: offsetX, y: offsetY }
       this.$emit('on-click-title', this.id, pt)
+    },
+    onClickSocket(event) {
+      event.stopPropagation()
+      this.$emit('on-click-socket')
+    },
+    onDblclick(event, soc) {
+      event.stopPropagation()
+      this.$emit('on-dblclick-socket', soc)
     },
   },
 }

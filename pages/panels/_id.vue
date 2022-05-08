@@ -36,6 +36,8 @@
                   :id="key"
                   :obj="b"
                   @on-click-title="onBoxTitleClick"
+                  @on-click-socket="onBoxSocketClick"
+                  @on-dblclick-socket="onBoxSocketDblclick"
                 />
               </foreignObject>
             </template>
@@ -249,6 +251,12 @@ export default {
       this.isBoxDragging = true
       this.dragBoxId = boxId
       this.dragOffset = pt
+    },
+    onBoxSocketClick(soc) {
+      this.disableSpzPan()
+    },
+    onBoxSocketDblclick(soc) {
+      console.log(soc)
     },
     enterBox(event, key) {
       if (this.isPlusDragging) {
