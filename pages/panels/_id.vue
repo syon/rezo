@@ -30,10 +30,13 @@
                 :x="b.x"
                 :y="b.y"
                 style="border: 1px solid pink"
-                @pointerdown="dragBoxStart($event, key)"
                 @mousemove="enterBox($event, key)"
               >
-                <node-box :obj="b" />
+                <node-box
+                  :id="key"
+                  :obj="b"
+                  @on-click-title="onBoxTitleClick"
+                />
               </foreignObject>
             </template>
           </g>
@@ -241,13 +244,11 @@ export default {
       this.spz.disableDblClickZoom()
       this.spzState = 'disabled'
     },
-    dragBoxStart(event, boxId) {
-      event.stopPropagation()
+    onBoxTitleClick(boxId, pt) {
       this.disableSpzPan()
       this.isBoxDragging = true
       this.dragBoxId = boxId
-      const { offsetX, offsetY } = event
-      this.dragOffset = { x: offsetX, y: offsetY }
+      this.dragOffset = pt
     },
     enterBox(event, key) {
       if (this.isPlusDragging) {

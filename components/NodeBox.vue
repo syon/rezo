@@ -1,6 +1,6 @@
 <template>
   <div class="cc-QuestBox border">
-    <div class="title border-b">
+    <div class="title border-b" @pointerdown="onClickTitle">
       <div class="flex items-center justify-between">
         <div class="px-2 py-1 font-bold whitespace-nowrap">{{ title }}</div>
         <div class="px-2 text-sm whitespace-nowrap">
@@ -24,7 +24,10 @@
 
 <script>
 export default {
-  props: { obj: { type: Object, required: true } },
+  props: {
+    id: { type: String, required: true },
+    obj: { type: Object, required: true },
+  },
   computed: {
     title() {
       return this.obj.title
@@ -37,8 +40,11 @@ export default {
     },
   },
   methods: {
-    handleNew() {
-      console.log('a')
+    onClickTitle(event) {
+      event.stopPropagation()
+      const { offsetX, offsetY } = event
+      const pt = { x: offsetX, y: offsetY }
+      this.$emit('on-click-title', this.id, pt)
     },
   },
 }
