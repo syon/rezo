@@ -40,7 +40,7 @@ app.post('/panels/:panelId/quests/:questId/sockets/:socketId', (req, res) => {
   res.status(200).send('OK')
 })
 
-app.post('/panels/:panelId/facts/:id', (req, res) => {
+app.post('/panels/:panelId/facts/:questId', (req, res) => {
   const { panelId, questId } = req.params
   const { done } = req.body
   Quest.addFact(panelId, questId, { done })

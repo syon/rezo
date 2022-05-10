@@ -45,9 +45,9 @@ module.exports = class DB {
     DB.doCompute(panel)
   }
 
-  static saveFact(panel, fact) {
+  static saveFact(panel, allFacts) {
     const panelPath = `./db/panel/${panel}`
-    writeJson(`${panelPath}/fact.json`, fact)
+    writeJson(`${panelPath}/fact.json`, allFacts)
     DB.doCompute(panel)
   }
 
