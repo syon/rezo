@@ -28,8 +28,8 @@ export default {
 <style scoped>
 .connector {
   fill: none;
-  stroke: black;
-  stroke-width: 3px;
+  stroke: rgb(100 116 139);
+  stroke-width: 1.5px;
 }
 
 .zz-point {
