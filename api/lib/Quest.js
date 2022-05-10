@@ -35,8 +35,11 @@ module.exports = class Quest {
     const target = struct[questId]
     const socketId = rawSocketId || uuid().slice(0, 8)
     Quest.checkAddSocket(struct, questId, socketId, type)
-    const title = '新しいアイテム'
-    target.sockets.push({ id: socketId, type, title })
+    const newSocket = { id: socketId, type }
+    if (type === 'fact') {
+      newSocket.title = '新しいアイテム'
+    }
+    target.sockets.push(newSocket)
     DB.saveStruct(panel, struct)
   }
 
