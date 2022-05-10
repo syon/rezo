@@ -2,8 +2,8 @@
   "questSet": {
     "a00": {
       "title": "a00タイトル",
-      "x": 30,
-      "y": 170,
+      "x": -154,
+      "y": 58,
       "sockets": [
         {
           "id": "A0abc",
@@ -52,8 +52,8 @@
     },
     "aaa": {
       "title": "aaaタイトル",
-      "x": 238,
-      "y": -36,
+      "x": 171,
+      "y": -137,
       "sockets": [
         {
           "id": "zzz000",
@@ -114,8 +114,8 @@
     },
     "bbb": {
       "title": "bbbタイトル",
-      "x": 487,
-      "y": 24,
+      "x": 444,
+      "y": -30,
       "sockets": [
         {
           "id": "Babc",
@@ -136,9 +136,15 @@
           "title": "Bghiタスク",
           "done": true,
           "resolved": true
+        },
+        {
+          "id": "905d3a1a",
+          "type": "alias",
+          "done": false,
+          "resolved": true
         }
       ],
-      "rate": 0.33,
+      "rate": 0.25,
       "rateResolved": true,
       "drawSockets": [
         {
@@ -158,6 +164,12 @@
           "type": "fact",
           "title": "Bghiタスク",
           "done": true
+        },
+        {
+          "id": "905d3a1a",
+          "title": "新しいタイトル",
+          "done": false,
+          "type": "alias"
         }
       ]
     },
@@ -211,8 +223,8 @@
     },
     "ddd": {
       "title": "dddタイトル",
-      "x": 260,
-      "y": 280,
+      "x": 125,
+      "y": 320,
       "sockets": [
         {
           "id": "a00",
@@ -234,8 +246,8 @@
     },
     "eee": {
       "title": "eeeタイトル",
-      "x": 520,
-      "y": 360,
+      "x": 461,
+      "y": 419,
       "sockets": [
         {
           "id": "Eabc",
@@ -376,6 +388,41 @@
           "type": "alias"
         }
       ]
+    },
+    "905d3a1a": {
+      "title": "新しいタイトル",
+      "x": 152,
+      "y": 110,
+      "sockets": [
+        {
+          "id": "a00",
+          "type": "alias",
+          "done": true,
+          "resolved": true
+        },
+        {
+          "id": "aaa",
+          "type": "alias",
+          "done": false,
+          "resolved": true
+        }
+      ],
+      "rate": 0.5,
+      "rateResolved": true,
+      "drawSockets": [
+        {
+          "id": "a00",
+          "title": "a00タイトル",
+          "done": true,
+          "type": "alias"
+        },
+        {
+          "id": "aaa",
+          "title": "aaaタイトル",
+          "done": false,
+          "type": "alias"
+        }
+      ]
     }
   },
   "bonds": [
@@ -388,6 +435,11 @@
       "src": "aaa",
       "dst": "bbb",
       "dstidx": 1
+    },
+    {
+      "src": "905d3a1a",
+      "dst": "bbb",
+      "dstidx": 3
     },
     {
       "src": "ddd",
@@ -427,6 +479,16 @@
     {
       "src": "fff",
       "dst": "ggg",
+      "dstidx": 1
+    },
+    {
+      "src": "a00",
+      "dst": "905d3a1a",
+      "dstidx": 0
+    },
+    {
+      "src": "aaa",
+      "dst": "905d3a1a",
       "dstidx": 1
     }
   ],

@@ -1,5 +1,5 @@
 <template>
-  <div class="cc-NodeBox border" :data-boxid="id">
+  <div class="cc-NodeBox" :data-boxid="id">
     <div
       class="title border-b cursor-all-scroll"
       @pointerdown.stop="onClickTitle"
@@ -72,8 +72,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 .cc-NodeBox {
+  @apply border rounded;
   background-color: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(2px);
 }

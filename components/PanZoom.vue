@@ -1,11 +1,7 @@
 <template>
   <div v-if="ready" id="spz">
-    <button
-      id="spz-toggle"
-      class="border bg-indigo-100 px-2"
-      @click="toggleSpzPan"
-    >
-      Controll: {{ spzState }}
+    <button id="spz-toggle" class="xc-CameraBtn" @click="toggleSpzPan">
+      Camera: <b>{{ spzState }}</b>
     </button>
   </div>
 </template>
@@ -55,10 +51,18 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 #spz-toggle {
   position: absolute;
   bottom: 15px;
   left: 220px;
+}
+
+.xc-CameraBtn {
+  @apply px-4 py-2;
+  @apply leading-none text-sm;
+  @apply text-white bg-indigo-500;
+  @apply rounded;
+  @apply shadow-md shadow-indigo-500/50;
 }
 </style>

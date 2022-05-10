@@ -25,11 +25,11 @@
             <template v-for="(b, key) of questBoxSet">
               <foreignObject
                 :key="`fo-${key}`"
-                width="160"
+                width="200"
                 :height="b.drawSockets.length * 20 + 50"
                 :x="b.x"
                 :y="b.y"
-                style="border: 1px solid pink"
+                class="shadow-lg rounded"
                 @mousemove="enterBox($event, key)"
               >
                 <node-box
@@ -52,12 +52,11 @@
                 </text>
 
                 <rect
-                  width="160"
+                  width="200"
                   :height="obj.h"
                   :x="obj.mx"
                   :y="obj.my"
                   fill="none"
-                  stroke="red"
                 />
                 <g v-for="(inp, idx) of obj.in" :key="`inp-${idx}`">
                   <template v-if="inp.type === 'fact'">
@@ -83,17 +82,18 @@
                 <circle :cx="obj.out.x" :cy="obj.out.y" r="5" fill="orange" />
                 <g>
                   <rect
-                    :x="obj.plus.x - 14"
+                    :x="obj.plus.x - 13"
                     :y="obj.plus.y - 2"
-                    width="10"
+                    width="8"
                     height="4"
-                    fill="red"
+                    class="fill-cyan-400/50 cursor-pointer"
+                    @pointerdown="dragPlusStart($event, key)"
                   />
                   <circle
                     :cx="obj.plus.x"
                     :cy="obj.plus.y"
                     r="6"
-                    fill="red"
+                    class="fill-cyan-400/50 cursor-pointer"
                     @pointerdown="dragPlusStart($event, key)"
                   />
                 </g>
@@ -130,8 +130,8 @@
       <fact-list />
 
       <div id="toolbar">
-        <button class="border px-2" @click="newQuestBox">new</button>
-        <div class="p-2 text-xs">
+        <button class="xc-NewUnitBtn" @click="newQuestBox">new</button>
+        <div class="mt-4 text-xs">
           <div>isBoxDragging: {{ isBoxDragging }}</div>
           <div>dragBoxId: {{ dragBoxId }}</div>
           <div>isPlusDragging: {{ isPlusDragging }}</div>
@@ -186,7 +186,7 @@ export default {
             mx: x,
             my: y,
             in: inPoints,
-            out: { x: x + 160, y: y + 18 },
+            out: { x: x + 200, y: y + 18 },
             h,
             plus: { x, y: y + h },
           }
@@ -345,7 +345,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="postcss">
 body {
   background-color: #e8eaed;
 }
@@ -364,13 +364,21 @@ svg {
 
 #toolbar {
   position: absolute;
-  top: 10px;
-  left: 220px;
+  top: 20px;
+  left: 230px;
 }
 
 .EditBtn {
-  fill: red;
+  @apply fill-cyan-400/50;
   font-size: 10px;
   cursor: pointer;
+}
+
+.xc-NewUnitBtn {
+  @apply px-4 py-2;
+  @apply leading-none;
+  @apply text-white bg-cyan-500;
+  @apply rounded;
+  @apply shadow-md shadow-cyan-500/50;
 }
 </style>
