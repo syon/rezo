@@ -1,5 +1,5 @@
 <template>
-  <div class="cc-NodeBox border">
+  <div class="cc-NodeBox border" :data-boxid="id">
     <div class="title border-b cursor-all-scroll" @pointerdown="onClickTitle">
       <div class="flex items-center justify-between">
         <div class="px-2 py-1 font-bold whitespace-nowrap">{{ title }}</div>
@@ -14,7 +14,9 @@
         <li v-for="(soc, idx) of sockets" :key="idx">
           <div class="flex justify-between">
             <div
+              :data-socketid="soc.id"
               class="label"
+              style="min-width: 100px"
               @pointerdown="onClickSocket"
               @dblclick="onDblclick($event, soc)"
             >
@@ -60,7 +62,7 @@ export default {
     },
     onDblclick(event, soc) {
       event.stopPropagation()
-      this.$emit('on-dblclick-socket', soc)
+      this.$emit('on-dblclick-socket', this.id, soc)
     },
   },
 }

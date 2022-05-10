@@ -32,6 +32,14 @@ app.post('/panels/:panelId/quests/:questId/sockets', (req, res) => {
   res.status(200).send('OK')
 })
 
+app.post('/panels/:panelId/quests/:questId/sockets/:socketId', (req, res) => {
+  const { panelId, questId, socketId } = req.params
+  const { title } = req.body
+  const data = { questId, socketId, title }
+  Quest.updateSocket(panelId, data)
+  res.status(200).send('OK')
+})
+
 app.post('/panels/:panelId/facts/:id', (req, res) => {
   const { panelId, questId } = req.params
   const { done } = req.body

@@ -40,6 +40,15 @@ module.exports = class Quest {
     DB.saveStruct(panel, struct)
   }
 
+  static updateSocket(panel, { questId, socketId, title }) {
+    const struct = DB.getStruct(panel)
+    const target = struct[questId]
+    const socket = target.sockets.find((soc) => soc.id === socketId)
+    console.log('[updateSocket] socket:', socket)
+    socket.title = title
+    DB.saveStruct(panel, struct)
+  }
+
   static checkAddSocket(struct, questId, socketId, type) {
     const target = struct[questId]
     // 自分自身を接続対象に指定はNG

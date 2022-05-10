@@ -138,6 +138,8 @@
           <div>lastEnterBoxId: {{ lastEnterBoxId }}</div>
         </div>
       </div>
+
+      <socket-editor ref="socketeditor" />
     </div>
   </main>
 </template>
@@ -148,6 +150,7 @@ import svgPanZoom from 'svg-pan-zoom'
 
 export default {
   name: 'PanelPage',
+
   data: () => ({
     ready: false,
     spz: null,
@@ -161,7 +164,10 @@ export default {
     dragOffset: { x: 0, y: 0 },
     previewLineSrc: { x: 0, y: 0 },
     previewLineDst: { x: 0, y: 0 },
+    ingSocketEdit: false,
+    vSocketLabel: null,
   }),
+
   computed: {
     ...mapGetters({
       questBoxSet: 'quest/questBoxSet',
@@ -213,9 +219,11 @@ export default {
       return `M${mx - 100},${my} L${mx + 100},${my}`
     },
   },
+
   async mounted() {
     await this.init()
   },
+
   methods: {
     async init() {
       const panel = this.$route.params.id
@@ -255,8 +263,8 @@ export default {
     onBoxSocketClick(soc) {
       this.disableSpzPan()
     },
-    onBoxSocketDblclick(soc) {
-      console.log(soc)
+    onBoxSocketDblclick(boxId, soc) {
+      this.$refs.socketeditor.open(boxId, soc)
     },
     enterBox(event, key) {
       if (this.isPlusDragging) {
