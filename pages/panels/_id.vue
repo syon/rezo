@@ -9,7 +9,7 @@
         @mousemove="onMousemove"
         @pointerup="dragStop"
       >
-        <g @pointerdown="enableSpzPan">
+        <g @pointerdown="enableCamera">
           <g class="grp-mousecross">
             <path :d="scaledMouseXLine" stroke="cyan" />
             <path :d="scaledMouseYLine" stroke="cyan" />
@@ -117,15 +117,7 @@
         </g>
       </svg>
 
-      <div v-if="ready" id="spz">
-        <button
-          id="spz-pan"
-          class="border bg-indigo-100 px-2"
-          @click="toggleSpzPan"
-        >
-          Controll: {{ spzState }}
-        </button>
-      </div>
+      <pan-zoom ref="camera" />
 
       <fact-list />
 
@@ -146,15 +138,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import svgPanZoom from 'svg-pan-zoom'
 
 export default {
   name: 'PanelPage',
 
   data: () => ({
-    ready: false,
-    spz: null,
-    spzState: 'enabled',
     scaledMouseX: 0,
     scaledMouseY: 0,
     isBoxDragging: false,
@@ -228,40 +216,19 @@ export default {
     async init() {
       const panel = this.$route.params.id
       await this.$store.dispatch('quest/init', panel)
-      this.spz = svgPanZoom('#svg', {
-        controlIconsEnabled: true,
-        zoomScaleSensitivity: 0.3,
-        minZoom: 0.1,
-      })
-      this.ready = true
+      this.$refs.camera.init()
     },
-    toggleSpzPan() {
-      if (this.spz.isPanEnabled()) {
-        this.disableSpzPan()
-      } else {
-        this.enableSpzPan()
-      }
-    },
-    enableSpzPan() {
-      this.spz.enablePan()
-      this.spz.enableZoom()
-      this.spz.enableDblClickZoom()
-      this.spzState = 'enabled'
-    },
-    disableSpzPan() {
-      this.spz.disablePan()
-      this.spz.disableZoom()
-      this.spz.disableDblClickZoom()
-      this.spzState = 'disabled'
+    enableCamera() {
+      this.$refs.camera.enableSpzPan()
     },
     onBoxTitleClick(boxId, pt) {
-      this.disableSpzPan()
+      this.$refs.camera.disableSpzPan()
       this.isBoxDragging = true
       this.dragBoxId = boxId
       this.dragOffset = pt
     },
     onBoxSocketClick(soc) {
-      this.disableSpzPan()
+      this.$refs.camera.disableSpzPan()
     },
     onBoxSocketDblclick(boxId, soc) {
       this.$refs.socketeditor.open(boxId, soc)
@@ -274,7 +241,7 @@ export default {
     },
     dragPlusStart(event, boxId) {
       event.stopPropagation()
-      this.disableSpzPan()
+      this.$refs.camera.disableSpzPan()
       this.isPlusDragging = true
       this.dragBoxId = boxId
       const { offsetX, offsetY } = event
@@ -299,7 +266,7 @@ export default {
     onMousemove(event) {
       this.refreshMousePos(event)
 
-      if (this.spz && this.spz.isPanEnabled()) return
+      if (this.$refs.camera.isEnabled()) return
 
       if (this.isBoxDragging && this.dragBoxId) {
         const payload = {
@@ -377,12 +344,6 @@ svg {
   box-shadow: 0 2px 12px 4px rgba(0, 0, 0, 0.01);
   margin: 0 auto;
   background-color: #eeeff2;
-}
-
-#spz-pan {
-  position: absolute;
-  bottom: 15px;
-  left: 220px;
 }
 
 #toolbar {
