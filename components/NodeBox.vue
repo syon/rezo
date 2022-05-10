@@ -15,7 +15,7 @@
           <div class="flex justify-between">
             <div
               :data-socketid="soc.id"
-              class="label"
+              class="label whitespace-nowrap"
               style="min-width: 100px"
               @pointerdown="onClickSocket"
               @dblclick="onDblclick($event, soc)"
