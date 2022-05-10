@@ -86,6 +86,14 @@ export const actions = {
     await this.$axios.$post(url, data)
     await dispatch('load')
   },
+  async detachSocket({ state, dispatch }, payload) {
+    console.log('[#detachSocket]', payload)
+    const { questId, socketIndex } = payload
+    const panel = state.panel
+    const url = `/api/panels/${panel}/quests/${questId}/sockets/index/${socketIndex}`
+    await this.$axios.$delete(url)
+    await dispatch('load')
+  },
   async savePosition({ state }, payload) {
     const { boxId } = payload
     const { x, y } = state.questdata[boxId]

@@ -69,7 +69,14 @@
                     />
                   </template>
                   <template v-else>
-                    <circle :cx="inp.x" :cy="inp.y" r="5" fill="gray" />
+                    <circle
+                      :cx="inp.x"
+                      :cy="inp.y"
+                      r="5"
+                      fill="gray"
+                      class="cursor-pointer"
+                      @click="detachSocket(key, idx)"
+                    />
                   </template>
                 </g>
                 <circle :cx="obj.out.x" :cy="obj.out.y" r="5" fill="orange" />
@@ -324,6 +331,10 @@ export default {
         type: 'fact',
       }
       this.$store.dispatch('quest/addSocket', payload)
+    },
+    detachSocket(questId, socketIndex) {
+      const payload = { questId, socketIndex }
+      this.$store.dispatch('quest/detachSocket', payload)
     },
   },
 }

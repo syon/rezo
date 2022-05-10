@@ -40,6 +40,16 @@ app.post('/panels/:panelId/quests/:questId/sockets/:socketId', (req, res) => {
   res.status(200).send('OK')
 })
 
+app.delete(
+  '/panels/:panelId/quests/:questId/sockets/index/:socketIndex',
+  (req, res) => {
+    const { panelId, questId, socketIndex: idxStr } = req.params
+    const data = { questId, socketIndex: Number(idxStr) }
+    Quest.detachSocket(panelId, data)
+    res.status(200).send('OK')
+  }
+)
+
 app.post('/panels/:panelId/facts/:questId', (req, res) => {
   const { panelId, questId } = req.params
   const { done } = req.body
