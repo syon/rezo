@@ -1,7 +1,7 @@
 <template>
-  <div v-if="visible" id="socketeditor" class="cc-root">
-    <div class="cc-barrier"></div>
-    <div class="cc-container" @click.stop="onClickOutside">
+  <div v-if="visible" id="socketeditor" class="xc-root">
+    <div class="xc-barrier"></div>
+    <div class="xc-container" @click.stop="onClickOutside">
       <input
         ref="inp"
         v-model="vSocketLabel"
@@ -86,15 +86,15 @@ export default {
 </script>
 
 <style scoped>
-.cc-root {
+.xc-root {
   @apply absolute w-full h-screen top-0 left-0;
 }
 
-.cc-barrier {
+.xc-barrier {
   @apply w-full h-screen bg-black opacity-20;
 }
 
-.cc-container {
+.xc-container {
   @apply absolute w-full h-screen top-0 left-0;
   @apply flex justify-center items-center;
 }
