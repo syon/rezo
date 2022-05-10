@@ -36,6 +36,7 @@
                   :id="key"
                   :obj="b"
                   @on-click-title="onBoxTitleClick"
+                  @on-dblclick-title="onBoxTitleDblclick"
                   @on-click-socket="onBoxSocketClick"
                   @on-dblclick-socket="onBoxSocketDblclick"
                 />
@@ -138,6 +139,7 @@
         </div>
       </div>
 
+      <unit-editor ref="uniteditor" />
       <socket-editor ref="socketeditor" />
     </div>
   </main>
@@ -233,6 +235,9 @@ export default {
       this.isBoxDragging = true
       this.dragBoxId = boxId
       this.dragOffset = pt
+    },
+    onBoxTitleDblclick(boxId) {
+      this.$refs.uniteditor.open(boxId)
     },
     onBoxSocketClick(soc) {
       this.$refs.camera.disableSpzPan()

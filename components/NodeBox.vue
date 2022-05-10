@@ -1,6 +1,10 @@
 <template>
   <div class="cc-NodeBox border" :data-boxid="id">
-    <div class="title border-b cursor-all-scroll" @pointerdown="onClickTitle">
+    <div
+      class="title border-b cursor-all-scroll"
+      @pointerdown.stop="onClickTitle"
+      @dblclick.stop="onDblclickTitle"
+    >
       <div class="flex items-center justify-between">
         <div class="px-2 py-1 font-bold whitespace-nowrap">{{ title }}</div>
         <div class="px-2 text-sm whitespace-nowrap">
@@ -17,8 +21,8 @@
               :data-socketid="soc.id"
               class="label whitespace-nowrap"
               style="min-width: 100px"
-              @pointerdown="onClickSocket"
-              @dblclick="onDblclick($event, soc)"
+              @pointerdown.stop="onClickSocket"
+              @dblclick.stop="onDblclickSocket(soc)"
             >
               {{ soc.title }}
             </div>
@@ -51,17 +55,17 @@ export default {
 
   methods: {
     onClickTitle(event) {
-      event.stopPropagation()
       const { offsetX, offsetY } = event
       const pt = { x: offsetX, y: offsetY }
       this.$emit('on-click-title', this.id, pt)
     },
-    onClickSocket(event) {
-      event.stopPropagation()
+    onDblclickTitle() {
+      this.$emit('on-dblclick-title', this.id)
+    },
+    onClickSocket() {
       this.$emit('on-click-socket')
     },
-    onDblclick(event, soc) {
-      event.stopPropagation()
+    onDblclickSocket(soc) {
       this.$emit('on-dblclick-socket', this.id, soc)
     },
   },

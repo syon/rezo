@@ -6,6 +6,14 @@ module.exports = class Quest {
     return DB.getComputed(panel)
   }
 
+  static updateTitle(panel, questId, data) {
+    const { title } = data
+    const struct = DB.getStruct(panel)
+    const target = struct[questId]
+    target.title = title
+    DB.saveStruct(panel, struct)
+  }
+
   static updatePosition(panel, questId, data) {
     const { x, y } = data
     const struct = DB.getStruct(panel)

@@ -68,6 +68,14 @@ export const actions = {
     await this.$axios.$post(url, data)
     await dispatch('load')
   },
+  async updateTitle({ state, dispatch }, payload) {
+    const { questId, title } = payload
+    const data = { title }
+    const panel = state.panel
+    const url = `/api/panels/${panel}/quests/${questId}/title`
+    await this.$axios.$patch(url, data)
+    await dispatch('load')
+  },
   async addSocket({ state, dispatch }, payload) {
     console.log('[#addSocket]', payload)
     const { questId, socketId, type } = payload
@@ -109,5 +117,8 @@ export const actions = {
     const url = `/api/panels/${panel}/facts/${boxId}`
     await this.$axios.$post(url, data)
     await dispatch('load')
+  },
+  getUnit({ getters }, unitId) {
+    return getters.questBoxSet[unitId]
   },
 }

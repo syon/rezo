@@ -16,6 +16,14 @@ app.post('/panels/:panelId/quests', (req, res) => {
   res.json(addedItem)
 })
 
+app.patch('/panels/:panelId/quests/:questId/title', (req, res) => {
+  const { panelId, questId } = req.params
+  const { title } = req.body
+  const data = { title }
+  Quest.updateTitle(panelId, questId, data)
+  res.status(200).send('OK')
+})
+
 app.post('/panels/:panelId/quests/:questId/position', (req, res) => {
   const { panelId, questId } = req.params
   const { x, y } = req.body
