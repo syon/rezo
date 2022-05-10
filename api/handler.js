@@ -16,6 +16,12 @@ app.post('/panels/:panelId/quests', (req, res) => {
   res.json(addedItem)
 })
 
+app.delete('/panels/:panelId/quests/:questId', (req, res) => {
+  const { panelId, questId } = req.params
+  Quest.deleteUnit(panelId, questId)
+  res.status(200).send('OK')
+})
+
 app.patch('/panels/:panelId/quests/:questId/title', (req, res) => {
   const { panelId, questId } = req.params
   const { title } = req.body

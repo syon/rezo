@@ -76,6 +76,19 @@ export const actions = {
     await this.$axios.$patch(url, data)
     await dispatch('load')
   },
+  async deleteUnit({ state, dispatch }, payload) {
+    const { questId } = payload
+    const connected = state.bonddata.some((x) => x.src === questId)
+    if (connected) {
+      alert('削除するには、すべての接続を解除してください。')
+      return false
+    }
+    const panel = state.panel
+    const url = `/api/panels/${panel}/quests/${questId}`
+    await this.$axios.$delete(url)
+    await dispatch('load')
+    return true
+  },
   async addSocket({ state, dispatch }, payload) {
     console.log('[#addSocket]', payload)
     const { questId, socketId, type } = payload

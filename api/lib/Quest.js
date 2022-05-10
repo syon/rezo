@@ -37,6 +37,12 @@ module.exports = class Quest {
     return item
   }
 
+  static deleteUnit(panel, questId) {
+    const struct = DB.getStruct(panel)
+    delete struct[questId]
+    DB.saveStruct(panel, struct)
+  }
+
   static addSocket(panel, { questId, socketId: rawSocketId, type }) {
     const struct = DB.getStruct(panel)
     console.log('[addSocket]', struct)

@@ -17,12 +17,15 @@
               <span>{{ rate }}</span>
               <span class="text-xs">%</span>
             </div>
+            <button class="xc-NodeBox_Delete" @click="onDeleteUnit">
+              削除
+            </button>
           </div>
         </div>
         <div class="xc-NodeBox_Body px-2 py-2">
           <ul class="list-inside pl-2 text-sm">
             <li v-for="(soc, idx) of sockets" :key="idx">
-              <div class="flex justify-between">
+              <div class="flex justify-between items-center">
                 <div
                   :data-socketid="soc.id"
                   class="label whitespace-nowrap"
@@ -41,6 +44,9 @@
                   </template>
                 </div>
                 <div class="done">{{ soc.done ? '✅' : '⬜' }}</div>
+                <button class="xc-NodeBox_Delete" @click="onDeleteSocket(idx)">
+                  削除
+                </button>
               </div>
             </li>
           </ul>
@@ -97,6 +103,23 @@ export default {
       const title = $event.target.value
       const payload = { questId, socketId, title }
       await this.$store.dispatch('quest/updateSocket', payload)
+    },
+    async onDeleteUnit() {
+      if (this.sockets.length > 0) {
+        alert('削除するには、すべての接続を解除してください。')
+        return
+      }
+      const payload = { questId: this.unitId }
+      const ok = await this.$store.dispatch('quest/deleteUnit', payload)
+      if (ok) {
+        this.close()
+      }
+    },
+    async onDeleteSocket(socketIndex) {
+      const questId = this.unitId
+      const payload = { questId, socketIndex }
+      await this.$store.dispatch('quest/detachSocket', payload)
+      await this.open(this.unitId)
     },
     onClickOutside() {
       if (this.editing) {
@@ -162,5 +185,10 @@ export default {
 
 .xc-NodeBox_SocketAlias {
   @apply px-2 py-1 mr-2;
+}
+
+.xc-NodeBox_Delete {
+  @apply px-2;
+  @apply text-sm text-red-500;
 }
 </style>
