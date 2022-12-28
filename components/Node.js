@@ -2,7 +2,7 @@ import React from 'react'
 import { Group, Rect, Line, Text } from 'react-konva'
 
 export default function Node(props) {
-  const { id, pos: rawPos, title, pieces, onMoving } = props
+  const { id, pos: rawPos, title, completed, pieces, onMoving } = props
   const [pos, setPos] = React.useState(rawPos)
 
   const onDragMove = (e) => {
@@ -11,19 +11,31 @@ export default function Node(props) {
     onMoving({ id, x, y })
   }
 
-  const pieceList = Object.entries(pieces || {}).map(([k, p], i) => {
+  const pieceEntries = Object.entries(pieces || {})
+  const percentText = calcPercent(pieceEntries)
+
+  const pieceList = pieceEntries.map(([k, p], i) => {
     const y = 25 * i + 50
-    return <Text key={k} x={20} y={y} text={p.title} />
+    const mark = p.completed ? '✅' : '⬜'
+    return (
+      <Group key={k}>
+        <Text x={20} y={y} text={p.title} />
+        <Text x={170} y={y} text={mark} />
+      </Group>
+    )
   })
 
   const gx = pos?.x || 0
   const gy = pos?.y || 0
   const boxW = 200
   const boxH = 55 + 25 * pieceList.length
+  const posText = `x:${gx} y:${gy}`
+  const nodeCompleted = completed ? '✅' : '⬜'
 
   return (
     <Group id={id} x={gx} y={gy} draggable onDragMove={onDragMove}>
       <Text x={10} y={-15} text={id} opacity={0.3} />
+      <Text x={135} y={-15} text={posText} opacity={0.3} />
       <Rect
         x={0}
         y={0}
@@ -35,7 +47,17 @@ export default function Node(props) {
       />
       <Line points={[0, 30, boxW, 30]} stroke="black" />
       <Text x={10} y={10} text={title} />
+      <Text x={145} y={10} text={percentText} />
+      <Text x={180} y={10} text={nodeCompleted} />
       {pieceList}
     </Group>
   )
+}
+
+function calcPercent(pieceEntries) {
+  if (pieceEntries.length === 0) return ''
+  const completedCount = pieceEntries.filter(([k, p]) => p.completed).length
+  const pieceCount = pieceEntries.length || 0
+  const num = Math.round((completedCount / pieceCount) * 100)
+  return `${num}%`
 }

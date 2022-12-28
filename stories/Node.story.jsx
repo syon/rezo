@@ -7,8 +7,7 @@ export const NodeStory = ({ ...props }) => {
 }
 
 NodeStory.propTypes = {
-  x: PropTypes.number,
-  y: PropTypes.number,
+  pos: PropTypes.object,
   title: PropTypes.string,
   pieces: PropTypes.array,
 }

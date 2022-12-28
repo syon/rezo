@@ -29,10 +29,10 @@ Normal.args = {
   },
   title: 'サンプル1 タイトル',
   pieces: {
-    b002: { title: 'サブ1 タイトル', sort: 1 },
-    b003: { title: 'サブ2 タイトル', sort: 2 },
-    b004: { title: 'サブ3 タイトル', sort: 3 },
-    b005: { title: 'サブ4 タイトル', sort: 4 },
+    b002: { title: 'サブ1 タイトル', sort: 1, completed: true },
+    b003: { title: 'サブ2 タイトル', sort: 2, completed: true },
+    b004: { title: 'サブ3 タイトル', sort: 3, completed: true },
+    b005: { title: 'サブ4 タイトル', sort: 4, completed: false },
   },
 }
 
