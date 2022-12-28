@@ -45,13 +45,13 @@ function convertForDraw(data) {
       return [nk, nv]
     })
   )
-  const pairs = Object.entries(data.structure).map(([k, v]) => {
-    if (!v.pieces) return null
-    return Object.keys(v.pieces).map((x) => [k, x].sort().join('-'))
-  })
-  const binds = [...new Set(pairs.flat())].filter(Boolean).map((p) => {
-    const [a, b] = p.split('-')
-    return { from: a, to: b }
-  })
+  const binds = Object.entries(data.structure)
+    .map(([nk, nv]) => {
+      if (!nv.pieces) return null
+      return Object.keys(nv.pieces).map((pk) => {
+        return { from: pk, to: nk }
+      })
+    })
+    .flat()
   return { boxes, binds }
 }
