@@ -20,9 +20,16 @@ const helper = {
   createAllWires(root) {
     if (!root || !root.binds) return null
     return root.binds.map((bd, i) => {
-      const sp = root.boxes[bd.from]?.pos
-      const ep = root.boxes[bd.to]?.pos
+      const sp = { ...root.boxes[bd.from]?.pos }
+      const ep = { ...root.boxes[bd.to]?.pos }
       if (!sp || !ep) return null
+      sp.x = sp.x + 200
+      sp.y = sp.y + 15
+      const tgtIdx = Object.entries(root.boxes[bd.to].pieces).findIndex(
+        ([pk, pv]) => pk === bd.from
+      )
+      ep.x = ep.x + 10
+      ep.y = ep.y + 25 * tgtIdx + 50 + 5
       return <Wire key={i} sp={sp} ep={ep} />
     })
   },
