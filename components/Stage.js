@@ -14,7 +14,9 @@ const StageComponent = () => {
   const onMoving = (arg) => {
     const { boxes, binds } = root
     const pos = { x: arg.x, y: arg.y }
-    const newBoxes = { ...boxes, [arg.id]: pos }
+    const tgtBox = boxes[arg.id]
+    tgtBox.pos = pos
+    const newBoxes = { ...boxes, [arg.id]: tgtBox }
     setRoot({ boxes: newBoxes, binds })
   }
 

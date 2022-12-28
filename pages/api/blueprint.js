@@ -34,8 +34,15 @@ function post(req, res) {
 function convertForDraw(data) {
   if (!data || !data.structure) return null
   const boxes = Object.fromEntries(
-    Object.entries(data.structure).map(([k, v]) => {
-      return [k, v.pos]
+    Object.entries(data.structure).map(([nk, nv]) => {
+      nv.title = data.master[nk]?.title
+      nv.pieces = Object.fromEntries(
+        Object.entries(nv.pieces || {}).map(([pk, pv]) => {
+          pv.title = data.master[pk]?.title
+          return [pk, pv]
+        })
+      )
+      return [nk, nv]
     })
   )
   const pairs = Object.entries(data.structure).map(([k, v]) => {
@@ -47,8 +54,4 @@ function convertForDraw(data) {
     return { from: a, to: b }
   })
   return { boxes, binds }
-}
-
-function uniq(array) {
-  return [...new Set(array)]
 }

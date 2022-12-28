@@ -1,5 +1,5 @@
 import axios from 'axios'
-import CyanBox from '../components/CyanBox'
+import Node from '../components/Node'
 import Wire from '../components/Wire'
 
 const state = {}
@@ -13,15 +13,16 @@ const helper = {
   },
   createAllBoxes(boxes, onMoving) {
     if (!boxes) return null
-    return Object.entries(boxes || {}).map(([id, pos]) => {
-      return <CyanBox id={id} key={id} {...pos} onMoving={onMoving} />
+    return Object.entries(boxes).map(([id, box]) => {
+      return <Node id={id} key={id} {...box} onMoving={onMoving} />
     })
   },
   createAllWires(root) {
     if (!root || !root.binds) return null
     return root.binds.map((bd, i) => {
-      const sp = root.boxes[bd.from]
-      const ep = root.boxes[bd.to]
+      const sp = root.boxes[bd.from]?.pos
+      const ep = root.boxes[bd.to]?.pos
+      if (!sp || !ep) return null
       return <Wire key={i} sp={sp} ep={ep} />
     })
   },
