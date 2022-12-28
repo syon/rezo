@@ -1,5 +1,6 @@
 import React from 'react'
 import { Stage, Layer } from 'react-konva'
+import Rezo from '../lib/Rezo'
 import { $blueprint } from '../store/blueprint'
 
 const StageComponent = () => {
@@ -12,12 +13,7 @@ const StageComponent = () => {
   }, [setRoot])
 
   const onMoving = (arg) => {
-    const { boxes, binds } = root
-    const pos = { x: arg.x, y: arg.y }
-    const tgtBox = boxes[arg.id]
-    tgtBox.pos = pos
-    const newBoxes = { ...boxes, [arg.id]: tgtBox }
-    setRoot({ boxes: newBoxes, binds })
+    setRoot(Rezo.refreshRootOnMoving(root, arg))
   }
 
   const boxes = $blueprint.helper.createAllBoxes(root.boxes, onMoving)
