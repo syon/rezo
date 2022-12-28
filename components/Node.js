@@ -31,6 +31,8 @@ export default function Node(props) {
   const boxH = 55 + 25 * pieceList.length
   const posText = `x:${gx} y:${gy}`
   const nodeCompleted = completed ? '✅' : '⬜'
+  const bgColor = completed ? '#eeffee' : 'white'
+  const strokeColor = completed ? 'lime' : 'black'
 
   return (
     <Group id={id} x={gx} y={gy} draggable onDragMove={onDragMove}>
@@ -41,11 +43,11 @@ export default function Node(props) {
         y={0}
         width={boxW}
         height={boxH}
-        stroke="black"
+        stroke={strokeColor}
         strokeWidth={2}
-        fill="white"
+        fill={bgColor}
       />
-      <Line points={[0, 30, boxW, 30]} stroke="black" />
+      <Line points={[0, 30, boxW, 30]} stroke={strokeColor} />
       <Text x={10} y={10} text={title} />
       <Text x={145} y={10} text={percentText} />
       <Text x={180} y={10} text={nodeCompleted} />
