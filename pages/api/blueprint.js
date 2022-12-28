@@ -1,8 +1,6 @@
 import fs from 'fs'
-const pathToData = './pages/api/data.json'
-const sampleFactData = {
-  titles: ['レスポンスコード', 'CORS', 'HTML'],
-}
+const pathToDefData = './pages/api/defData.json'
+const pathToFactData = './pages/api/factData.json'
 
 export default function handler(req, res) {
   switch (req.method) {
@@ -16,22 +14,49 @@ export default function handler(req, res) {
 }
 
 function get(req, res) {
-  const buf = fs.readFileSync(pathToData, 'utf-8')
-  const def = JSON.parse(buf)
-  const { boxes, binds, fact } = convertForDraw(def, sampleFactData)
+  const bufD = fs.readFileSync(pathToDefData, 'utf-8')
+  const objD = JSON.parse(bufD)
+  const bufF = fs.readFileSync(pathToFactData, 'utf-8')
+  const objF = JSON.parse(bufF)
+  const { boxes, binds, fact } = convertForDraw(objD, objF)
   res.status(200).json({ boxes, binds, fact })
 }
 
 function post(req, res) {
   const { id, x, y } = req.body
-  const buf = fs.readFileSync(pathToData, 'utf-8')
+  const buf = fs.readFileSync(pathToDefData, 'utf-8')
   const data = JSON.parse(buf)
   const target = data.structure[id]
   target.pos.x = x
   target.pos.y = y
   const jsonStr = JSON.stringify(data, null, 2)
-  fs.writeFileSync(pathToData, jsonStr)
+  fs.writeFileSync(pathToDefData, jsonStr)
   res.status(200).json(null)
+}
+
+function judgeCompleted(def, factTitles, nodeKey) {
+  const nodePieces = def.structure[nodeKey]?.pieces
+  const nodeTitle = def.master[nodeKey]?.title
+  if (!nodePieces) {
+    const judgeByNodeTitle = factTitles.includes(nodeTitle)
+    if (judgeByNodeTitle) {
+      factTitles.push(nodeTitle)
+    }
+    return judgeByNodeTitle
+  }
+  const completedList = Object.entries(nodePieces).map(([pk, pv]) => {
+    const pTitle = def.master[pk]?.title
+    const hasPieces = def.structure[pk]?.pieces?.length > 0
+    if (hasPieces) {
+      return judgeCompleted(def, factTitles, pk)
+    }
+    return factTitles.includes(pTitle)
+  })
+  const isCompleted = completedList.every(Boolean)
+  if (isCompleted) {
+    factTitles.push(nodeTitle)
+  }
+  return isCompleted
 }
 
 function convertForDraw(def, fact) {
@@ -40,17 +65,11 @@ function convertForDraw(def, fact) {
   const boxes = Object.fromEntries(
     Object.entries(def.structure).map(([nk, nv]) => {
       nv.title = def.master[nk]?.title
-      const hasPieces = nv.pieces?.length > 0
-      if (!hasPieces) {
-        nv.completed = fact.titles.includes(nv.title)
-      }
+      nv.completed = judgeCompleted(def, fact.titles, nk)
       nv.pieces = Object.fromEntries(
         Object.entries(nv.pieces || {}).map(([pk, pv]) => {
           pv.title = def.master[pk]?.title
-          const isChildHasPieces = def.structure[pk]?.pieces?.length > 0
-          if (!isChildHasPieces) {
-            pv.completed = fact.titles.includes(pv.title)
-          }
+          pv.completed = judgeCompleted(def, fact.titles, pk)
           return [pk, pv]
         })
       )
