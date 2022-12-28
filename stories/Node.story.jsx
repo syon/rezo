@@ -9,6 +9,7 @@ export const NodeStory = ({ ...props }) => {
 NodeStory.propTypes = {
   pos: PropTypes.object,
   title: PropTypes.string,
+  completed: PropTypes.bool,
   pieces: PropTypes.array,
 }
 
@@ -17,5 +18,6 @@ NodeStory.defaultProps = {
     x: 0,
     y: 0,
   },
+  completed: false,
   title: 'デフォルトタイトル',
 }

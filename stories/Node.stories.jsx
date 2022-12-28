@@ -36,6 +36,23 @@ Normal.args = {
   },
 }
 
+export const Complete = Template.bind({})
+Complete.args = {
+  id: 'abcd123',
+  pos: {
+    x: 30,
+    y: 30,
+  },
+  title: 'サンプル1 タイトル',
+  completed: true,
+  pieces: {
+    b002: { title: 'サブ1 タイトル', sort: 1, completed: true },
+    b003: { title: 'サブ2 タイトル', sort: 2, completed: true },
+    b004: { title: 'サブ3 タイトル', sort: 3, completed: true },
+    b005: { title: 'サブ4 タイトル', sort: 4, completed: true },
+  },
+}
+
 export const Blank = Template.bind({})
 Blank.args = {
   id: 'abcd123',
