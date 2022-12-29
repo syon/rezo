@@ -1,14 +1,25 @@
 import '../styles/globals.css'
 import React from 'react'
-import { RecoilRoot } from 'recoil'
+import { RootContext } from '../lib/RootContext'
+import Root from '../lib/Root'
+import Rezo from '../lib/Rezo'
 
 function MyApp({ Component, pageProps }) {
+  const [root, setRoot] = React.useState(new Root())
+
+  React.useEffect(() => {
+    Rezo.fetchRemote().then((data) => {
+      const arg = Rezo.prepare(data)
+      setRoot(new Root(arg))
+    })
+  }, [])
+
   return (
-    <RecoilRoot>
+    <RootContext.Provider value={[root, setRoot]}>
       <React.Suspense fallback={<div>Loading...</div>}>
         <Component {...pageProps} />
       </React.Suspense>
-    </RecoilRoot>
+    </RootContext.Provider>
   )
 }
 

@@ -1,18 +1,12 @@
 import React from 'react'
 import { Group, Rect, Line, Text } from 'react-konva'
 import Rezo from '../lib/Rezo'
+import { RootContext } from '../lib/RootContext'
 
 export default function Node(props) {
-  const {
-    id,
-    pos: rawPos,
-    title,
-    completed,
-    pieces,
-    onMoving,
-    onChange,
-  } = props
+  const { id, pos: rawPos, title, completed, pieces, onMoving } = props
   const [pos, setPos] = React.useState(rawPos)
+  const [root, setRoot] = React.useContext(RootContext)
 
   const onDragMove = (e) => {
     const { id, x, y } = e.target.attrs
@@ -29,11 +23,12 @@ export default function Node(props) {
     const onClickPiece = async () => {
       if (!p.hasNode) {
         if (p.completed) {
-          Rezo.REM_FACT(p.title)
+          const newRoot = Rezo.REM_FACT(root, p.title)
+          setRoot(newRoot)
         } else {
-          Rezo.ADD_FACT(p.title)
+          const newRoot = Rezo.ADD_FACT(root, p.title)
+          setRoot(newRoot)
         }
-        onChange()
       }
     }
     return (
