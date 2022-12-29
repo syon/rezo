@@ -1,8 +1,10 @@
 import Debug from 'debug'
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import Rezo from '../lib/Rezo'
 
 const dg = Debug('@:$:slice')
+
+const initRoot = createAsyncThunk('rezo/initRoot', Rezo.fetchRemote)
 
 const rootSlice = createSlice({
   name: 'rezo',
@@ -10,10 +12,6 @@ const rootSlice = createSlice({
     root: {},
   },
   reducers: {
-    initRoot(state, action) {
-      dg('[#initRoot]')
-      state.root = action.payload
-    },
     moveNode(state, action) {
       const arg = action.payload
       const pos = { x: arg.x, y: arg.y }
@@ -40,8 +38,16 @@ const rootSlice = createSlice({
       state.root = Rezo.prepare({ def, facts })
     },
   },
+  // https://redux-toolkit.js.org/api/createAsyncThunk
+  extraReducers: (builder) => {
+    builder.addCase(initRoot.fulfilled, (state, action) => {
+      dg('[#initRoot(extra)]')
+      state.root = Rezo.prepare(action.payload)
+    })
+  },
 })
 
 export const rd = rootSlice.actions
+export const erd = { initRoot }
 
 export default rootSlice.reducer

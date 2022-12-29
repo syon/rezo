@@ -1,11 +1,11 @@
 import dynamic from 'next/dynamic'
 
-const Stage = dynamic(() => import('../components/Stage'), {
+const Floor = dynamic(() => import('../components/Floor'), {
   ssr: false,
 })
 
 const Page = () => {
-  return <Stage />
+  return <Floor />
 }
 
 export default Page
