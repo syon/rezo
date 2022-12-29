@@ -1,8 +1,13 @@
+import Debug from 'debug'
 import '../styles/globals.css'
 import React from 'react'
 import { RootContext } from '../lib/RootContext'
 import Root from '../lib/Root'
 import Rezo from '../lib/Rezo'
+
+if (process.env.NODE_ENV === 'development') {
+  Debug.enable('@:*')
+}
 
 function MyApp({ Component, pageProps }) {
   const [root, setRoot] = React.useState(new Root())
