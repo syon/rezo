@@ -1,17 +1,15 @@
 import React from 'react'
 import { Group, Rect, Line, Text } from 'react-konva'
-import Rezo from '../lib/Rezo'
-import { RootContext } from '../lib/RootContext'
+import { useDispatch } from 'react-redux'
+import { rd } from '../store/rootSlice'
 
 export default function Node(props) {
-  const { id, pos: rawPos, title, completed, pieces, onMoving } = props
-  const [pos, setPos] = React.useState(rawPos)
-  const [root, setRoot] = React.useContext(RootContext)
+  const { id, pos, title, completed, pieces } = props
+  const dispatch = useDispatch()
 
   const onDragMove = (e) => {
     const { id, x, y } = e.target.attrs
-    setPos({ x, y })
-    onMoving({ id, x, y })
+    dispatch(rd.moveNode({ id, x, y }))
   }
 
   const pieceEntries = Object.entries(pieces || {})
@@ -23,11 +21,9 @@ export default function Node(props) {
     const onClickPiece = async () => {
       if (!p.hasNode) {
         if (p.completed) {
-          const newRoot = Rezo.REM_FACT(root, p.title)
-          setRoot(newRoot)
+          dispatch(rd.removeFact(p.title))
         } else {
-          const newRoot = Rezo.ADD_FACT(root, p.title)
-          setRoot(newRoot)
+          dispatch(rd.addFact(p.title))
         }
       }
     }
