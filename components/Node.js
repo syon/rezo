@@ -7,6 +7,10 @@ export default function Node(props) {
   const { id, pos, title, completed, pieces } = props
   const dispatch = useDispatch()
 
+  const onClick = () => {
+    dispatch(rd.activateNode(id))
+  }
+
   const onDragMove = (e) => {
     const { id, x, y } = e.target.attrs
     dispatch(rd.moveNode({ id, x, y }))
@@ -45,7 +49,14 @@ export default function Node(props) {
   const strokeColor = completed ? 'lime' : 'black'
 
   return (
-    <Group id={id} x={gx} y={gy} draggable onDragMove={onDragMove}>
+    <Group
+      id={id}
+      x={gx}
+      y={gy}
+      draggable
+      onClick={onClick}
+      onDragMove={onDragMove}
+    >
       <Text x={10} y={-15} text={id} opacity={0.3} />
       <Text x={135} y={-15} text={posText} opacity={0.3} />
       <Rect

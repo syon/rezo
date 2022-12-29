@@ -10,8 +10,16 @@ const rootSlice = createSlice({
   name: 'rezo',
   initialState: {
     root: {},
+    activeNodeId: null,
   },
   reducers: {
+    refresh(state) {
+      const { def, facts } = state.root
+      state.root = Rezo.prepare({ def, facts })
+    },
+    activateNode(state, action) {
+      state.activeNodeId = action.payload
+    },
     moveNode(state, action) {
       const arg = action.payload
       const pos = { x: arg.x, y: arg.y }
@@ -33,9 +41,13 @@ const rootSlice = createSlice({
       _.pull(facts, fact)
       rootSlice.caseReducers.refresh(state, action)
     },
-    refresh(state) {
-      const { def, facts } = state.root
-      state.root = Rezo.prepare({ def, facts })
+    addPiece(state, action) {
+      const { id } = action.payload
+      const { def } = state.root
+      const pieceId = Math.random().toString(36).slice(-4)
+      def.structure[id].pieces[pieceId] = { sort: 0 }
+      def.master[pieceId] = { title: '新しい項目' }
+      rootSlice.caseReducers.refresh(state, action)
     },
   },
   // https://redux-toolkit.js.org/api/createAsyncThunk
