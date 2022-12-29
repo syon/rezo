@@ -14,8 +14,11 @@ const StageComponent = () => {
   const onMoving = (arg) => {
     setRoot(Rezo.refreshRootOnMoving(root, arg))
   }
+  const onChange = () => {
+    setRoot(Rezo.rebuild())
+  }
 
-  const boxes = Rezo.createAllBoxes(root.boxes, onMoving)
+  const boxes = Rezo.createAllBoxes(root.boxes, onMoving, onChange)
   const binds = Rezo.createAllWires(root)
 
   return (

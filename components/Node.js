@@ -1,8 +1,17 @@
 import React from 'react'
 import { Group, Rect, Line, Text } from 'react-konva'
+import Rezo from '../lib/Rezo'
 
 export default function Node(props) {
-  const { id, pos: rawPos, title, completed, pieces, onMoving } = props
+  const {
+    id,
+    pos: rawPos,
+    title,
+    completed,
+    pieces,
+    onMoving,
+    onChange,
+  } = props
   const [pos, setPos] = React.useState(rawPos)
 
   const onDragMove = (e) => {
@@ -17,8 +26,18 @@ export default function Node(props) {
   const pieceList = pieceEntries.map(([k, p], i) => {
     const y = 25 * i + 50
     const mark = p.completed ? '✅' : '⬜'
+    const onClickPiece = async () => {
+      if (!p.hasNode) {
+        if (p.completed) {
+          Rezo.REM_FACT(p.title)
+        } else {
+          Rezo.ADD_FACT(p.title)
+        }
+        onChange()
+      }
+    }
     return (
-      <Group key={k}>
+      <Group key={k} onClick={onClickPiece}>
         <Text x={20} y={y} text={p.title} />
         <Text x={170} y={y} text={mark} />
       </Group>
