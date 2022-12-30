@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { sl, rd } from '../store/rootSlice'
+import PieceItem from './hud/PieceItem'
 
 export default function Hud(props) {
   const isHud = useSelector((state) => state.rezo.isHud)
@@ -10,8 +11,12 @@ export default function Hud(props) {
   const [text, setText] = useState('')
 
   const pieceEntries = Object.entries(pieces || {})
-  const pieceList = pieceEntries.map(([k, p], i) => {
-    return <li key={k}>{p.title}</li>
+  const pieceList = pieceEntries.map(([id, p], i) => {
+    return (
+      <li key={id}>
+        <PieceItem id={id} {...p} />
+      </li>
+    )
   })
 
   const handleAddPiece = () => {

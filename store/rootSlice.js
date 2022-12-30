@@ -62,6 +62,13 @@ const sliceArg = {
       def.master[pieceId] = { title: text }
       slice.caseReducers.refresh(state, action)
     },
+    editPiece(state, action) {
+      dg('[#editPiece]', action.payload)
+      const { id: pieceId, title } = action.payload
+      const { def } = state.root
+      def.master[pieceId].title = title
+      slice.caseReducers.refresh(state, action)
+    },
   },
   // https://redux-toolkit.js.org/api/createAsyncThunk
   extraReducers: (builder) => {
