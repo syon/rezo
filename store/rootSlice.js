@@ -6,12 +6,20 @@ const dg = Debug('@:$:slice')
 
 const initRoot = createAsyncThunk('rezo/initRoot', Rezo.fetchRemote)
 
-const rootSlice = createSlice({
+const sliceArg = {
   name: 'rezo',
   initialState: {
     root: {},
     isHud: false,
     activeNodeId: null,
+  },
+  selectors: {
+    gHudTarget(state) {
+      const { root, activeNodeId } = state.rezo
+      if (!activeNodeId) return {}
+      const node = root.def.structure[activeNodeId]
+      return { id: activeNodeId, ...node }
+    },
   },
   reducers: {
     refresh(state) {
@@ -27,21 +35,21 @@ const rootSlice = createSlice({
       const pos = { x: arg.x, y: arg.y }
       const { def } = state.root
       def.structure[arg.id].pos = pos
-      rootSlice.caseReducers.refresh(state, action)
+      slice.caseReducers.refresh(state, action)
     },
     addFact(state, action) {
       dg('[#addFact]')
       const fact = action.payload
       const { facts } = state.root
       facts.push(fact)
-      rootSlice.caseReducers.refresh(state, action)
+      slice.caseReducers.refresh(state, action)
     },
     removeFact(state, action) {
       dg('[#removeFact]')
       const fact = action.payload
       const { facts } = state.root
       _.pull(facts, fact)
-      rootSlice.caseReducers.refresh(state, action)
+      slice.caseReducers.refresh(state, action)
     },
     closeHud(state) {
       state.isHud = false
@@ -52,7 +60,7 @@ const rootSlice = createSlice({
       const pieceId = Math.random().toString(36).slice(-4)
       def.structure[id].pieces[pieceId] = { sort: 0 }
       def.master[pieceId] = { title: text }
-      rootSlice.caseReducers.refresh(state, action)
+      slice.caseReducers.refresh(state, action)
     },
   },
   // https://redux-toolkit.js.org/api/createAsyncThunk
@@ -62,9 +70,12 @@ const rootSlice = createSlice({
       state.root = Rezo.prepare(action.payload)
     })
   },
-})
+}
 
-export const rd = rootSlice.actions
+const slice = createSlice(sliceArg)
+
+export const sl = sliceArg.selectors
+export const rd = slice.actions
 export const erd = { initRoot }
 
-export default rootSlice.reducer
+export default slice.reducer

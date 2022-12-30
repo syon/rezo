@@ -1,15 +1,10 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { rd } from '../store/rootSlice'
+import { sl, rd } from '../store/rootSlice'
 
 export default function Hud(props) {
   const isHud = useSelector((state) => state.rezo.isHud)
-  const target = useSelector((state) => {
-    const { root, activeNodeId } = state.rezo
-    if (!activeNodeId) return {}
-    const node = root.def.structure[activeNodeId]
-    return { id: activeNodeId, ...node }
-  })
+  const target = useSelector(sl.gHudTarget)
   const { id, title, pieces } = target
   const dispatch = useDispatch()
   const [text, setText] = useState('')
