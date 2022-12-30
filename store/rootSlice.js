@@ -10,6 +10,7 @@ const rootSlice = createSlice({
   name: 'rezo',
   initialState: {
     root: {},
+    isHud: false,
     activeNodeId: null,
   },
   reducers: {
@@ -18,6 +19,7 @@ const rootSlice = createSlice({
       state.root = Rezo.prepare({ def, facts })
     },
     activateNode(state, action) {
+      state.isHud = true
       state.activeNodeId = action.payload
     },
     moveNode(state, action) {
@@ -41,12 +43,15 @@ const rootSlice = createSlice({
       _.pull(facts, fact)
       rootSlice.caseReducers.refresh(state, action)
     },
+    closeHud(state) {
+      state.isHud = false
+    },
     addPiece(state, action) {
-      const { id } = action.payload
+      const { id, text } = action.payload
       const { def } = state.root
       const pieceId = Math.random().toString(36).slice(-4)
       def.structure[id].pieces[pieceId] = { sort: 0 }
-      def.master[pieceId] = { title: '新しい項目' }
+      def.master[pieceId] = { title: text }
       rootSlice.caseReducers.refresh(state, action)
     },
   },

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Stage, Layer } from 'react-konva'
 import { useSelector, useDispatch } from 'react-redux'
-import { erd } from '../store/rootSlice'
+import { rd, erd } from '../store/rootSlice'
 import Rezo from '../lib/Rezo'
 
 const StageComponent = () => {
@@ -12,11 +12,20 @@ const StageComponent = () => {
     dispatch(erd.initRoot())
   }, [dispatch])
 
+  const hancleStageClick = () => {
+    dispatch(rd.closeHud())
+  }
+
   const boxes = Rezo.createAllBoxes(rezoRoot.boxes)
   const binds = Rezo.createAllWires(rezoRoot)
 
   return (
-    <Stage width={window.innerWidth} height={window.innerHeight} draggable>
+    <Stage
+      width={window.innerWidth}
+      height={window.innerHeight}
+      draggable
+      onClick={hancleStageClick}
+    >
       <Layer>
         {boxes}
         {binds}

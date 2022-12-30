@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { rd } from '../store/rootSlice'
 
 export default function Hud(props) {
+  const isHud = useSelector((state) => state.rezo.isHud)
   const target = useSelector((state) => {
     const { root, activeNodeId } = state.rezo
     if (!activeNodeId) return {}
@@ -11,6 +12,7 @@ export default function Hud(props) {
   })
   const { id, title, pieces } = target
   const dispatch = useDispatch()
+  const [text, setText] = useState('')
 
   const pieceEntries = Object.entries(pieces || {})
   const pieceList = pieceEntries.map(([k, p], i) => {
@@ -18,14 +20,25 @@ export default function Hud(props) {
   })
 
   const handleAddPiece = () => {
-    dispatch(rd.addPiece({ id }))
+    dispatch(rd.addPiece({ id, text }))
+    setText('')
   }
 
   return (
-    <div className="Hud">
+    <div className={`Hud ${isHud ? 'active' : ''}`}>
       [{id}] - {title}
       <ul>{pieceList}</ul>
-      <button onClick={handleAddPiece}>add</button>
+      <hr />
+      <div>
+        <input
+          type="text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <button disabled={!text} onClick={handleAddPiece}>
+          add
+        </button>
+      </div>
     </div>
   )
 }

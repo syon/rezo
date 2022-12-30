@@ -7,7 +7,8 @@ export default function Node(props) {
   const { id, pos, title, completed, pieces } = props
   const dispatch = useDispatch()
 
-  const onClick = () => {
+  const onClick = (e) => {
+    e.cancelBubble = true
     dispatch(rd.activateNode(id))
   }
 

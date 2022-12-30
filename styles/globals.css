@@ -27,9 +27,20 @@ a {
 }
 
 .Hud {
+  transform: translateX(250px);
   position: absolute;
   right: 0;
   z-index: 9;
+  width: 250px;
+  height: 100vh;
   padding: 1em;
-  background-color: rgba(255, 220, 220, 0.9);
+  font-size: 0.8rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 2px 1px rgb(0 0 0 / 10%);
+  transition: transform 150ms 0s ease;
+}
+
+.Hud.active {
+  transform: translateX(0);
 }
