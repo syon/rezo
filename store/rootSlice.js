@@ -1,6 +1,7 @@
 import Debug from 'debug'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import Rezo from '../lib/Rezo'
+import _ from 'lodash'
 
 const dg = Debug('@:$:slice')
 
@@ -79,6 +80,13 @@ const sliceArg = {
         pieces: {},
       }
       slice.caseReducers.refresh(state, action)
+    },
+    removeNode(state, action) {
+      dg('[#removeNode]')
+      const { def } = state.root
+      _.unset(def.structure, state.activeNodeId)
+      slice.caseReducers.refresh(state, action)
+      slice.caseReducers.closeHud(state, action)
     },
   },
   // https://redux-toolkit.js.org/api/createAsyncThunk

@@ -24,11 +24,23 @@ export default function Hud(props) {
     setText('')
   }
 
+  const handleRemoveNode = () => {
+    dispatch(rd.removeNode())
+  }
+
   return (
     <div className={`Hud ${isHud ? 'active' : ''}`}>
       <div>
         <div className="text-xs">{id}</div>
-        <div className="text-lg font-bold">{title}</div>
+        <div className="flex justify-between items-center">
+          <div className="text-lg font-bold">{title}</div>
+          <button
+            className="btn btn-outline btn-error btn-xs"
+            onClick={handleRemoveNode}
+          >
+            ✕
+          </button>
+        </div>
       </div>
       <ul className="mt-4">{pieceList}</ul>
       <hr className="my-4" />
