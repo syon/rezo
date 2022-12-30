@@ -30,7 +30,7 @@ export default function PieceItem(props) {
     handleEditSubmit(e)
   }
 
-  const handleAddFact = async () => {
+  const handleAddFact = () => {
     if (!hasNode) {
       if (completed) {
         dispatch(rd.removeFact(title))
@@ -38,6 +38,10 @@ export default function PieceItem(props) {
         dispatch(rd.addFact(title))
       }
     }
+  }
+
+  const handleRemovePiece = () => {
+    dispatch(rd.removePiece(id))
   }
 
   const pieceClass = completed ? 'bg-green-50 border-green-300' : 'white'
@@ -62,8 +66,16 @@ export default function PieceItem(props) {
         )}
       </div>
       <div className={`flex-1 ${pieceClass} border rounded p-2`}>
-        <div className="text-xs">
-          {id} {hasNode ? '🔗' : ''}
+        <div className="flex justify-between items-center">
+          <div className="text-xs">
+            {id} {hasNode ? '🔗' : ''}
+          </div>
+          <button
+            className="btn btn-ghost btn-xs text-red-500"
+            onClick={handleRemovePiece}
+          >
+            ✕
+          </button>
         </div>
         <div className="flex justify-between items-center">
           <span>{title}</span>

@@ -35,7 +35,7 @@ export default function Hud(props) {
         <div className="flex justify-between items-center">
           <div className="text-lg font-bold">{title}</div>
           <button
-            className="btn btn-outline btn-error btn-xs"
+            className="btn btn-ghost btn-xs text-red-500"
             onClick={handleRemoveNode}
           >
             ✕

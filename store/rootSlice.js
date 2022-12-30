@@ -75,6 +75,13 @@ const sliceArg = {
       def.master[pieceId].title = title
       slice.caseReducers.refresh(state, action)
     },
+    removePiece(state, action) {
+      dg('[#removePiece]', action.payload)
+      const pieceId = action.payload
+      const { def } = state.root
+      _.unset(def.structure[state.activeNodeId].pieces, pieceId)
+      slice.caseReducers.refresh(state, action)
+    },
     addNode(state, action) {
       dg('[#addNode]', action.payload)
       const { id } = action.payload
