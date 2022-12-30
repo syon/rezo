@@ -26,17 +26,25 @@ export default function Hud(props) {
 
   return (
     <div className={`Hud ${isHud ? 'active' : ''}`}>
-      [{id}] - {title}
-      <ul>{pieceList}</ul>
-      <hr />
       <div>
+        <div className="text-xs">{id}</div>
+        <div className="text-lg font-bold">{title}</div>
+      </div>
+      <ul className="mt-4">{pieceList}</ul>
+      <hr className="my-4" />
+      <div className="m-2">
         <input
           type="text"
           value={text}
+          className="input input-bordered input-sm max-w-xs mr-2"
           onChange={(e) => setText(e.target.value)}
         />
-        <button disabled={!text} onClick={handleAddPiece}>
-          add
+        <button
+          className="btn btn-outline btn-accent btn-xs"
+          disabled={!text}
+          onClick={handleAddPiece}
+        >
+          追加
         </button>
       </div>
     </div>

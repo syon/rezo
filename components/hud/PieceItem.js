@@ -23,23 +23,35 @@ export default function PieceItem(props) {
   }
 
   const viewingUI = (
-    <div style="">
-      <div>
+    <div className="bg-white border rounded p-2 mb-2">
+      <div className="text-xs">
         {id} {hasNode ? '🔗' : ''}
       </div>
-      <span> {title} </span>
-      {editing ? null : <button onClick={handleEdit}>編集</button>}
+      <div className="flex justify-between items-center">
+        <span>{title}</span>
+        {editing ? null : (
+          <button
+            className="btn btn-outline btn-accent btn-xs"
+            onClick={handleEdit}
+          >
+            編集
+          </button>
+        )}
+      </div>
     </div>
   )
 
   const editingUI = (
-    <input
-      type="text"
-      value={title}
-      autoFocus={true}
-      onChange={(e) => setTitle(e.target.value)}
-      onKeyDown={handleKeyDown}
-    />
+    <div className="bg-white border rounded p-2 mb-2">
+      <input
+        type="text"
+        value={title}
+        autoFocus={true}
+        onChange={(e) => setTitle(e.target.value)}
+        onKeyDown={handleKeyDown}
+        className="input input-sm input-primary w-full max-w-xs"
+      />
+    </div>
   )
 
   return <>{editing ? editingUI : viewingUI}</>
