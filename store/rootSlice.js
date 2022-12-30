@@ -82,6 +82,15 @@ const sliceArg = {
       _.unset(def.structure[state.activeNodeId].pieces, pieceId)
       slice.caseReducers.refresh(state, action)
     },
+    newNode(state, action) {
+      dg('[#newNode]', action.payload)
+      const { pos } = action.payload
+      const { def } = state.root
+      const id = Math.random().toString(36).slice(-4)
+      def.structure[id] = { pos, pieces: {} }
+      def.master[id] = { title: '新しい項目' }
+      slice.caseReducers.refresh(state, action)
+    },
     addNode(state, action) {
       dg('[#addNode]', action.payload)
       const { id } = action.payload
