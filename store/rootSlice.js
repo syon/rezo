@@ -14,8 +14,8 @@ const sliceArg = {
     activeNodeId: null,
   },
   selectors: {
-    gHudTarget(state) {
-      const { root, activeNodeId } = state.rezo
+    gHudTarget(globalState) {
+      const { root, activeNodeId } = globalState.rezo
       if (!activeNodeId) return {}
       const node = root.def.structure[activeNodeId]
       return { id: activeNodeId, ...node }
@@ -67,6 +67,17 @@ const sliceArg = {
       const { id: pieceId, title } = action.payload
       const { def } = state.root
       def.master[pieceId].title = title
+      slice.caseReducers.refresh(state, action)
+    },
+    addNode(state, action) {
+      dg('[#addNode]', action.payload)
+      const { id } = action.payload
+      const { def } = state.root
+      const curPos = def.structure[state.activeNodeId].pos
+      def.structure[id] = {
+        pos: { x: curPos.x - 250, y: curPos.y },
+        pieces: {},
+      }
       slice.caseReducers.refresh(state, action)
     },
   },
