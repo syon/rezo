@@ -50,7 +50,7 @@ export default function Node(props) {
   const posText = `x:${gx} y:${gy}`
   const nodeCompleted = completed ? '✅' : '⬜'
   const bgColor = completed ? 'rgb(240 253 244)' : 'white'
-  const strokeColor = completed ? 'rgb(134 239 172)' : 'black'
+  const strokeColor = completed ? 'rgb(134 239 172)' : 'rgb(0 0 0 / 80%)'
 
   return (
     <Group
@@ -72,7 +72,7 @@ export default function Node(props) {
         strokeWidth={2}
         fill={bgColor}
       />
-      <Line points={[0, 30, boxW, 30]} stroke={strokeColor} />
+      <Line points={[0, 30, boxW, 30]} stroke={strokeColor} strokeWidth={1} />
       <Text x={10} y={10} text={title} />
       <Text x={145} y={10} text={percentText} />
       <Text x={180} y={10} text={nodeCompleted} />
