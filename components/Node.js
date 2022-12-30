@@ -1,15 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Group, Rect, Line, Text } from 'react-konva'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { rd } from '../store/rootSlice'
 
 export default function Node(props) {
   const { id, pos, title, completed, pieces } = props
+  const himo = useSelector((state) => state.rezo.himo)
+  const [draggable, setDraggable] = useState(true)
   const dispatch = useDispatch()
 
   const onClick = (e) => {
     e.cancelBubble = true
-    dispatch(rd.activateNode(id))
+    if (himo.active) {
+      dispatch(rd.endHimo(id))
+    } else {
+      dispatch(rd.activateNode(id))
+    }
   }
 
   const onDragMove = (e) => {
@@ -40,6 +46,12 @@ export default function Node(props) {
     )
   })
 
+  const handleClickStick = (e) => {
+    e.cancelBubble = true
+    const pos = { x: gx + 200, y: gy + 15 }
+    dispatch(rd.startHimo({ id, pos }))
+  }
+
   const gx = pos?.x || 0
   const gy = pos?.y || 0
   const boxW = 200
@@ -54,7 +66,7 @@ export default function Node(props) {
       id={id}
       x={gx}
       y={gy}
-      draggable
+      draggable={draggable}
       onClick={onClick}
       onDragMove={onDragMove}
     >
@@ -74,6 +86,14 @@ export default function Node(props) {
       <Text x={145} y={10} text={percentText} />
       <Text x={180} y={10} text={nodeCompleted} />
       {pieceList}
+      <Rect
+        x={201}
+        y={-1}
+        width={16}
+        height={32}
+        fill="hsl(210deg 30% 88%)"
+        onClick={handleClickStick}
+      />
     </Group>
   )
 }

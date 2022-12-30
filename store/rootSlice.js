@@ -13,6 +13,11 @@ const sliceArg = {
     root: {},
     isHud: false,
     activeNodeId: null,
+    himo: {
+      active: false,
+      childId: null,
+      childPos: {},
+    },
   },
   selectors: {
     gHudTarget(globalState) {
@@ -87,6 +92,29 @@ const sliceArg = {
       _.unset(def.structure, state.activeNodeId)
       slice.caseReducers.refresh(state, action)
       slice.caseReducers.closeHud(state, action)
+    },
+    startHimo(state, action) {
+      dg('[#startHimo]', action.payload)
+      const { id, pos } = action.payload
+      state.himo.active = true
+      state.himo.childId = id
+      state.himo.childPos = pos
+    },
+    endHimo(state, action) {
+      dg('[#endHimo]', action.payload)
+      const parentId = action.payload
+      const { childId } = state.himo
+      const { def } = state.root
+      def.structure[parentId].pieces[childId] = { sort: 0 }
+      slice.caseReducers.cancelHimo(state, action)
+      slice.caseReducers.refresh(state, action)
+    },
+    cancelHimo(state, action) {
+      state.himo = {
+        active: false,
+        childId: null,
+        childPos: {},
+      }
     },
   },
   // https://redux-toolkit.js.org/api/createAsyncThunk

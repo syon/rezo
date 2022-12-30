@@ -28,8 +28,9 @@ function computeBezierData({ sp, ep }) {
 }
 
 export default function Wire(props) {
-  const { id, sp, ep } = props
+  const { id, sp, ep, color } = props
   if (!sp || !ep) return null
+  const stroke = color || 'orange'
   const data = computeBezierData({ sp, ep })
-  return <Path id={id} x={0} y={0} data={data} stroke="orange" />
+  return <Path id={id} x={0} y={0} data={data} stroke={stroke} />
 }
