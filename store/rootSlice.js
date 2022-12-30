@@ -143,8 +143,7 @@ const sliceArg = {
       }
     },
     copyToClipboard(state, action) {
-      const { def, master } = state.root
-      const text = JSON.stringify({ def, master }, null, 2)
+      const text = JSON.stringify(state.root.def, null, 2)
       window.navigator.clipboard.writeText(text)
     },
   },
