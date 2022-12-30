@@ -142,6 +142,11 @@ const sliceArg = {
         childPos: {},
       }
     },
+    copyToClipboard(state, action) {
+      const { def, master } = state.root
+      const text = JSON.stringify({ def, master }, null, 2)
+      window.navigator.clipboard.writeText(text)
+    },
   },
   // https://redux-toolkit.js.org/api/createAsyncThunk
   extraReducers: (builder) => {

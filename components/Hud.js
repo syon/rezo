@@ -48,6 +48,10 @@ export default function Hud(props) {
     dispatch(rd.removeNode())
   }
 
+  const handleCopy = () => {
+    dispatch(rd.copyToClipboard())
+  }
+
   const viewingUI = (
     <>
       <div className="text-lg font-bold">{rawTitle}</div>
@@ -111,6 +115,14 @@ export default function Hud(props) {
           onClick={handleAddPiece}
         >
           追加
+        </button>
+      </div>
+      <div className="mt-8">
+        <button
+          className="btn btn-outline btn-accent btn-xs"
+          onClick={handleCopy}
+        >
+          Copy
         </button>
       </div>
     </div>
