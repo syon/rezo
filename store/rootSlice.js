@@ -93,6 +93,15 @@ const sliceArg = {
       }
       slice.caseReducers.refresh(state, action)
     },
+    editNode(state, action) {
+      dg('[#editNode]', action.payload, state.activeNodeId)
+      const { title } = action.payload
+      const { def } = state.root
+      const tgtMaster = def.master[state.activeNodeId] || {}
+      tgtMaster.title = title
+      def.master[state.activeNodeId] = tgtMaster
+      slice.caseReducers.refresh(state, action)
+    },
     removeNode(state, action) {
       dg('[#removeNode]')
       const { def } = state.root
