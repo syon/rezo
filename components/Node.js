@@ -29,17 +29,8 @@ export default function Node(props) {
   const pieceList = pieceEntries.map(([k, p], i) => {
     const y = 25 * i + 50
     const mark = p.completed ? '✅' : '⬜'
-    const onClickPiece = async () => {
-      if (!p.hasNode) {
-        if (p.completed) {
-          dispatch(rd.removeFact(p.title))
-        } else {
-          dispatch(rd.addFact(p.title))
-        }
-      }
-    }
     return (
-      <Group key={k} onClick={onClickPiece}>
+      <Group key={k}>
         <Text x={20} y={y} text={p.title} />
         <Text x={170} y={y} text={mark} />
       </Group>
@@ -58,8 +49,8 @@ export default function Node(props) {
   const boxH = 55 + 25 * pieceList.length
   const posText = `x:${gx} y:${gy}`
   const nodeCompleted = completed ? '✅' : '⬜'
-  const bgColor = completed ? '#eeffee' : 'white'
-  const strokeColor = completed ? 'lime' : 'black'
+  const bgColor = completed ? 'rgb(240 253 244)' : 'white'
+  const strokeColor = completed ? 'rgb(134 239 172)' : 'black'
 
   return (
     <Group

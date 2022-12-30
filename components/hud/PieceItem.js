@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { rd } from '../../store/rootSlice'
 
 export default function PieceItem(props) {
-  const { id, title: rawTitle, hasNode } = props
+  const { id, title: rawTitle, hasNode, completed } = props
   const [editing, setEditing] = useState(false)
   const [title, setTitle] = useState(rawTitle)
   const dispatch = useDispatch()
@@ -30,6 +30,18 @@ export default function PieceItem(props) {
     handleEditSubmit(e)
   }
 
+  const handleAddFact = async () => {
+    if (!hasNode) {
+      if (completed) {
+        dispatch(rd.removeFact(title))
+      } else {
+        dispatch(rd.addFact(title))
+      }
+    }
+  }
+
+  const pieceClass = completed ? 'bg-green-50 border-green-300' : 'white'
+
   const viewingUI = (
     <div className="flex mb-2">
       <div className="w-8 flex justify-start items-center">
@@ -49,7 +61,7 @@ export default function PieceItem(props) {
           </button>
         )}
       </div>
-      <div className="flex-1 bg-white border rounded p-2">
+      <div className={`flex-1 ${pieceClass} border rounded p-2`}>
         <div className="text-xs">
           {id} {hasNode ? '🔗' : ''}
         </div>
@@ -57,13 +69,13 @@ export default function PieceItem(props) {
           <span>{title}</span>
           <div>
             {editing ? null : (
-              <button
-                className="btn btn-outline btn-accent btn-xs"
-                onClick={handleEdit}
-              >
-                編集
+              <button className="btn btn-ghost btn-sm" onClick={handleEdit}>
+                ✏️
               </button>
             )}
+            <button className="btn btn-ghost btn-sm" onClick={handleAddFact}>
+              {completed ? '✅' : '⬜'}
+            </button>
           </div>
         </div>
       </div>
