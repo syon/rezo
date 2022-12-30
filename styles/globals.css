@@ -27,15 +27,15 @@ a {
 }
 
 .Hud {
-  transform: translateX(250px);
+  transform: translateX(375px);
   position: absolute;
   right: 0;
   z-index: 9;
-  width: 250px;
+  width: 375px;
   height: 100vh;
   padding: 1em;
   font-size: 0.8rem;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: hsl(210deg 50% 99% / 80%);
   backdrop-filter: blur(4px);
   box-shadow: 0 0 2px 1px rgb(0 0 0 / 10%);
   transition: transform 150ms 0s ease;

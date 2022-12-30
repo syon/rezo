@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { rd } from '../../store/rootSlice'
 
 export default function PieceItem(props) {
-  const { id, title: rawTitle } = props
+  const { id, title: rawTitle, hasNode } = props
   const [editing, setEditing] = useState(false)
   const [title, setTitle] = useState(rawTitle)
   const dispatch = useDispatch()
@@ -23,10 +23,11 @@ export default function PieceItem(props) {
   }
 
   const viewingUI = (
-    <div>
-      <span>
-        [{id}] {title}
-      </span>
+    <div style="">
+      <div>
+        {id} {hasNode ? '🔗' : ''}
+      </div>
+      <span> {title} </span>
       {editing ? null : <button onClick={handleEdit}>編集</button>}
     </div>
   )
