@@ -34,12 +34,17 @@ export default function Hud(props) {
     setText('')
   }
 
+  const handleKeyDownPiece = (e) => {
+    if (e.nativeEvent.isComposing || e.key !== 'Enter') return
+    handleAddPiece(e)
+  }
+
   const handleEditSubmit = () => {
     dispatch(rd.editNode({ title }))
     setEditing(false)
   }
 
-  const handleKeyDown = (e) => {
+  const handleKeyDownTitle = (e) => {
     if (e.nativeEvent.isComposing || e.key !== 'Enter') return
     handleEditSubmit(e)
   }
@@ -78,7 +83,7 @@ export default function Hud(props) {
         value={title}
         autoFocus={true}
         onChange={(e) => setTitle(e.target.value)}
-        onKeyDown={handleKeyDown}
+        onKeyDown={handleKeyDownTitle}
         className="input input-sm input-primary max-w-xs"
       />
       <button
@@ -108,6 +113,7 @@ export default function Hud(props) {
           value={text}
           className="input input-bordered input-sm max-w-xs mr-2"
           onChange={(e) => setText(e.target.value)}
+          onKeyDown={handleKeyDownPiece}
         />
         <button
           className="btn btn-outline btn-accent btn-xs"
