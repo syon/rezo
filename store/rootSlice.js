@@ -130,6 +130,7 @@ const sliceArg = {
       const parentId = action.payload
       const { childId } = state.himo
       const { def } = state.root
+      // TODO: Check Infinite Loop
       def.structure[parentId].pieces[childId] = { sort: 0 }
       slice.caseReducers.cancelHimo(state, action)
       slice.caseReducers.refresh(state, action)
