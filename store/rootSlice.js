@@ -23,7 +23,7 @@ const sliceArg = {
     gHudTarget(globalState) {
       const { root, activeNodeId } = globalState.rezo
       if (!activeNodeId) return {}
-      const node = root.def.structure[activeNodeId]
+      const node = root.boxes[activeNodeId]
       return { id: activeNodeId, ...node }
     },
   },
