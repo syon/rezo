@@ -5,7 +5,14 @@ import _ from 'lodash'
 
 const dg = Debug('@:$:slice')
 
-const initRoot = createAsyncThunk('rezo/initRoot', Rezo.fetchRemote)
+const initRoot = createAsyncThunk('rezo/initRoot', async () => {
+  if (_.isEmpty(window.localStorage.savedata)) {
+    dg('[#initRoot(Thunk)] Load from remote')
+    return await Rezo.fetchRemote()
+  }
+  dg('[#initRoot(Thunk)] Load from localStorage')
+  return JSON.parse(window.localStorage.savedata)
+})
 
 const sliceArg = {
   name: 'rezo',
@@ -28,9 +35,10 @@ const sliceArg = {
     },
   },
   reducers: {
-    refresh(state) {
+    refresh(state, action) {
       const { def, facts } = state.root
       state.root = Rezo.prepare({ def, facts })
+      slice.caseReducers.autoSave(state, action)
     },
     activateNode(state, action) {
       state.isHud = true
@@ -146,11 +154,17 @@ const sliceArg = {
       const text = JSON.stringify(state.root.def, null, 2)
       window.navigator.clipboard.writeText(text)
     },
+    autoSave(state, action) {
+      const { def, facts } = state.root
+      const data = { def, facts }
+      const text = JSON.stringify(data, null, 2)
+      window.localStorage.savedata = text
+    },
   },
   // https://redux-toolkit.js.org/api/createAsyncThunk
   extraReducers: (builder) => {
     builder.addCase(initRoot.fulfilled, (state, action) => {
-      dg('[#initRoot(extra)]')
+      dg('[#initRoot(extra)]', action.payload)
       state.root = Rezo.prepare(action.payload)
     })
   },
