@@ -40,8 +40,8 @@ export default function PieceItem(props) {
     }
   }
 
-  const handleSortUp = () => {
-    dispatch(rd.sortUpPiece(id))
+  const handleSort = (isUp) => {
+    dispatch(rd.changePieceSort({ id, isUp }))
   }
 
   const handleRemovePiece = () => {
@@ -75,8 +75,21 @@ export default function PieceItem(props) {
             {id} {hasNode ? '🔗' : ''}
           </div>
           <div>
-            <button className="btn btn-ghost btn-xs" onClick={handleSortUp}>
+            <button
+              className="btn btn-ghost btn-xs"
+              onClick={() => {
+                handleSort(true)
+              }}
+            >
               ↑
+            </button>
+            <button
+              className="btn btn-ghost btn-xs"
+              onClick={() => {
+                handleSort(false)
+              }}
+            >
+              ↓
             </button>
             <button
               className="btn btn-ghost btn-xs text-red-500"
