@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { rd } from '../../store/rootSlice'
+import Btn from '../Btn'
+import IconBtn from '../IconBtn'
+import PieceLeftBtn from './PieceLeftBtn'
 
 export default function PieceItem(props) {
   const { id, title: rawTitle, hasNode, completed } = props
@@ -54,19 +57,9 @@ export default function PieceItem(props) {
     <div className="flex mb-2">
       <div className="w-8 flex justify-start items-center">
         {hasNode ? (
-          <button
-            className="btn btn-circle btn-ghost btn-xs"
-            onClick={handleWarpNode}
-          >
-            🔍
-          </button>
+          <PieceLeftBtn icon="🔍" onClick={handleWarpNode} />
         ) : (
-          <button
-            className="btn btn-circle btn-outline btn-accent btn-xs"
-            onClick={handleAddNode}
-          >
-            ⬅️
-          </button>
+          <PieceLeftBtn icon="⬅️" outline accent onClick={handleAddNode} />
         )}
       </div>
       <div className={`flex-1 ${pieceClass} border rounded p-2`}>
@@ -75,41 +68,36 @@ export default function PieceItem(props) {
             {id} {hasNode ? '🔗' : ''}
           </div>
           <div>
-            <button
-              className="btn btn-ghost btn-xs"
+            <IconBtn
+              icon="↑"
+              size="xs"
               onClick={() => {
                 handleSort(true)
               }}
-            >
-              ↑
-            </button>
-            <button
-              className="btn btn-ghost btn-xs"
+            />
+            <IconBtn
+              icon="↓"
+              size="xs"
               onClick={() => {
                 handleSort(false)
               }}
-            >
-              ↓
-            </button>
-            <button
-              className="btn btn-ghost btn-xs text-red-500"
-              onClick={handleRemovePiece}
-            >
-              ✕
-            </button>
+            />
+            <Btn ghost size="xs" onClick={handleRemovePiece}>
+              <span className="text-red-500">✕</span>
+            </Btn>
           </div>
         </div>
         <div className="flex justify-between items-center">
           <span>{title}</span>
           <div>
             {editing ? null : (
-              <button className="btn btn-ghost btn-sm" onClick={handleEdit}>
-                ✏️
-              </button>
+              <IconBtn icon="✏️" size="sm" onClick={handleEdit} />
             )}
-            <button className="btn btn-ghost btn-sm" onClick={handleAddFact}>
-              {completed ? '✅' : '⬜'}
-            </button>
+            <IconBtn
+              icon={completed ? '✅' : '⬜'}
+              size="sm"
+              onClick={handleAddFact}
+            />
           </div>
         </div>
       </div>
