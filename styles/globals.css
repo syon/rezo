@@ -43,6 +43,7 @@ a {
   background-color: hsl(210deg 50% 99% / 80%);
   backdrop-filter: blur(4px);
   box-shadow: 0 0 2px 1px rgb(0 0 0 / 10%);
+  overflow: auto;
   transition: transform 150ms 0s ease;
 }
 
