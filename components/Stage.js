@@ -46,7 +46,6 @@ const StageComponent = () => {
         {boxes}
         {binds}
         <Himo mousepos={pos} />
-        <Text x={10} y={10} text={`X${pos.x} Y${pos.y}`} />
       </Layer>
     </Stage>
   )

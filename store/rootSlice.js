@@ -90,6 +90,32 @@ const sliceArg = {
       _.unset(def.structure[state.activeNodeId].pieces, pieceId)
       slice.caseReducers.refresh(state, action)
     },
+    sortUpPiece(state, action) {
+      dg('[#sortUpPiece]', action.payload)
+      const pieceId = action.payload
+      const { def } = state.root
+      const pieces = def.structure[state.activeNodeId].pieces
+      const pieceArr = Object.entries(pieces).map(([pk, pv], idx) => {
+        pv.sort = idx
+        pv.subkey = 9
+        return [pk, pv]
+      })
+      const [tpk, tpv] = pieceArr.find(([pk, pv]) => pk === pieceId)
+      tpv.sort = tpv.sort - 1
+      tpv.subkey = 0
+      pieceArr.sort(([ak, av], [bk, bv]) => {
+        if (av.sort !== bv.sort) {
+          return av.sort - bv.sort
+        }
+        return av.subkey - bv.subkey
+      })
+      pieceArr.forEach(([pk, pv], idx) => {
+        pv.sort = idx
+      })
+      const newPieces = Object.fromEntries(pieceArr)
+      def.structure[state.activeNodeId].pieces = newPieces
+      slice.caseReducers.refresh(state, action)
+    },
     newNode(state, action) {
       dg('[#newNode]', action.payload)
       const { pos } = action.payload

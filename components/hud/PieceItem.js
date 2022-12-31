@@ -40,6 +40,10 @@ export default function PieceItem(props) {
     }
   }
 
+  const handleSortUp = () => {
+    dispatch(rd.sortUpPiece(id))
+  }
+
   const handleRemovePiece = () => {
     dispatch(rd.removePiece(id))
   }
@@ -70,12 +74,17 @@ export default function PieceItem(props) {
           <div className="text-xs">
             {id} {hasNode ? '🔗' : ''}
           </div>
-          <button
-            className="btn btn-ghost btn-xs text-red-500"
-            onClick={handleRemovePiece}
-          >
-            ✕
-          </button>
+          <div>
+            <button className="btn btn-ghost btn-xs" onClick={handleSortUp}>
+              ↑
+            </button>
+            <button
+              className="btn btn-ghost btn-xs text-red-500"
+              onClick={handleRemovePiece}
+            >
+              ✕
+            </button>
+          </div>
         </div>
         <div className="flex justify-between items-center">
           <span>{title}</span>
