@@ -180,6 +180,11 @@ const sliceArg = {
       window.localStorage.savedata = action.payload
       window.location.reload()
     },
+    resetSaveData(state, action) {
+      dg('[#resetSaveData]')
+      window.localStorage.removeItem('savedata')
+      window.location.reload()
+    },
     fileDownload(state, action) {
       dg('[#fileDownload]')
       const savedata = Rezo.makeSaveData(state.root)
