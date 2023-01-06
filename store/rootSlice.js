@@ -46,6 +46,7 @@ const sliceArg = {
       state.root = Rezo.prepare({ def, facts })
     },
     openStageDropzone(state, action) {
+      state.drawer.app = false
       state.stage.drop = true
     },
     openAppDrawer(state, action) {

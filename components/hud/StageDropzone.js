@@ -2,6 +2,7 @@ import Dropzone from 'react-dropzone'
 import { useSelector, useDispatch } from 'react-redux'
 import Rezo from '../../lib/Rezo'
 import { rd } from '../../store/rootSlice'
+import UploadIcon from './UploadIcon'
 
 export default function StageDropzone(props) {
   const drop = useSelector((state) => state.rezo.stage.drop)
@@ -17,15 +18,19 @@ export default function StageDropzone(props) {
   }
 
   return (
-    <Dropzone onDrop={onDrop}>
-      {({ getRootProps, getInputProps }) => (
+    <Dropzone noClick onDrop={onDrop}>
+      {({ getRootProps, getInputProps, open }) => (
         <section
-          className="absolute top-0 left-0 w-screen h-screen bg-blue-200"
+          className="absolute top-0 left-0 w-screen h-screen flex justify-center items-center bg-slate-500 opacity-75"
           {...getRootProps()}
         >
           <div>
             <input {...getInputProps()} />
-            <p>Drag drop some files here, or click to select files</p>
+            <p className="text-slate-100">
+              <button className="btn glass" onClick={open}>
+                <UploadIcon />
+              </button>
+            </p>
           </div>
         </section>
       )}

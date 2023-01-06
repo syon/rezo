@@ -21,7 +21,11 @@ export default function AppDrawer(props) {
       <div className={`AppDrawer ${active ? 'active' : ''}`}>
         <ul className="menu bg-base-100 w-44 p-2 rounded-box">
           <li>
-            <a>
+            <a
+              onClick={() => {
+                dispatch(rd.openStageDropzone())
+              }}
+            >
               <UploadIcon />
               Upload
             </a>
