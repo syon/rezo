@@ -180,8 +180,8 @@ const sliceArg = {
       window.localStorage.savedata = action.payload
       window.location.reload()
     },
-    resetSaveData(state, action) {
-      dg('[#resetSaveData]')
+    deleteSaveData(state, action) {
+      dg('[#deleteSaveData]')
       window.localStorage.removeItem('savedata')
       window.location.reload()
     },
