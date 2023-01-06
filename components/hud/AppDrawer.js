@@ -12,7 +12,7 @@ export default function AppDrawer(props) {
     <>
       <div className="AppDrawerBtn">
         <label
-          className="btn btn-ghost btn-sm text-slate-400"
+          className="btn btn-ghost btn-sm rounded-none text-slate-400"
           onClick={(e) => dispatch(rd.openAppDrawer())}
         >
           <MenuIcon />

@@ -49,6 +49,9 @@ const sliceArg = {
       state.drawer.app = false
       state.stage.drop = true
     },
+    closeStageDropzone(state, action) {
+      state.stage.drop = false
+    },
     openAppDrawer(state, action) {
       state.drawer.app = true
     },
