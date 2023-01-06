@@ -18,6 +18,9 @@ const sliceArg = {
   name: 'rezo',
   initialState: {
     root: {},
+    stage: {
+      drop: false,
+    },
     drawer: {
       app: false,
       node: false,
@@ -41,6 +44,9 @@ const sliceArg = {
     refresh(state, action) {
       const { def, facts } = state.root
       state.root = Rezo.prepare({ def, facts })
+    },
+    openStageDropzone(state, action) {
+      state.stage.drop = true
     },
     openAppDrawer(state, action) {
       state.drawer.app = true
@@ -164,6 +170,11 @@ const sliceArg = {
         childId: null,
         childPos: {},
       }
+    },
+    loadSaveData(state, action) {
+      dg('[#loadSaveData]', action.payload)
+      window.localStorage.savedata = action.payload
+      window.location.reload()
     },
     fileDownload(state, action) {
       dg('[#fileDownload]')
