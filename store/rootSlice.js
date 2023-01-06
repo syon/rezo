@@ -166,9 +166,9 @@ const sliceArg = {
         childPos: {},
       }
     },
-    copyToClipboard(state, action) {
+    fileDownload(state, action) {
       const text = JSON.stringify(state.root.def, null, 2)
-      window.navigator.clipboard.writeText(text)
+      Rezo.downloadAsJson('rezo.json', text)
     },
     autoSave(state, action) {
       const { def, facts } = state.root

@@ -29,7 +29,7 @@ export default function AppDrawer(props) {
           <li>
             <a
               onClick={() => {
-                dispatch(rd.copyToClipboard())
+                dispatch(rd.fileDownload())
               }}
             >
               <DownloadIcon />
