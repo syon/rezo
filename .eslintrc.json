@@ -1,0 +1,16 @@
+{
+  "env": {
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "next/core-web-vitals",
+    "plugin:import/recommended",
+    "plugin:import/warnings",
+    "prettier"
+  ],
+  "rules": {
+    "no-unused-vars": 0,
+    "vars-on-top": 2
+  }
+}
