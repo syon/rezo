@@ -41,7 +41,6 @@ const sliceArg = {
     refresh(state, action) {
       const { def, facts } = state.root
       state.root = Rezo.prepare({ def, facts })
-      slice.caseReducers.autoSave(state, action)
     },
     openAppDrawer(state, action) {
       state.drawer.app = true
@@ -167,14 +166,14 @@ const sliceArg = {
       }
     },
     fileDownload(state, action) {
-      const text = JSON.stringify(state.root.def, null, 2)
-      Rezo.downloadAsJson('rezo.json', text)
+      dg('[#fileDownload]')
+      const savedata = Rezo.makeSaveData(state.root)
+      Rezo.downloadAsJson('rezo.json', savedata)
     },
     autoSave(state, action) {
-      const { def, facts } = state.root
-      const data = { def, facts }
-      const text = JSON.stringify(data, null, 2)
-      window.localStorage.savedata = text
+      dg('[#autoSave]')
+      const savedata = Rezo.makeSaveData(state.root)
+      window.localStorage.savedata = savedata
     },
   },
   // https://redux-toolkit.js.org/api/createAsyncThunk

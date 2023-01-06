@@ -23,6 +23,10 @@ export default function Node(props) {
     dispatch(rd.moveNode({ id, x, y }))
   }
 
+  const onDragEnd = () => {
+    dispatch(rd.autoSave())
+  }
+
   const pieceEntries = Object.entries(pieces || {})
   const percentText = calcPercent(pieceEntries)
 
@@ -60,6 +64,7 @@ export default function Node(props) {
       draggable={draggable}
       onClick={onClick}
       onDragMove={onDragMove}
+      onDragEnd={onDragEnd}
     >
       <Text x={10} y={-15} text={id} opacity={0.3} />
       <Text x={135} y={-15} text={posText} opacity={0.3} />
