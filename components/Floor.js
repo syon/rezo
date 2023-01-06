@@ -1,13 +1,15 @@
 import React from 'react'
-import Hud from './Hud'
+import AppDrawer from './hud/AppDrawer'
+import NodeDrawer from './hud/NodeDrawer'
 
 const Stage = React.lazy(() => import('./Stage'))
 
 const FloorComponent = () => {
   return (
     <React.Suspense fallback={<div>Loading...</div>}>
-      <Hud />
       <Stage />
+      <NodeDrawer />
+      <AppDrawer />
     </React.Suspense>
   )
 }

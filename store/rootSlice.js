@@ -18,7 +18,10 @@ const sliceArg = {
   name: 'rezo',
   initialState: {
     root: {},
-    isHud: false,
+    drawer: {
+      app: false,
+      node: false,
+    },
     activeNodeId: null,
     himo: {
       active: false,
@@ -40,8 +43,11 @@ const sliceArg = {
       state.root = Rezo.prepare({ def, facts })
       slice.caseReducers.autoSave(state, action)
     },
+    openAppDrawer(state, action) {
+      state.drawer.app = true
+    },
     activateNode(state, action) {
-      state.isHud = true
+      state.drawer.node = true
       state.activeNodeId = action.payload
     },
     moveNode(state, action) {
@@ -66,7 +72,8 @@ const sliceArg = {
       slice.caseReducers.refresh(state, action)
     },
     closeHud(state) {
-      state.isHud = false
+      state.drawer.app = false
+      state.drawer.node = false
     },
     addPiece(state, action) {
       const { id, text } = action.payload

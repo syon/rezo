@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { sl, rd } from '../store/rootSlice'
-import PieceItem from './hud/PieceItem'
+import { sl, rd } from '../../store/rootSlice'
+import PieceItem from './PieceItem'
 
 export default function Hud(props) {
-  const isHud = useSelector((state) => state.rezo.isHud)
+  const active = useSelector((state) => state.rezo.drawer.node)
   const target = useSelector(sl.gHudTarget)
   const { id, title: rawTitle, pieces } = target
   const dispatch = useDispatch()
@@ -98,7 +98,7 @@ export default function Hud(props) {
   )
 
   return (
-    <div className={`Hud ${isHud ? 'active' : ''}`}>
+    <div className={`Hud ${active ? 'active' : ''}`}>
       <div>
         <div className="text-xs">{id}</div>
         <div className="flex justify-between items-center">

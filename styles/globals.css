@@ -34,6 +34,7 @@ a {
 .Hud {
   transform: translateX(375px);
   position: absolute;
+  top: 0;
   right: 0;
   z-index: 9;
   width: 375px;
@@ -49,4 +50,31 @@ a {
 
 .Hud.active {
   transform: translateX(0);
+}
+
+.AppDrawer {
+  transform: translateX(-200px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  width: 200px;
+  height: 100vh;
+  padding: 1em;
+  font-size: 0.8rem;
+  background-color: hsl(210deg 50% 99% / 80%);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 2px 1px rgb(0 0 0 / 10%);
+  overflow: auto;
+  transition: transform 150ms 0s ease;
+}
+
+.AppDrawer.active {
+  transform: translateX(0);
+}
+
+.AppDrawerBtn {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
