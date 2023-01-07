@@ -41,23 +41,28 @@ export default function AppDrawer(props) {
       </div>
       <div className={`AppDrawer ${active ? 'active' : ''}`}>
         <div className="h-full flex flex-col justify-between">
-          <ul className="menu bg-base-100 w-44 p-2 rounded-box">
-            <li>
-              <a onClick={handleLoad}>
-                <UploadIcon /> Load
-              </a>
-            </li>
-            <li>
-              <a onClick={handleSave}>
-                <DownloadIcon /> Save
-              </a>
-            </li>
-            <li>
-              <a onClick={handlePNG}>
-                <PhotoIcon /> PNG
-              </a>
-            </li>
-          </ul>
+          <div>
+            <div className="mb-4">
+              <h1 className="text-2xl font-bold text-slate-400">Rezo</h1>
+            </div>
+            <ul className="menu bg-base-100 w-44 p-2 rounded-box">
+              <li>
+                <a onClick={handleLoad}>
+                  <UploadIcon /> Load
+                </a>
+              </li>
+              <li>
+                <a onClick={handleSave}>
+                  <DownloadIcon /> Save
+                </a>
+              </li>
+              <li>
+                <a onClick={handlePNG}>
+                  <PhotoIcon /> PNG
+                </a>
+              </li>
+            </ul>
+          </div>
 
           <ul className="menu bg-base-100 w-44 p-2 rounded-box">
             <li>

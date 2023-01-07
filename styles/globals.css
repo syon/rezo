@@ -62,7 +62,7 @@ a {
   height: 100vh;
   padding: 1em;
   font-size: 0.8rem;
-  background-color: hsl(210deg 50% 99% / 80%);
+  background-color: hsl(210deg 40% 93% / 80%);
   backdrop-filter: blur(4px);
   box-shadow: 0 0 2px 1px rgb(0 0 0 / 10%);
   overflow: auto;
