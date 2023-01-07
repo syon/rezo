@@ -31,6 +31,11 @@ const sliceArg = {
       childId: null,
       childPos: {},
     },
+    teleport: {
+      active: false,
+      piece: null,
+      node: null,
+    },
   },
   selectors: {
     gHudTarget(globalState) {
@@ -78,6 +83,27 @@ const sliceArg = {
       const fact = action.payload
       const { facts } = state.root
       _.pull(facts, fact)
+      slice.caseReducers.refresh(state, action)
+    },
+    tereportPieceFrom(state, action) {
+      dg('[#tereportPieceFrom]', action.payload)
+      const { node, piece } = action.payload
+      state.teleport.active = true
+      state.teleport.piece = piece
+      state.teleport.node = node
+    },
+    tereportPieceTo(state, action) {
+      dg('[#tereportPieceTo]', action.payload)
+      const toNodeId = action.payload
+      const { structure } = state.root.def
+      const { node: fromNodeId, piece: pId } = state.teleport
+      dg({ fromNodeId, pId })
+      structure[toNodeId].pieces[pId] = structure[fromNodeId].pieces[pId]
+      _.unset(structure[fromNodeId].pieces, pId)
+      state.teleport.active = false
+      state.teleport.piece = null
+      state.teleport.node = null
+      slice.caseReducers.autoSave(state, action)
       slice.caseReducers.refresh(state, action)
     },
     closeHud(state) {

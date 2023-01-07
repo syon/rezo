@@ -8,6 +8,7 @@ const isDebug = false
 export default function Node(props) {
   const { id, pos, title, completed, pieces } = props
   const himo = useSelector((state) => state.rezo.himo)
+  const teleport = useSelector((state) => state.rezo.teleport)
   const [draggable, setDraggable] = useState(true)
   const dispatch = useDispatch()
 
@@ -15,6 +16,8 @@ export default function Node(props) {
     e.cancelBubble = true
     if (himo.active) {
       dispatch(rd.endHimo(id))
+    } else if (teleport.active) {
+      dispatch(rd.tereportPieceTo(id))
     } else {
       dispatch(rd.activateNode(id))
     }
@@ -35,8 +38,12 @@ export default function Node(props) {
   const pieceList = pieceEntries.map(([k, p], i) => {
     const y = 25 * i + 50
     const mark = p.completed ? '✅' : '⬜'
+    const handleDblClickPiece = (e) => {
+      e.cancelBubble = true
+      dispatch(rd.tereportPieceFrom({ node: id, piece: k }))
+    }
     return (
-      <Group key={k}>
+      <Group key={k} onDblClick={handleDblClickPiece}>
         <Text x={20} y={y} text={p.title} />
         <Text x={170} y={y} text={mark} />
       </Group>
