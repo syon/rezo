@@ -3,7 +3,9 @@ import MenuIcon from './MenuIcon'
 import UploadIcon from './UploadIcon'
 import DownloadIcon from './DownloadIcon'
 import DeleteIcon from './DeleteIcon'
+import PhotoIcon from './PhotoIcon'
 import { rd } from '../../store/rootSlice'
+import { getStageRef } from '../Stage'
 
 export default function AppDrawer(props) {
   const active = useSelector((state) => state.rezo.drawer.app)
@@ -15,6 +17,12 @@ export default function AppDrawer(props) {
 
   const handleSave = () => {
     dispatch(rd.fileDownload())
+  }
+
+  const handlePNG = () => {
+    const stage = getStageRef()
+    const url = stage.toDataURL({ pixelRatio: 2 })
+    dispatch(rd.downloadAsPNG(url))
   }
 
   const handleDelete = () => {
@@ -42,6 +50,11 @@ export default function AppDrawer(props) {
             <li>
               <a onClick={handleSave}>
                 <DownloadIcon /> Save
+              </a>
+            </li>
+            <li>
+              <a onClick={handlePNG}>
+                <PhotoIcon /> PNG
               </a>
             </li>
           </ul>

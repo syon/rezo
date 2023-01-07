@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
-import { Stage, Layer, Text } from 'react-konva'
+import { Stage, Layer } from 'react-konva'
 import { useSelector, useDispatch } from 'react-redux'
 import { rd, erd } from '../store/rootSlice'
 import Rezo from '../lib/Rezo'
 import Himo from './Himo'
 
+let stageRef = null
+
 const StageComponent = () => {
   const rezoRoot = useSelector((state) => state.rezo.root)
   const [pos, setPos] = useState({})
   const dispatch = useDispatch()
+  stageRef = React.useRef()
 
   React.useEffect(() => {
     dispatch(erd.initRoot())
@@ -41,6 +44,7 @@ const StageComponent = () => {
       onClick={handleStageClick}
       onDblClick={handleStageDblClick}
       onMouseMove={handleStageMove}
+      ref={stageRef}
     >
       <Layer>
         {boxes}
@@ -52,3 +56,5 @@ const StageComponent = () => {
 }
 
 export default StageComponent
+
+export const getStageRef = () => stageRef.current

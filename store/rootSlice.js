@@ -190,6 +190,11 @@ const sliceArg = {
       const savedata = Rezo.makeSaveData(state.root)
       Rezo.downloadAsJson('rezo.json', savedata)
     },
+    downloadAsPNG(state, action) {
+      dg('[#downloadAsPNG]')
+      const url = action.payload
+      Rezo.downloadByUrl('rezo.png', url)
+    },
     autoSave(state, action) {
       dg('[#autoSave]')
       const savedata = Rezo.makeSaveData(state.root)
