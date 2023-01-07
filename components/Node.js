@@ -3,6 +3,8 @@ import { Group, Rect, Line, Text } from 'react-konva'
 import { useSelector, useDispatch } from 'react-redux'
 import { rd } from '../store/rootSlice'
 
+const isDebug = false
+
 export default function Node(props) {
   const { id, pos, title, completed, pieces } = props
   const himo = useSelector((state) => state.rezo.himo)
@@ -66,8 +68,8 @@ export default function Node(props) {
       onDragMove={onDragMove}
       onDragEnd={onDragEnd}
     >
-      <Text x={10} y={-15} text={id} opacity={0.3} />
-      <Text x={135} y={-15} text={posText} opacity={0.3} />
+      {isDebug && <Text x={10} y={-15} text={id} opacity={0.3} />}
+      {isDebug && <Text x={135} y={-15} text={posText} opacity={0.3} />}
       <Rect
         x={0}
         y={0}
