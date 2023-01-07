@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Group, Rect, Line, Text } from 'react-konva'
 import { useSelector, useDispatch } from 'react-redux'
+import NodePiece from './NodePiece'
 import { rd } from '../store/rootSlice'
 
 const isDebug = false
@@ -35,19 +36,15 @@ export default function Node(props) {
   const pieceEntries = Object.entries(pieces || {})
   const percentText = calcPercent(pieceEntries)
 
+  const gx = pos?.x || 0
+  const gy = pos?.y || 0
+  const boxW = 200
+
   const pieceList = pieceEntries.map(([k, p], i) => {
-    const y = 25 * i + 50
-    const mark = p.completed ? '✅' : '⬜'
-    const handleDblClickPiece = (e) => {
-      e.cancelBubble = true
-      const pos = { x: gx + boxW - 10, y: gy + y + 5 }
-      dispatch(rd.tereportPieceFrom({ node: id, piece: k, pos }))
-    }
+    const gPos = { x: gx, y: gy }
+    const oPos = { x: boxW - 10, y: 25 * i + 50 }
     return (
-      <Group key={k} onDblClick={handleDblClickPiece}>
-        <Text x={20} y={y} text={p.title} />
-        <Text x={170} y={y} text={mark} />
-      </Group>
+      <NodePiece key={k} nid={id} pid={k} piece={p} gPos={gPos} oPos={oPos} />
     )
   })
 
@@ -57,9 +54,6 @@ export default function Node(props) {
     dispatch(rd.startHimo({ id, pos }))
   }
 
-  const gx = pos?.x || 0
-  const gy = pos?.y || 0
-  const boxW = 200
   const boxH = 55 + 25 * pieceList.length
   const posText = `x:${gx} y:${gy}`
   const nodeCompleted = completed ? '✅' : '⬜'
