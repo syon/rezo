@@ -50,6 +50,16 @@ const sliceArg = {
       const { def, facts } = state.root
       state.root = Rezo.prepare({ def, facts })
     },
+    autoSave(state, action) {
+      dg('[#autoSave]')
+      const savedata = Rezo.makeSaveData(state.root)
+      window.localStorage.savedata = savedata
+    },
+    refreshAndSave(state, action) {
+      dg('[#refreshAndSave]')
+      slice.caseReducers.refresh(state, action)
+      slice.caseReducers.autoSave(state, action)
+    },
     openStageDropzone(state, action) {
       state.drawer.app = false
       state.stage.drop = true
@@ -97,14 +107,14 @@ const sliceArg = {
       const toNodeId = action.payload
       const { structure } = state.root.def
       const { node: fromNodeId, piece: pId } = state.teleport
-      dg({ fromNodeId, pId })
-      structure[toNodeId].pieces[pId] = structure[fromNodeId].pieces[pId]
-      _.unset(structure[fromNodeId].pieces, pId)
+      if (fromNodeId !== toNodeId) {
+        structure[toNodeId].pieces[pId] = structure[fromNodeId].pieces[pId]
+        _.unset(structure[fromNodeId].pieces, pId)
+      }
       state.teleport.active = false
       state.teleport.piece = null
       state.teleport.node = null
-      slice.caseReducers.autoSave(state, action)
-      slice.caseReducers.refresh(state, action)
+      slice.caseReducers.refreshAndSave(state, action)
     },
     closeHud(state) {
       state.drawer.app = false
@@ -116,21 +126,21 @@ const sliceArg = {
       const pieceId = Math.random().toString(36).slice(-4)
       def.structure[id].pieces[pieceId] = { sort: 0 }
       def.master[pieceId] = { title: text }
-      slice.caseReducers.refresh(state, action)
+      slice.caseReducers.refreshAndSave(state, action)
     },
     editPiece(state, action) {
       dg('[#editPiece]', action.payload)
       const { id: pieceId, title } = action.payload
       const { def } = state.root
       def.master[pieceId].title = title
-      slice.caseReducers.refresh(state, action)
+      slice.caseReducers.refreshAndSave(state, action)
     },
     removePiece(state, action) {
       dg('[#removePiece]', action.payload)
       const pieceId = action.payload
       const { def } = state.root
       _.unset(def.structure[state.activeNodeId].pieces, pieceId)
-      slice.caseReducers.refresh(state, action)
+      slice.caseReducers.refreshAndSave(state, action)
     },
     changePieceSort(state, action) {
       dg('[#changePieceSort]', action.payload)
@@ -139,7 +149,7 @@ const sliceArg = {
       const pieces = def.structure[state.activeNodeId].pieces
       const newPieces = Rezo.changePiecesSort(pieces, pieceId, isUp)
       def.structure[state.activeNodeId].pieces = newPieces
-      slice.caseReducers.refresh(state, action)
+      slice.caseReducers.refreshAndSave(state, action)
     },
     newNode(state, action) {
       dg('[#newNode]', action.payload)
@@ -148,7 +158,7 @@ const sliceArg = {
       const id = Math.random().toString(36).slice(-4)
       def.structure[id] = { pos, pieces: {} }
       def.master[id] = { title: '新しい項目' }
-      slice.caseReducers.refresh(state, action)
+      slice.caseReducers.refreshAndSave(state, action)
     },
     addNode(state, action) {
       dg('[#addNode]', action.payload)
@@ -159,7 +169,7 @@ const sliceArg = {
         pos: { x: curPos.x - 250, y: curPos.y },
         pieces: {},
       }
-      slice.caseReducers.refresh(state, action)
+      slice.caseReducers.refreshAndSave(state, action)
     },
     editNode(state, action) {
       dg('[#editNode]', action.payload, state.activeNodeId)
@@ -168,13 +178,13 @@ const sliceArg = {
       const tgtMaster = def.master[state.activeNodeId] || {}
       tgtMaster.title = title
       def.master[state.activeNodeId] = tgtMaster
-      slice.caseReducers.refresh(state, action)
+      slice.caseReducers.refreshAndSave(state, action)
     },
     removeNode(state, action) {
       dg('[#removeNode]')
       const { def } = state.root
       _.unset(def.structure, state.activeNodeId)
-      slice.caseReducers.refresh(state, action)
+      slice.caseReducers.refreshAndSave(state, action)
       slice.caseReducers.closeHud(state, action)
     },
     startHimo(state, action) {
@@ -192,7 +202,7 @@ const sliceArg = {
       // TODO: Check Infinite Loop
       def.structure[parentId].pieces[childId] = { sort: 0 }
       slice.caseReducers.cancelHimo(state, action)
-      slice.caseReducers.refresh(state, action)
+      slice.caseReducers.refreshAndSave(state, action)
     },
     cancelHimo(state, action) {
       state.himo = {
@@ -220,11 +230,6 @@ const sliceArg = {
       dg('[#downloadAsPNG]')
       const url = action.payload
       Rezo.downloadByUrl('rezo.png', url)
-    },
-    autoSave(state, action) {
-      dg('[#autoSave]')
-      const savedata = Rezo.makeSaveData(state.root)
-      window.localStorage.savedata = savedata
     },
   },
   // https://redux-toolkit.js.org/api/createAsyncThunk
