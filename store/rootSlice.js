@@ -33,6 +33,7 @@ const sliceArg = {
     },
     teleport: {
       active: false,
+      pos: {},
       piece: null,
       node: null,
     },
@@ -97,8 +98,9 @@ const sliceArg = {
     },
     tereportPieceFrom(state, action) {
       dg('[#tereportPieceFrom]', action.payload)
-      const { node, piece } = action.payload
+      const { node, piece, pos } = action.payload
       state.teleport.active = true
+      state.teleport.pos = pos
       state.teleport.piece = piece
       state.teleport.node = node
     },
@@ -112,6 +114,7 @@ const sliceArg = {
         _.unset(structure[fromNodeId].pieces, pId)
       }
       state.teleport.active = false
+      state.teleport.pos = {}
       state.teleport.piece = null
       state.teleport.node = null
       slice.caseReducers.refreshAndSave(state, action)

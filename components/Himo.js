@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Wire from './Wire'
 
-export default function PieceItem(props) {
+export default function Himo(props) {
   const { mousepos } = props
   const himo = useSelector((state) => state.rezo.himo)
 

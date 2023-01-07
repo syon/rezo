@@ -40,7 +40,8 @@ export default function Node(props) {
     const mark = p.completed ? '✅' : '⬜'
     const handleDblClickPiece = (e) => {
       e.cancelBubble = true
-      dispatch(rd.tereportPieceFrom({ node: id, piece: k }))
+      const pos = { x: gx + boxW - 10, y: gy + y + 5 }
+      dispatch(rd.tereportPieceFrom({ node: id, piece: k, pos }))
     }
     return (
       <Group key={k} onDblClick={handleDblClickPiece}>

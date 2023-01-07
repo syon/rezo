@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { rd, erd } from '../store/rootSlice'
 import Rezo from '../lib/Rezo'
 import Himo from './Himo'
+import TeleportWire from './TeleportWire'
 
 let stageRef = null
 
@@ -50,6 +51,7 @@ const StageComponent = () => {
         {boxes}
         {binds}
         <Himo mousepos={pos} />
+        <TeleportWire mousepos={pos} />
       </Layer>
     </Stage>
   )
