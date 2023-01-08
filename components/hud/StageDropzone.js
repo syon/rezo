@@ -13,8 +13,8 @@ export default function StageDropzone(props) {
   }
 
   const onDrop = async (acceptedFiles) => {
-    const savedata = await Rezo.receiveJsonFile(acceptedFiles)
-    dispatch(rd.loadSaveData(savedata))
+    const savedataText = await Rezo.receiveJsonFile(acceptedFiles)
+    dispatch(rd.importSaveData(savedataText))
   }
 
   const onClickOutside = () => {
