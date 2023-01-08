@@ -22,8 +22,8 @@ const FloorComponent = () => {
       </div>
       <NodeDrawer />
       <AppDrawer />
-      <StageDropzone />
       <MemoryDialog />
+      <StageDropzone />
     </React.Suspense>
   )
 }

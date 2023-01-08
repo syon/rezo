@@ -213,6 +213,12 @@ const sliceArg = {
         childPos: {},
       }
     },
+    loadFromMemory(state, action) {
+      dg('[#loadFromMemory]', action.payload)
+      const memId = action.payload
+      Rezo.loadSavedataByMemoryId(memId)
+      window.location.reload()
+    },
     loadSaveData(state, action) {
       dg('[#loadSaveData]', action.payload)
       const savedata = Rezo.restoreSaveData(action.payload)

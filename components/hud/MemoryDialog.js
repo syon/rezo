@@ -1,23 +1,26 @@
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import Rezo from '../../lib/Rezo'
-import { sl, rd } from '../../store/rootSlice'
+import { rd } from '../../store/rootSlice'
 import FolderIcon from './FolderIcon'
 import UploadIcon from './UploadIcon'
-import DeleteIcon from './DeleteIcon'
 import Btn from '../Btn'
 
 export default function MemoryDialog(props) {
-  const root = useSelector(sl.gRoot)
   const memories = Rezo.getMemoriesSummary()
+  const dispatch = useDispatch()
 
   const memoryElems = memories.map((m) => {
+    const handleClick = () => {
+      dispatch(rd.loadFromMemory(m.id))
+    }
+
     return (
       <tr key={m.id}>
         <td>▶</td>
         <td>{m.head.title}</td>
         <td>{m.meta.lastUpdateLabel}</td>
         <td>
-          <Btn ghost size="sm">
+          <Btn ghost size="sm" onClick={handleClick}>
             <UploadIcon />
           </Btn>
         </td>
@@ -35,7 +38,10 @@ export default function MemoryDialog(props) {
               <FolderIcon />
               <span className="ml-2">Save data</span>
             </div>
-            <label htmlFor="modal-MemoryDialog" className="btn btn-ghost btn-xs">
+            <label
+              htmlFor="modal-MemoryDialog"
+              className="btn btn-ghost btn-xs"
+            >
               ✕
             </label>
           </h3>
@@ -47,20 +53,10 @@ export default function MemoryDialog(props) {
                   <th></th>
                   <th>Title</th>
                   <th>Last Update</th>
-                  <th></th>
+                  <th>Load</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td className="text-slate-400">(auto)</td>
-                  <td className="text-violet-500">{root.def.head.title}</td>
-                  <td className="text-violet-500">
-                    {Rezo.getTimestampLabel(root.def.meta.lastUpdate)}
-                  </td>
-                  <td className="text-slate-400"></td>
-                </tr>
-                {memoryElems}
-              </tbody>
+              <tbody>{memoryElems}</tbody>
             </table>
           </div>
         </div>
