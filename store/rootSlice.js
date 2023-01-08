@@ -8,7 +8,7 @@ const dg = Debug('@:$:slice')
 const sliceArg = {
   name: 'rezo',
   initialState: {
-    root: {},
+    root: null,
     stage: {
       drop: false,
     },
@@ -30,6 +30,10 @@ const sliceArg = {
     },
   },
   selectors: {
+    gRoot(globalState) {
+      const { root } = globalState.rezo
+      return root || Rezo.loadBlankRootData()
+    },
     gTargetNode(globalState) {
       const { root, activeNodeId } = globalState.rezo
       if (!activeNodeId) return {}

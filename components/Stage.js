@@ -34,8 +34,8 @@ const StageComponent = () => {
     setPos({ x, y })
   }
 
-  const boxes = Rezo.createAllBoxes(rezoRoot.boxes)
-  const binds = Rezo.createAllWires(rezoRoot)
+  const nodeElems = Rezo.createAllBoxes(rezoRoot?.boxes)
+  const wireElems = Rezo.createAllWires(rezoRoot)
 
   return (
     <Stage
@@ -48,8 +48,8 @@ const StageComponent = () => {
       ref={stageRef}
     >
       <Layer>
-        {boxes}
-        {binds}
+        {nodeElems}
+        {wireElems}
         <Himo mousepos={pos} />
         <TeleportWire mousepos={pos} />
       </Layer>

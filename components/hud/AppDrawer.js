@@ -9,6 +9,7 @@ import { getStageRef } from '../Stage'
 
 export default function AppDrawer(props) {
   const { app: active } = useSelector((s) => s.rezo.drawer)
+  const root = useSelector(sl.gRoot)
   const dispatch = useDispatch()
 
   const handleLoad = () => {
@@ -31,13 +32,16 @@ export default function AppDrawer(props) {
 
   return (
     <>
-      <div className="AppDrawerBtn">
-        <label
-          className="btn btn-ghost btn-sm rounded-none text-slate-400"
-          onClick={(e) => dispatch(rd.openAppDrawer())}
-        >
-          <MenuIcon />
-        </label>
+      <div className="TopLeftArea">
+        <div className="flex items-center">
+          <label
+            className="btn btn-ghost btn-sm rounded-none text-slate-400"
+            onClick={(e) => dispatch(rd.openAppDrawer())}
+          >
+            <MenuIcon />
+          </label>
+          <div className="ml-3 text-slate-400">{root.def.head.title}</div>
+        </div>
       </div>
       <div className={`AppDrawer ${active ? 'active' : ''}`}>
         <div className="h-full flex flex-col justify-between">
