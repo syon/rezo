@@ -79,3 +79,12 @@ a {
   top: 0;
   left: 0;
 }
+
+.MemoryDialog {
+  tr.active {
+    td {
+      color: rgb(14 165 233);
+      background-color: rgb(240 249 255);
+    }
+  }
+}

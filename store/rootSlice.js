@@ -219,6 +219,11 @@ const sliceArg = {
       Rezo.changeActiveMemoryId(memId)
       window.location.reload()
     },
+    removeFromMemory(state, action) {
+      dg('[#removeFromMemory]', action.payload)
+      const memId = action.payload
+      Rezo.removeMemoryById(memId)
+    },
     importSaveData(state, action) {
       dg('[#importSaveData]', action.payload)
       const savedataText = action.payload

@@ -1,30 +1,43 @@
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import Rezo from '../../lib/Rezo'
 import { rd } from '../../store/rootSlice'
 import FolderIcon from './FolderIcon'
 import UploadIcon from './UploadIcon'
+import DeleteIcon from './DeleteIcon'
 import Btn from '../Btn'
 
 export default function MemoryDialog(props) {
   const activeMemoryId = Rezo.getActiveMemoryId()
-  const memories = Rezo.getMemoriesSummary()
+  const [memories, setMemories] = useState(Rezo.getMemoriesSummary())
   const dispatch = useDispatch()
 
   const memoryElems = memories.map((m) => {
     const active = m.id === activeMemoryId
-    const handleClick = () => {
+    const handleLoad = () => {
       dispatch(rd.loadFromMemory(m.id))
+    }
+    const handleDelete = () => {
+      dispatch(rd.removeFromMemory(m.id))
+      setMemories(Rezo.getMemoriesSummary())
     }
 
     return (
-      <tr key={m.id} className={active && 'text-sky-500'}>
-        <td className={active && 'bg-sky-50'}>{active && '▶️'}</td>
-        <td className={active && 'bg-sky-50'}>{m.head.title}</td>
-        <td className={active && 'bg-sky-50'}>{m.meta.lastUpdateLabel}</td>
-        <td className={active && 'bg-sky-50'}>
+      <tr key={m.id} className={active && 'active'}>
+        <td>{active && '▶️'}</td>
+        <td>{m.head.title}</td>
+        <td>{m.meta.lastUpdateLabel}</td>
+        <td>
           {!active && (
-            <Btn ghost size="sm" onClick={handleClick}>
+            <Btn ghost size="sm" onClick={handleLoad}>
               <UploadIcon />
+            </Btn>
+          )}
+        </td>
+        <td className="text-red-700">
+          {!active && (
+            <Btn ghost size="sm" onClick={handleDelete}>
+              <DeleteIcon />
             </Btn>
           )}
         </td>
@@ -36,7 +49,7 @@ export default function MemoryDialog(props) {
     <div className="MemoryDialog">
       <input type="checkbox" id="modal-MemoryDialog" className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box w-11/12 max-w-3xl">
+        <div className="modal-box w-11/12 max-w-4xl">
           <h3 className="flex justify-between items-center font-bold text-lg">
             <div className="flex items-center">
               <FolderIcon />
@@ -58,6 +71,7 @@ export default function MemoryDialog(props) {
                   <th>Title</th>
                   <th>Last Update</th>
                   <th>Load</th>
+                  <th>Delete</th>
                 </tr>
               </thead>
               <tbody>{memoryElems}</tbody>
