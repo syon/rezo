@@ -53,8 +53,7 @@ const sliceArg = {
     },
     autoSave(state, action) {
       dg('[#autoSave]')
-      const savedata = Rezo.makeSaveData(state.root)
-      window.localStorage.savedata = savedata
+      Rezo.setAutoSavedata(state.root)
     },
     refreshAndSave(state, action) {
       dg('[#refreshAndSave]')
@@ -216,7 +215,8 @@ const sliceArg = {
     },
     loadSaveData(state, action) {
       dg('[#loadSaveData]', action.payload)
-      window.localStorage.savedata = action.payload
+      const savedata = Rezo.restoreSaveData(action.payload)
+      Rezo.setAutoSavedata(savedata)
       window.location.reload()
     },
     deleteSaveData(state, action) {
