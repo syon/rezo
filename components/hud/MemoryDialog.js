@@ -6,6 +6,7 @@ import UploadIcon from './UploadIcon'
 import Btn from '../Btn'
 
 export default function MemoryDialog(props) {
+  const activeMemoryId = Rezo.getActiveMemoryId()
   const memories = Rezo.getMemoriesSummary()
   const dispatch = useDispatch()
 
@@ -37,6 +38,7 @@ export default function MemoryDialog(props) {
             <div className="flex items-center">
               <FolderIcon />
               <span className="ml-2">Save data</span>
+              <span>(activeMemoryId: {activeMemoryId})</span>
             </div>
             <label
               htmlFor="modal-MemoryDialog"
