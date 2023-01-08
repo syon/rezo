@@ -1,0 +1,64 @@
+{
+  "def": {
+    "head": {
+      "title": "Rezoチュートリアル"
+    },
+    "meta": {
+      "lastUpdate": ""
+    },
+    "structure": {
+      "aaaa": {
+        "pos": {
+          "x": 544,
+          "y": 121
+        },
+        "pieces": {
+          "bbbb": {
+            "sort": 0
+          },
+          "cccc": {
+            "sort": 1
+          }
+        }
+      },
+      "bbbb": {
+        "pos": {
+          "x": 294,
+          "y": 121
+        },
+        "pieces": {
+          "vl2g": {
+            "sort": 0
+          },
+          "zy3a": {
+            "sort": 0
+          },
+          "xbsl": {
+            "sort": 0
+          }
+        }
+      }
+    },
+    "master": {
+      "aaaa": {
+        "title": "Rezo使い方マスター"
+      },
+      "bbbb": {
+        "title": "考え方の理解"
+      },
+      "cccc": {
+        "title": "操作方法の習得"
+      },
+      "vl2g": {
+        "title": "「達成管理」ツールである"
+      },
+      "zy3a": {
+        "title": "達成解像度向上が命名由来"
+      },
+      "xbsl": {
+        "title": "コツは「状態の宣言」"
+      }
+    }
+  },
+  "facts": ["「達成管理」ツールである"]
+}

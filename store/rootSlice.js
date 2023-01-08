@@ -40,8 +40,8 @@ const sliceArg = {
   reducers: {
     initRoot(state, action) {
       dg('[#initRoot]')
-      const d = JSON.parse(window.localStorage.savedata)
-      state.root = Rezo.prepare(d)
+      const { def, facts } = Rezo.loadRoot()
+      state.root = Rezo.prepare({ def, facts })
     },
     refresh(state, action) {
       const { def, facts } = state.root
