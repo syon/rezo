@@ -11,19 +11,22 @@ export default function MemoryDialog(props) {
   const dispatch = useDispatch()
 
   const memoryElems = memories.map((m) => {
+    const active = m.id === activeMemoryId
     const handleClick = () => {
       dispatch(rd.loadFromMemory(m.id))
     }
 
     return (
-      <tr key={m.id}>
-        <td>▶</td>
-        <td>{m.head.title}</td>
-        <td>{m.meta.lastUpdateLabel}</td>
-        <td>
-          <Btn ghost size="sm" onClick={handleClick}>
-            <UploadIcon />
-          </Btn>
+      <tr key={m.id} className={active && 'text-sky-500'}>
+        <td className={active && 'bg-sky-50'}>{active && '▶️'}</td>
+        <td className={active && 'bg-sky-50'}>{m.head.title}</td>
+        <td className={active && 'bg-sky-50'}>{m.meta.lastUpdateLabel}</td>
+        <td className={active && 'bg-sky-50'}>
+          {!active && (
+            <Btn ghost size="sm" onClick={handleClick}>
+              <UploadIcon />
+            </Btn>
+          )}
         </td>
       </tr>
     )
@@ -38,7 +41,6 @@ export default function MemoryDialog(props) {
             <div className="flex items-center">
               <FolderIcon />
               <span className="ml-2">Save data</span>
-              <span>(activeMemoryId: {activeMemoryId})</span>
             </div>
             <label
               htmlFor="modal-MemoryDialog"
