@@ -7,7 +7,7 @@ export default function MemoryDialog(props) {
     return (
       <tr key={m.id}>
         <td>{m.head.title}</td>
-        <td>{m.meta.lastUpdate}</td>
+        <td>{m.meta.lastUpdateLabel}</td>
       </tr>
     )
   })
