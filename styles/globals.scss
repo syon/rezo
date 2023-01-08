@@ -10,6 +10,7 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background: #f6f9fc;
   overflow: hidden;
+  font-feature-settings: 'palt';
 }
 
 a {
@@ -73,7 +74,7 @@ a {
   }
 }
 
-.AppDrawerBtn {
+.TopLeftArea {
   position: absolute;
   top: 0;
   left: 0;
