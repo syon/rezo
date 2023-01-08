@@ -46,10 +46,10 @@ a {
   box-shadow: 0 0 2px 1px rgb(0 0 0 / 10%);
   overflow: auto;
   transition: transform 150ms 0s ease;
-}
 
-.Hud.active {
-  transform: translateX(0);
+  &.active {
+    transform: translateX(0);
+  }
 }
 
 .AppDrawer {
@@ -67,10 +67,10 @@ a {
   box-shadow: 0 0 2px 1px rgb(0 0 0 / 10%);
   overflow: auto;
   transition: transform 150ms 0s ease;
-}
 
-.AppDrawer.active {
-  transform: translateX(0);
+  &.active {
+    transform: translateX(0);
+  }
 }
 
 .AppDrawerBtn {

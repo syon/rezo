@@ -1,6 +1,6 @@
 import Debug from 'debug'
 import { Provider } from 'react-redux'
-import '../styles/globals.css'
+import '../styles/globals.scss'
 import store from '../store'
 
 if (process.env.NODE_ENV === 'development') {
