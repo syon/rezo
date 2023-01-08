@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Stage, Layer } from 'react-konva'
 import { useSelector, useDispatch } from 'react-redux'
-import { rd, erd } from '../store/rootSlice'
+import { rd } from '../store/rootSlice'
 import Rezo from '../lib/Rezo'
 import Himo from './Himo'
 import TeleportWire from './TeleportWire'
@@ -15,7 +15,7 @@ const StageComponent = () => {
   stageRef = React.useRef()
 
   React.useEffect(() => {
-    dispatch(erd.initRoot())
+    dispatch(rd.initRoot())
   }, [dispatch])
 
   const handleStageClick = () => {

@@ -1,18 +1,9 @@
 import Debug from 'debug'
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import Rezo from '../lib/Rezo'
 import _ from 'lodash'
 
 const dg = Debug('@:$:slice')
-
-const initRoot = createAsyncThunk('rezo/initRoot', async () => {
-  if (_.isEmpty(window.localStorage.savedata)) {
-    dg('[#initRoot(Thunk)] Load from remote')
-    return await Rezo.fetchRemote()
-  }
-  dg('[#initRoot(Thunk)] Load from localStorage')
-  return JSON.parse(window.localStorage.savedata)
-})
 
 const sliceArg = {
   name: 'rezo',
@@ -47,6 +38,11 @@ const sliceArg = {
     },
   },
   reducers: {
+    initRoot(state, action) {
+      dg('[#initRoot]')
+      const d = JSON.parse(window.localStorage.savedata)
+      state.root = Rezo.prepare(d)
+    },
     refresh(state, action) {
       const { def, facts } = state.root
       state.root = Rezo.prepare({ def, facts })
@@ -235,19 +231,12 @@ const sliceArg = {
       Rezo.downloadByUrl('rezo.png', url)
     },
   },
-  // https://redux-toolkit.js.org/api/createAsyncThunk
-  extraReducers: (builder) => {
-    builder.addCase(initRoot.fulfilled, (state, action) => {
-      dg('[#initRoot(extra)]', action.payload)
-      state.root = Rezo.prepare(action.payload)
-    })
-  },
 }
 
 const slice = createSlice(sliceArg)
 
 export const sl = sliceArg.selectors
 export const rd = slice.actions
-export const erd = { initRoot }
+export const erd = {}
 
 export default slice.reducer
