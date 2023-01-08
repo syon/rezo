@@ -2,6 +2,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import Rezo from '../../lib/Rezo'
 import { sl, rd } from '../../store/rootSlice'
 import FolderIcon from './FolderIcon'
+import UploadIcon from './UploadIcon'
+import DeleteIcon from './DeleteIcon'
+import Btn from '../Btn'
 
 export default function MemoryDialog(props) {
   const root = useSelector(sl.gRoot)
@@ -13,7 +16,11 @@ export default function MemoryDialog(props) {
         <td>▶</td>
         <td>{m.head.title}</td>
         <td>{m.meta.lastUpdateLabel}</td>
-        <td></td>
+        <td>
+          <Btn ghost size="sm">
+            <UploadIcon />
+          </Btn>
+        </td>
       </tr>
     )
   })
@@ -23,13 +30,18 @@ export default function MemoryDialog(props) {
       <input type="checkbox" id="modal-MemoryDialog" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box w-11/12 max-w-3xl">
-          <h3 className="flex items-center font-bold text-lg">
-            <FolderIcon />
-            <span className="ml-2">Save data</span>
+          <h3 className="flex justify-between items-center font-bold text-lg">
+            <div className="flex items-center">
+              <FolderIcon />
+              <span className="ml-2">Save data</span>
+            </div>
+            <label htmlFor="modal-MemoryDialog" className="btn btn-ghost btn-xs">
+              ✕
+            </label>
           </h3>
 
           <div className="overflow-x-auto mt-8">
-            <table className="table w-full">
+            <table className="table table-compact w-full">
               <thead>
                 <tr>
                   <th></th>
@@ -50,12 +62,6 @@ export default function MemoryDialog(props) {
                 {memoryElems}
               </tbody>
             </table>
-          </div>
-
-          <div className="modal-action">
-            <label htmlFor="modal-MemoryDialog" className="btn">
-              Yay!
-            </label>
           </div>
         </div>
       </div>
