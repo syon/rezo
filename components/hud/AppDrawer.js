@@ -4,6 +4,7 @@ import UploadIcon from './UploadIcon'
 import DownloadIcon from './DownloadIcon'
 import DeleteIcon from './DeleteIcon'
 import PhotoIcon from './PhotoIcon'
+import FolderIcon from './FolderIcon'
 import { sl, rd } from '../../store/rootSlice'
 import { getStageRef } from '../Stage'
 
@@ -67,6 +68,14 @@ export default function AppDrawer(props) {
               </li>
             </ul>
           </div>
+
+          <ul className="menu bg-base-100 w-44 p-2 rounded-box">
+            <li>
+              <label htmlFor="modal-MemoryDialog">
+                <FolderIcon /> Save data
+              </label>
+            </li>
+          </ul>
 
           <ul className="menu bg-base-100 w-44 p-2 rounded-box">
             <li>
