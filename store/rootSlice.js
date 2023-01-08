@@ -30,7 +30,7 @@ const sliceArg = {
     },
   },
   selectors: {
-    gHudTarget(globalState) {
+    gTargetNode(globalState) {
       const { root, activeNodeId } = globalState.rezo
       if (!activeNodeId) return {}
       const node = root.boxes[activeNodeId]
