@@ -1,11 +1,11 @@
 import Dropzone from 'react-dropzone'
 import { useSelector, useDispatch } from 'react-redux'
 import Rezo from '../../lib/Rezo'
-import { rd } from '../../store/rootSlice'
+import { sl, rd } from '../../store/rootSlice'
 import UploadIcon from './UploadIcon'
 
 export default function StageDropzone(props) {
-  const drop = useSelector((state) => state.rezo.stage.drop)
+  const { drop } = useSelector((s) => s.rezo.stage)
   const dispatch = useDispatch()
 
   if (!drop) {

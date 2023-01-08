@@ -8,8 +8,8 @@ const isDebug = false
 
 export default function Node(props) {
   const { id, pos, title, completed, pieces } = props
-  const himo = useSelector((state) => state.rezo.himo)
-  const teleport = useSelector((state) => state.rezo.teleport)
+  const himo = useSelector((s) => s.rezo.himo)
+  const teleport = useSelector((s) => s.rezo.teleport)
   const [draggable, setDraggable] = useState(true)
   const dispatch = useDispatch()
 

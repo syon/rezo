@@ -9,7 +9,7 @@ import TeleportWire from './TeleportWire'
 let stageRef = null
 
 const StageComponent = () => {
-  const rezoRoot = useSelector((state) => state.rezo.root)
+  const rezoRoot = useSelector((s) => s.rezo.root)
   const [pos, setPos] = useState({})
   const dispatch = useDispatch()
   stageRef = React.useRef()

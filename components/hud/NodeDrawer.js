@@ -4,7 +4,7 @@ import { sl, rd } from '../../store/rootSlice'
 import PieceItem from './PieceItem'
 
 export default function NodeDrawer(props) {
-  const active = useSelector((state) => state.rezo.drawer.node)
+  const { node: active } = useSelector((s) => s.rezo.drawer)
   const target = useSelector(sl.gTargetNode)
   const { id, title: rawTitle, pieces } = target
   const dispatch = useDispatch()

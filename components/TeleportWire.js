@@ -3,7 +3,7 @@ import Wire from './Wire'
 
 export default function TeleportWire(props) {
   const { mousepos } = props
-  const tele = useSelector((state) => state.rezo.teleport)
+  const tele = useSelector((s) => s.rezo.teleport)
 
   const sp = tele.pos
   const ep = mousepos

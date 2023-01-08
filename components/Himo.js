@@ -3,7 +3,7 @@ import Wire from './Wire'
 
 export default function Himo(props) {
   const { mousepos } = props
-  const himo = useSelector((state) => state.rezo.himo)
+  const himo = useSelector((s) => s.rezo.himo)
 
   const sp = himo.childPos
   const ep = mousepos

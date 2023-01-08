@@ -4,11 +4,11 @@ import UploadIcon from './UploadIcon'
 import DownloadIcon from './DownloadIcon'
 import DeleteIcon from './DeleteIcon'
 import PhotoIcon from './PhotoIcon'
-import { rd } from '../../store/rootSlice'
+import { sl, rd } from '../../store/rootSlice'
 import { getStageRef } from '../Stage'
 
 export default function AppDrawer(props) {
-  const active = useSelector((state) => state.rezo.drawer.app)
+  const { app: active } = useSelector((s) => s.rezo.drawer)
   const dispatch = useDispatch()
 
   const handleLoad = () => {
