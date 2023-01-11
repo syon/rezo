@@ -1,6 +1,6 @@
 import Btn from './Btn'
 
-export default function EmojiBtn(props) {
+export default function IconBtn(props) {
   const { icon, size, onClick } = props
 
   return (

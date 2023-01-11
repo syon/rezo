@@ -13,8 +13,8 @@ export default function StageDropzone(props) {
   }
 
   const onDrop = async (acceptedFiles) => {
-    const savedata = await Rezo.receiveJsonFile(acceptedFiles)
-    dispatch(rd.loadSaveData(savedata))
+    const savedataText = await Rezo.receiveJsonFile(acceptedFiles)
+    dispatch(rd.importSaveData(savedataText))
   }
 
   const onClickOutside = () => {
@@ -25,7 +25,7 @@ export default function StageDropzone(props) {
     <Dropzone noClick onDrop={onDrop}>
       {({ getRootProps, getInputProps, open }) => (
         <section
-          className="absolute top-0 left-0 w-screen h-screen flex justify-center items-center bg-slate-500 opacity-75"
+          className="StageDropzone absolute top-0 left-0 w-screen h-screen flex justify-center items-center bg-slate-500 opacity-75"
           {...getRootProps()}
           onClick={onClickOutside}
         >

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import StageDropzone from './hud/StageDropzone'
+import MemoryDialog from './hud/MemoryDialog'
 import AppDrawer from './hud/AppDrawer'
 import NodeDrawer from './hud/NodeDrawer'
 import { rd } from '../store/rootSlice'
@@ -21,6 +22,9 @@ const FloorComponent = () => {
       </div>
       <NodeDrawer />
       <AppDrawer />
+      <div onDragOver={onDragOver}>
+        <MemoryDialog />
+      </div>
       <StageDropzone />
     </React.Suspense>
   )

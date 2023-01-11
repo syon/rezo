@@ -53,8 +53,7 @@ const sliceArg = {
     },
     autoSave(state, action) {
       dg('[#autoSave]')
-      const savedata = Rezo.makeSaveData(state.root)
-      window.localStorage.savedata = savedata
+      Rezo.autoSave(state.root)
     },
     refreshAndSave(state, action) {
       dg('[#refreshAndSave]')
@@ -87,14 +86,14 @@ const sliceArg = {
       const fact = action.payload
       const { facts } = state.root
       facts.push(fact)
-      slice.caseReducers.refresh(state, action)
+      slice.caseReducers.refreshAndSave(state, action)
     },
     removeFact(state, action) {
       dg('[#removeFact]')
       const fact = action.payload
       const { facts } = state.root
       _.pull(facts, fact)
-      slice.caseReducers.refresh(state, action)
+      slice.caseReducers.refreshAndSave(state, action)
     },
     tereportPieceFrom(state, action) {
       dg('[#tereportPieceFrom]', action.payload)
@@ -214,9 +213,28 @@ const sliceArg = {
         childPos: {},
       }
     },
-    loadSaveData(state, action) {
-      dg('[#loadSaveData]', action.payload)
-      window.localStorage.savedata = action.payload
+    loadFromMemory(state, action) {
+      dg('[#loadFromMemory]', action.payload)
+      const memId = action.payload
+      Rezo.changeActiveMemoryId(memId)
+      window.location.reload()
+    },
+    removeFromMemory(state, action) {
+      dg('[#removeFromMemory]', action.payload)
+      const memId = action.payload
+      Rezo.removeMemoryById(memId)
+    },
+    importSaveData(state, action) {
+      dg('[#importSaveData]', action.payload)
+      const savedataText = action.payload
+      Rezo.addNewMemory(savedataText)
+      window.location.reload()
+    },
+    createNewSaveData(state, action) {
+      dg('[#createNewSaveData]')
+      const root = Rezo.loadBlankRootData()
+      const savedataText = Rezo.makeSaveData(root)
+      Rezo.addNewMemory(savedataText)
       window.location.reload()
     },
     deleteSaveData(state, action) {

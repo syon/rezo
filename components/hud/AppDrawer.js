@@ -4,6 +4,7 @@ import UploadIcon from './UploadIcon'
 import DownloadIcon from './DownloadIcon'
 import DeleteIcon from './DeleteIcon'
 import PhotoIcon from './PhotoIcon'
+import FolderIcon from './FolderIcon'
 import { sl, rd } from '../../store/rootSlice'
 import { getStageRef } from '../Stage'
 
@@ -11,10 +12,6 @@ export default function AppDrawer(props) {
   const { app: active } = useSelector((s) => s.rezo.drawer)
   const root = useSelector(sl.gRoot)
   const dispatch = useDispatch()
-
-  const handleLoad = () => {
-    dispatch(rd.openStageDropzone())
-  }
 
   const handleSave = () => {
     dispatch(rd.fileDownload())
@@ -51,13 +48,8 @@ export default function AppDrawer(props) {
             </div>
             <ul className="menu bg-base-100 w-44 p-2 rounded-box">
               <li>
-                <a onClick={handleLoad}>
-                  <UploadIcon /> Load
-                </a>
-              </li>
-              <li>
                 <a onClick={handleSave}>
-                  <DownloadIcon /> Save
+                  <DownloadIcon /> Export
                 </a>
               </li>
               <li>
@@ -67,6 +59,14 @@ export default function AppDrawer(props) {
               </li>
             </ul>
           </div>
+
+          <ul className="menu bg-base-100 w-44 p-2 rounded-box">
+            <li>
+              <label htmlFor="modal-MemoryDialog">
+                <FolderIcon /> Save data
+              </label>
+            </li>
+          </ul>
 
           <ul className="menu bg-base-100 w-44 p-2 rounded-box">
             <li>
