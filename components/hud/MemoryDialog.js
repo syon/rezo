@@ -23,7 +23,7 @@ export default function MemoryDialog(props) {
     }
 
     return (
-      <tr key={m.id} className={active && 'active'}>
+      <tr key={m.id} className={active ? 'active' : undefined}>
         <td>{active && '▶️'}</td>
         <td>{m.head.title}</td>
         <td>{m.meta.lastUpdateLabel}</td>
