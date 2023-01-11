@@ -22,7 +22,9 @@ const FloorComponent = () => {
       </div>
       <NodeDrawer />
       <AppDrawer />
-      <MemoryDialog />
+      <div onDragOver={onDragOver}>
+        <MemoryDialog />
+      </div>
       <StageDropzone />
     </React.Suspense>
   )
