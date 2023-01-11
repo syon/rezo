@@ -230,6 +230,13 @@ const sliceArg = {
       Rezo.addNewMemory(savedataText)
       window.location.reload()
     },
+    createNewSaveData(state, action) {
+      dg('[#createNewSaveData]')
+      const root = Rezo.loadBlankRootData()
+      const savedataText = Rezo.makeSaveData(root)
+      Rezo.addNewMemory(savedataText)
+      window.location.reload()
+    },
     deleteSaveData(state, action) {
       dg('[#deleteSaveData]')
       window.localStorage.removeItem('savedata')

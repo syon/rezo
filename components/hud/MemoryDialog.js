@@ -45,6 +45,10 @@ export default function MemoryDialog(props) {
     )
   })
 
+  const handleNew = () => {
+    dispatch(rd.createNewSaveData())
+  }
+
   return (
     <div className="MemoryDialog">
       <input type="checkbox" id="modal-MemoryDialog" className="modal-toggle" />
@@ -55,12 +59,17 @@ export default function MemoryDialog(props) {
               <FolderIcon />
               <span className="ml-2">Save data</span>
             </div>
-            <label
-              htmlFor="modal-MemoryDialog"
-              className="btn btn-ghost btn-xs"
-            >
-              ✕
-            </label>
+            <div className="flex gap-4 items-center">
+              <Btn size="sm" outline primary onClick={handleNew}>
+                Create new data
+              </Btn>
+              <label
+                htmlFor="modal-MemoryDialog"
+                className="btn btn-ghost btn-xs"
+              >
+                ✕
+              </label>
+            </div>
           </h3>
 
           <div className="overflow-x-auto mt-8">
