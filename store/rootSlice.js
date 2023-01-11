@@ -86,14 +86,14 @@ const sliceArg = {
       const fact = action.payload
       const { facts } = state.root
       facts.push(fact)
-      slice.caseReducers.refresh(state, action)
+      slice.caseReducers.refreshAndSave(state, action)
     },
     removeFact(state, action) {
       dg('[#removeFact]')
       const fact = action.payload
       const { facts } = state.root
       _.pull(facts, fact)
-      slice.caseReducers.refresh(state, action)
+      slice.caseReducers.refreshAndSave(state, action)
     },
     tereportPieceFrom(state, action) {
       dg('[#tereportPieceFrom]', action.payload)
