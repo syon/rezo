@@ -13,10 +13,6 @@ export default function AppDrawer(props) {
   const root = useSelector(sl.gRoot)
   const dispatch = useDispatch()
 
-  const handleLoad = () => {
-    dispatch(rd.openStageDropzone())
-  }
-
   const handleSave = () => {
     dispatch(rd.fileDownload())
   }
@@ -52,13 +48,8 @@ export default function AppDrawer(props) {
             </div>
             <ul className="menu bg-base-100 w-44 p-2 rounded-box">
               <li>
-                <a onClick={handleLoad}>
-                  <UploadIcon /> Load
-                </a>
-              </li>
-              <li>
                 <a onClick={handleSave}>
-                  <DownloadIcon /> Save
+                  <DownloadIcon /> Export
                 </a>
               </li>
               <li>

@@ -49,6 +49,10 @@ export default function MemoryDialog(props) {
     dispatch(rd.createNewSaveData())
   }
 
+  const handleImport = () => {
+    dispatch(rd.openStageDropzone())
+  }
+
   return (
     <div className="MemoryDialog">
       <input type="checkbox" id="modal-MemoryDialog" className="modal-toggle" />
@@ -62,6 +66,9 @@ export default function MemoryDialog(props) {
             <div className="flex gap-4 items-center">
               <Btn size="sm" outline primary onClick={handleNew}>
                 Create new data
+              </Btn>
+              <Btn size="sm" outline primary onClick={handleImport}>
+                Import
               </Btn>
               <label
                 htmlFor="modal-MemoryDialog"
