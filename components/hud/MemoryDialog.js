@@ -14,7 +14,6 @@ export default function MemoryDialog(props) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log('★useEffect', { lastUpdate })
     setMemories(Rezo.getMemoriesSummary())
   }, [lastUpdate])
 
