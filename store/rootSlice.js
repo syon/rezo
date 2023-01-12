@@ -28,6 +28,9 @@ const sliceArg = {
       piece: null,
       node: null,
     },
+    memory: {
+      lastUpdate: null,
+    },
   },
   selectors: {
     gRoot(globalState) {
@@ -46,6 +49,7 @@ const sliceArg = {
       dg('[#initRoot]')
       const { def, facts } = Rezo.loadRoot()
       state.root = Rezo.prepare({ def, facts })
+      state.memory.activeId = Rezo.getActiveMemoryId()
     },
     refresh(state, action) {
       const { def, facts } = state.root
@@ -53,6 +57,7 @@ const sliceArg = {
     },
     autoSave(state, action) {
       dg('[#autoSave]')
+      state.memory.lastUpdate = Rezo.getNowTimestamp()
       Rezo.autoSave(state.root)
     },
     refreshAndSave(state, action) {
