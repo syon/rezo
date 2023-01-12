@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import Rezo from '../../lib/Rezo'
 import { rd } from '../../store/rootSlice'
@@ -8,9 +8,13 @@ import DeleteIcon from './DeleteIcon'
 import Btn from '../Btn'
 
 export default function MemoryDialog(props) {
-  const activeMemoryId = Rezo.getActiveMemoryId()
+  const activeMemoryId = Rezo.getActiveMemoryId() // TODO: via selector
   const [memories, setMemories] = useState(Rezo.getMemoriesSummary())
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    setMemories(Rezo.getMemoriesSummary())
+  }, [activeMemoryId])
 
   const memoryElems = memories.map((m) => {
     const active = m.id === activeMemoryId
