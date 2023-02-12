@@ -19,6 +19,7 @@ const StageComponent = () => {
 
   const handleStageClick = () => {
     dispatch(rd.closeHud())
+    dispatch(rd.cancelHimo())
   }
 
   const handleStageDblClick = (e) => {
