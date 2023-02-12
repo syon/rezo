@@ -48,12 +48,12 @@ const sliceArg = {
     initRoot(state, action) {
       dg('[#initRoot]')
       const { def, facts } = Rezo.loadRoot()
-      state.root = Rezo.prepare({ def, facts })
+      state.root = Rezo.Draw.prepare({ def, facts })
       state.memory.activeId = Rezo.getActiveMemoryId()
     },
     refresh(state, action) {
       const { def, facts } = state.root
-      state.root = Rezo.prepare({ def, facts })
+      state.root = Rezo.Draw.prepare({ def, facts })
     },
     autoSave(state, action) {
       dg('[#autoSave]')
