@@ -36,9 +36,9 @@ export default function PieceItem(props) {
   const handleAddFact = () => {
     if (!hasNode) {
       if (completed) {
-        dispatch(rd.removeFact(title))
+        dispatch(rd.removeFact(id))
       } else {
-        dispatch(rd.addFact(title))
+        dispatch(rd.addFact(id))
       }
     } else {
       window.alert('詳細化してあるためチェックできません。')
