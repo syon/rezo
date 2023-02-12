@@ -11,7 +11,11 @@ export default function NodePieceKnot(props) {
     dispatch(rd.toggleFold({ nodeId: nid, pieceId: pid }))
   }
 
-  const fill = piece.fold ? 'rgb(56 189 248)' : '#e2e8f0'
+  const fill = piece.fold
+    ? piece.completed
+      ? '#22c55e'
+      : 'rgb(56 189 248)'
+    : '#e2e8f0'
 
   return piece.hasNode ? (
     <Circle x={x} y={y} radius={5} fill={fill} onClick={handleClickKnot} />
