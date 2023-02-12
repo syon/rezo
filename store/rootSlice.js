@@ -1,5 +1,5 @@
 import Debug from 'debug'
-import { createSlice, current } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import Rezo from '../lib/Rezo'
 import _ from 'lodash'
 import RezoDraw from '../lib/RezoDraw'

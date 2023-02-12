@@ -2,6 +2,11 @@ import Debug from 'debug'
 import { Provider } from 'react-redux'
 import '../styles/globals.scss'
 import store from '../store'
+import dynamic from 'next/dynamic'
+
+const ErrorBoundary = dynamic(() => import('../components/ErrorBoundary'), {
+  ssr: false,
+})
 
 if (process.env.NODE_ENV === 'development') {
   Debug.enable('@:*')
@@ -9,9 +14,11 @@ if (process.env.NODE_ENV === 'development') {
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Provider store={store}>
-      <Component {...pageProps} />
-    </Provider>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
+    </ErrorBoundary>
   )
 }
 
