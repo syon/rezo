@@ -48,13 +48,13 @@ const sliceArg = {
   reducers: {
     initRoot(state, action) {
       dg('[#initRoot]')
-      const { def, facts } = Rezo.loadRoot()
-      state.root = Rezo.Draw.prepare({ def, facts })
+      const { def, fact } = Rezo.loadRoot()
+      state.root = Rezo.Draw.prepare({ def, fact })
       state.memory.activeId = Rezo.getActiveMemoryId()
     },
     refresh(state, action) {
-      const { def, facts } = state.root
-      state.root = Rezo.Draw.prepare({ def, facts })
+      const { def, fact } = state.root
+      state.root = Rezo.Draw.prepare({ def, fact })
     },
     autoSave(state, action) {
       dg('[#autoSave]')
@@ -89,16 +89,16 @@ const sliceArg = {
     },
     addFact(state, action) {
       dg('[#addFact]')
-      const fact = action.payload
-      const { facts } = state.root
-      facts.push(fact)
+      const pieceId = action.payload
+      const { fact } = state.root
+      fact.localIds.push(pieceId)
       slice.caseReducers.refreshAndSave(state, action)
     },
     removeFact(state, action) {
       dg('[#removeFact]')
-      const fact = action.payload
-      const { facts } = state.root
-      _.pull(facts, fact)
+      const pieceId = action.payload
+      const { fact } = state.root
+      _.pull(fact.localIds, pieceId)
       slice.caseReducers.refreshAndSave(state, action)
     },
     tereportPieceFrom(state, action) {

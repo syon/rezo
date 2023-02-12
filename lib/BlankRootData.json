@@ -9,5 +9,8 @@
     "structure": {},
     "master": {}
   },
-  "facts": []
+  "fact": {
+    "localIds": [],
+    "remoteTitles": []
+  }
 }
