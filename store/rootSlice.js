@@ -118,11 +118,14 @@ const sliceArg = {
         structure[toNodeId].pieces[pId] = structure[fromNodeId].pieces[pId]
         _.unset(structure[fromNodeId].pieces, pId)
       }
+      slice.caseReducers.cancelTeleport(state, action)
+      slice.caseReducers.refreshAndSave(state, action)
+    },
+    cancelTeleport(state, action) {
       state.teleport.active = false
       state.teleport.pos = {}
       state.teleport.piece = null
       state.teleport.node = null
-      slice.caseReducers.refreshAndSave(state, action)
     },
     toggleFold(state, action) {
       dg('toggleFold', action.payload)
