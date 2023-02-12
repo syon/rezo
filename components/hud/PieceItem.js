@@ -40,6 +40,8 @@ export default function PieceItem(props) {
       } else {
         dispatch(rd.addFact(title))
       }
+    } else {
+      window.alert('詳細化してあるためチェックできません。')
     }
   }
 
@@ -94,7 +96,7 @@ export default function PieceItem(props) {
               <IconBtn icon="✏️" size="sm" onClick={handleEdit} />
             )}
             <IconBtn
-              icon={completed ? '✅' : '⬜'}
+              icon={completed ? '✅' : hasNode ? '＿' : '⬜'}
               size="sm"
               onClick={handleAddFact}
             />
