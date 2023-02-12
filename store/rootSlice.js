@@ -134,6 +134,10 @@ const sliceArg = {
         const check = RezoDraw.judgeClosedChildren(state.root, pid, [nid])
         if (check) {
           piece.fold = afterFold
+        } else {
+          window.alert(
+            '直系以外のノードに紐付いているものが含まれているため、折りたたみできません。'
+          )
         }
       } else {
         piece.fold = afterFold

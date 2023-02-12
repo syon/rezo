@@ -1,4 +1,4 @@
-import { Circle } from 'react-konva'
+import { Group, Rect, Circle } from 'react-konva'
 import { useDispatch } from 'react-redux'
 import { rd } from '../store/rootSlice'
 
@@ -18,6 +18,9 @@ export default function NodePieceKnot(props) {
     : '#e2e8f0'
 
   return piece.hasNode ? (
-    <Circle x={x} y={y} radius={5} fill={fill} onClick={handleClickKnot} />
+    <Group onClick={handleClickKnot}>
+      <Rect x={x - 10} y={y - 10} width={20} height={20} />
+      <Circle x={x} y={y} radius={5} fill={fill} />
+    </Group>
   ) : null
 }
