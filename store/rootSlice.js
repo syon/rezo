@@ -1,5 +1,5 @@
 import Debug from 'debug'
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, current } from '@reduxjs/toolkit'
 import Rezo from '../lib/Rezo'
 import _ from 'lodash'
 
@@ -123,11 +123,20 @@ const sliceArg = {
       state.teleport.node = null
       slice.caseReducers.refreshAndSave(state, action)
     },
+    toggleFold(state, action) {
+      dg('toggleFold', action.payload)
+      const { nodeId: nid, pieceId: pid } = action.payload
+      const { structure } = state.root.def
+      const piece = structure[nid].pieces[pid]
+      piece.fold = !piece.fold
+      slice.caseReducers.refreshAndSave(state, action)
+    },
     closeHud(state) {
       state.drawer.app = false
       state.drawer.node = false
     },
     addPiece(state, action) {
+      dg('[#addPiece]', action.payload)
       const { id, text } = action.payload
       const { def } = state.root
       const pieceId = Math.random().toString(36).slice(-4)
