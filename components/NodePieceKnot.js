@@ -1,0 +1,26 @@
+import { Group, Rect, Circle } from 'react-konva'
+import { useDispatch } from 'react-redux'
+import { rd } from '../store/rootSlice'
+
+export default function NodePieceKnot(props) {
+  const { x, y, nid, pid, piece } = props
+  const dispatch = useDispatch()
+
+  const handleClickKnot = (e) => {
+    e.cancelBubble = true
+    dispatch(rd.toggleFold({ nodeId: nid, pieceId: pid }))
+  }
+
+  const fill = piece.fold
+    ? piece.completed
+      ? '#22c55e'
+      : 'rgb(56 189 248)'
+    : '#e2e8f0'
+
+  return piece.hasNode ? (
+    <Group onClick={handleClickKnot}>
+      <Rect x={x - 10} y={y - 10} width={20} height={20} />
+      <Circle x={x} y={y} radius={5} fill={fill} />
+    </Group>
+  ) : null
+}

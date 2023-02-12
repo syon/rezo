@@ -55,7 +55,7 @@ export default function Node(props) {
   }
 
   const boxH = 55 + 25 * pieceList.length
-  const posText = `x:${gx} y:${gy}`
+  const posText = `x:${Math.round(gx * 10) / 10} y:${Math.round(gy * 10) / 10}`
   const nodeCompleted = completed ? '✅' : '⬜'
   const bgColor = completed ? 'rgb(240 253 244)' : 'white'
   const strokeColor = completed ? 'rgb(134 239 172)' : 'rgb(0 0 0 / 80%)'

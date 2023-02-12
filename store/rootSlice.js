@@ -1,7 +1,8 @@
 import Debug from 'debug'
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, current } from '@reduxjs/toolkit'
 import Rezo from '../lib/Rezo'
 import _ from 'lodash'
+import RezoDraw from '../lib/RezoDraw'
 
 const dg = Debug('@:$:slice')
 
@@ -48,12 +49,12 @@ const sliceArg = {
     initRoot(state, action) {
       dg('[#initRoot]')
       const { def, facts } = Rezo.loadRoot()
-      state.root = Rezo.prepare({ def, facts })
+      state.root = Rezo.Draw.prepare({ def, facts })
       state.memory.activeId = Rezo.getActiveMemoryId()
     },
     refresh(state, action) {
       const { def, facts } = state.root
-      state.root = Rezo.prepare({ def, facts })
+      state.root = Rezo.Draw.prepare({ def, facts })
     },
     autoSave(state, action) {
       dg('[#autoSave]')
@@ -123,11 +124,32 @@ const sliceArg = {
       state.teleport.node = null
       slice.caseReducers.refreshAndSave(state, action)
     },
+    toggleFold(state, action) {
+      dg('toggleFold', action.payload)
+      const { nodeId: nid, pieceId: pid } = action.payload
+      const { structure } = state.root.def
+      const piece = structure[nid].pieces[pid]
+      const afterFold = !piece.fold
+      if (afterFold) {
+        const check = RezoDraw.judgeClosedChildren(state.root, pid, [nid])
+        if (check) {
+          piece.fold = afterFold
+        } else {
+          window.alert(
+            '直系以外のノードに紐付いているものが含まれているため、折りたたみできません。'
+          )
+        }
+      } else {
+        piece.fold = afterFold
+      }
+      slice.caseReducers.refreshAndSave(state, action)
+    },
     closeHud(state) {
       state.drawer.app = false
       state.drawer.node = false
     },
     addPiece(state, action) {
+      dg('[#addPiece]', action.payload)
       const { id, text } = action.payload
       const { def } = state.root
       const pieceId = Math.random().toString(36).slice(-4)

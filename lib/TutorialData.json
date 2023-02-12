@@ -45,6 +45,7 @@
         },
         "pieces": {
           "0rbh": {
+            "fold": true,
             "sort": 0
           },
           "c9mk": {

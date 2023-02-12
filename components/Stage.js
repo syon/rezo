@@ -33,8 +33,8 @@ const StageComponent = () => {
     setPos({ x, y })
   }
 
-  const nodeElems = Rezo.createAllBoxes(rezoRoot?.boxes)
-  const wireElems = Rezo.createAllWires(rezoRoot)
+  const nodeElems = Rezo.Draw.createAllBoxes(rezoRoot?.boxes)
+  const wireElems = Rezo.Draw.createAllWires(rezoRoot)
 
   const [stage, stageRef] = useStageRef()
   React.useEffect(() => {
@@ -65,7 +65,6 @@ const StageComponent = () => {
 export function useStageRef() {
   const [stage, setStage] = useState(null)
   const ref = React.useCallback((node) => {
-    console.log('/////////// useCallback!', node)
     setStage(node)
   }, [])
   return [stage, ref]
