@@ -6,7 +6,7 @@ import DeleteIcon from './DeleteIcon'
 import PhotoIcon from './PhotoIcon'
 import FolderIcon from './FolderIcon'
 import { sl, rd } from '../../store/rootSlice'
-import { getStageRef } from '../Stage'
+import { getStageNode } from '../Stage'
 
 export default function AppDrawer(props) {
   const { app: active } = useSelector((s) => s.rezo.drawer)
@@ -18,7 +18,7 @@ export default function AppDrawer(props) {
   }
 
   const handlePNG = () => {
-    const stage = getStageRef()
+    const stage = getStageNode()
     const url = stage.toDataURL({ pixelRatio: 2 })
     dispatch(rd.downloadAsPNG(url))
   }
