@@ -58,10 +58,14 @@ export default function MemoryDialog(props) {
     dispatch(rd.openStageDropzone())
   }
 
+  const handleOutside = () => {
+    
+  }
+
   return (
     <div className="MemoryDialog">
       <input type="checkbox" id="modal-MemoryDialog" className="modal-toggle" />
-      <div className="modal">
+      <div className="modal" onClick={handleOutside}>
         <div className="modal-box w-11/12 max-w-4xl">
           <h3 className="flex justify-between items-center font-bold text-lg">
             <div className="flex items-center">

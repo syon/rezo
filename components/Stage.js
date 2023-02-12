@@ -6,13 +6,12 @@ import Rezo from '../lib/Rezo'
 import Himo from './Himo'
 import TeleportWire from './TeleportWire'
 
-let stageRef = null
+let stageNode = null
 
 const StageComponent = () => {
   const rezoRoot = useSelector((s) => s.rezo.root)
   const [pos, setPos] = useState({})
   const dispatch = useDispatch()
-  stageRef = React.useRef()
 
   React.useEffect(() => {
     dispatch(rd.initRoot())
@@ -37,6 +36,12 @@ const StageComponent = () => {
   const nodeElems = Rezo.createAllBoxes(rezoRoot?.boxes)
   const wireElems = Rezo.createAllWires(rezoRoot)
 
+  const [stage, stageRef] = useStageRef()
+  React.useEffect(() => {
+    stageNode = stage
+    Rezo.zoom(stage)
+  }, [stage])
+
   return (
     <Stage
       width={window.innerWidth}
@@ -57,6 +62,15 @@ const StageComponent = () => {
   )
 }
 
+export function useStageRef() {
+  const [stage, setStage] = useState(null)
+  const ref = React.useCallback((node) => {
+    console.log('/////////// useCallback!', node)
+    setStage(node)
+  }, [])
+  return [stage, ref]
+}
+
 export default StageComponent
 
-export const getStageRef = () => stageRef.current
+export const getStageNode = () => stageNode
