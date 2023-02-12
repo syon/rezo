@@ -2,6 +2,7 @@ import Debug from 'debug'
 import { createSlice, current } from '@reduxjs/toolkit'
 import Rezo from '../lib/Rezo'
 import _ from 'lodash'
+import RezoDraw from '../lib/RezoDraw'
 
 const dg = Debug('@:$:slice')
 
@@ -128,7 +129,15 @@ const sliceArg = {
       const { nodeId: nid, pieceId: pid } = action.payload
       const { structure } = state.root.def
       const piece = structure[nid].pieces[pid]
-      piece.fold = !piece.fold
+      const afterFold = !piece.fold
+      if (afterFold) {
+        const check = RezoDraw.judgeClosedChildren(state.root, pid, [nid])
+        if (check) {
+          piece.fold = afterFold
+        }
+      } else {
+        piece.fold = afterFold
+      }
       slice.caseReducers.refreshAndSave(state, action)
     },
     closeHud(state) {
