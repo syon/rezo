@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import NodePiece from './NodePiece'
 import { rd } from '../store/rootSlice'
 
-const isDebug = true
+const isDebug = false
 
 export default function Node(props) {
   const { id, pos, title, completed, pieces } = props
